@@ -25,4 +25,6 @@ export class Home {
       return coincideTexto && coincideCategoria;
     });
   });
+
+  protected categorias = ['Todos', 'Frutas', 'Verduras', 'Carnes', 'Panadería'];
 }

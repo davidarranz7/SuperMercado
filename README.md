@@ -131,10 +131,89 @@ computed() crea un solo signal de solo lectura que calcula su valor a partir de 
 
 Asi productosFiltrados siempre tiene la lista correcta actualizada y asi en el html solo pintare los prodcutos filtrados,el siguiente paso seria conectar los botones input al html
 
+## paso 9
+para empezar a añadir el buscador vamos a saber que vamos a querer,si queremos un buscador que haga la busqueda una vez le demos a un evento buscar por ejemplo (click) a enviar utilizaremos "click" pero si lo que buscamos es que a medida que el campo se modifique debemos utilizar (input)
 
+- <input #buscadorInput type="text" placeholder="Buscar productos..." (input)="busqueda.set(buscadorInput.value)">
 
+Luego creamos una variable hardcodeada con las categorias para luego asi poder pintarlas... de momento es asi pero en un futuro lo ahremos mas limpio y que cuando se añada un producto si es una categoria nueva se ñada sinq ue nosotros tengamos que añadirla aqui asi evitaremos errores..
 
+ esto lo ponemos en home.ts
+-protected categorias = ['Todos', 'Frutas', 'Verduras', 'Carnes', 'Panadería'];
 
+por ultimo, en el grid de productos, tengo que cambiar el @for para que recorra
+productosFiltrados() en vez de productosService.productos. si dejo el array
+completo sin filtrar, el buscador y las categorias podrian cambiar de signal
+por dentro, pero en pantalla se seguirian viendo siempre los 6 productos, porque
+el bucle nunca estaria mirando el resultado filtrado, solo el catalogo entero.
+
+- @for (producto of productosFiltrados(); track producto.id) 
+
+con esto ya el html pinta solo lo que sale de computed(), que se mantiene
+actualizado solo cada vez que busqueda o categoriaActiva cambian.
+
+## paso 10
+el siguiente paso que haremos sera el añadir un carrito... para ello debemos saber la relacion que ahy... por ejemplo si creamos una clase itemCarrito tendremos que saber que cada carrito tiene un producto y cada producto puede haber un numero de ese mismo producto..
+de momento no vamos a generar relacion de carritos con usuario ya que ahora mismo solo tenemos una persona que esta en la web y no necesita identificarse ni hacer nada.
+
+entonces lo que necesitamos por ahora es
+
+- ng g i models/item-carrito
+
+y en el item-carrito.ts deberiamos de importar la clase producto y definir los atributos de item carrito lo dejariamos asi:
+
+- import { Producto } from "./producto";
+
+export interface ItemCarrito {
+    producto: Producto;
+    cantidad: number;
+}
+
+## paso 11
+para poder crear el servicio que daria el carrito primero lo que tendremos que hacer es crear en la carpeta de services el carrito entonces lanzamos el comando
+
+- ng g s services/carrito
+
+luego entramos en carrito.ts y lo que ahremos es en la calse es crear una variable que recorra todos los items de carrito
+
+- readonly items = signal<ItemCarrito[]>([]);
+
+y tambien importamos ItemCarrito
+
+## paso 12
+por ultimo deberiamos añadir el metodo de agregarAlCarrito, pero teniendo en cuenta de que si el producto ya estaba en el carrito o es nuevo( de suamr cantidad o crear una linea nueva) 
+
+para comprobar se utiliza some() solo devuelve true o false
+
+- const yaEstaEnCarrito = itemsActuales.some(item => item.producto.id === producto.id);
+ 
+si sale por ejemplo true recorremos los items con .map() y al item que coicida le sumamos 1 en la cantidad pero el resto lo dejamos igual
+
+<!--
+itemsActuales.map(item =>
+  item.producto.id === producto.id
+    ? { ...item, cantidad: item.cantidad + 1 }
+    : item
+);
+-->
+
+si por el contrario da false creo un array nuevo con todo lo de antes mas una linea nueva con cantidad 1
+
+- return [...itemsActuales, { producto, cantidad: 1 }];
+
+## paso 13
+seria hacer la logica de acumulador y para eso utilizaremos el computed, creamos la variable total, para sumar todo el array en un unico numero se usa .reduce(), este devuelve un univo vslot final acumulado elemento a elemento.
+
+<!--
+readonly total = computed(() =>
+  this.items().reduce((suma, item) => suma + item.producto.precio * item.cantidad, 0)
+);
+-->
+
+suma es el total acumulado hasta el momento, item es el elemento actual del array en cada vuelta se le suma el precio del prodcuto mltiplicado por la cantidad,para poder sumar bien debemos marcar cual es el incio y por eso ponemos 0
+
+## paso 14
+para que le boton + de cada tarjeta añada de verdad al carrito
 
 ## Cómo arrancar el proyecto
 \`\`\`bash
