@@ -1,59 +1,124 @@
-# Supermercado
+# SupeMercado
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.21.
+Aplicación de supermercado construida con Angular 21, como proyecto de práctica.
 
-## Development server
+## Stack
 
-To start a local development server, run:
+- Angular 21 (standalone components, signals, zoneless)
+- TypeScript
 
-```bash
-ng serve
-```
+## Estructura del proyecto
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+src/app/
+├── models/      # Interfaces de datos
+├── services/    # Lógica y datos compartidos
+├── components/  # Piezas reutilizables
+├── pages/       # Pantallas ligadas a una ruta
 
-## Code scaffolding
+## Funcionalidades
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- [ ] Listado de productos
+- [ ] Búsqueda por nombre
+- [ ] Filtro por categoría
+- [ ] Carrito de la compra
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
+## paso 1
 
-## Building
+lo primero que he hecho fue crear un models donde indicare los atributos de mi clase producto
+- ng g i models/producto
 
-To build the project run:
+export interface Producto {
+    id: number;
+    nombre: string;
+    categoria: string;
+    precio: number;
+    icono: string;
+}
 
-```bash
-ng build
-```
+## paso 2
+he creado el servicio de la clase producto asi podre traer los atributos de esta y asi hardcodear productos de prueba que en el futuro vendran de la base de datos que nos enviara el back y la base de datos
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+-ng g s services/productos
 
-## Running unit tests
+para empezar a poner codigo tenemos que acordarnos que para importar la ruta donde esta la clase que hemos creado lña de producto
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+-import { Producto } from '../models/producto';
 
-```bash
-ng test
-```
+es muy importante ya que si no lo haces el problema que habra es que no te deje crear los productos ya que no reconoce la palabra Producto entonces no puede comprobar que los objetos que se han hardcodeado tengan la forma correcta .
 
-## Running end-to-end tests
+## paso 3
+el siugiente paso seria generar un componente para poder pintar cada producto:
 
-For end-to-end (e2e) testing, run:
+-ng g c components/producto-card
 
-```bash
-ng e2e
-```
+este componente no va a tener lo datos del producto dentro de el por que cada vez que lo use tiene que mostrar un producto distino,manzana,platano etc loq ue queremosq ue el html sea el mismo archivo siempre y entonces apra poder rellenar cada producto utilizaremos input
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## paso 4
+cuando hayamos generado todo el apquete nuevo lo que haremos es que debemos entrar en producto-card.ts y debemnos añadir dos cosas lo mas importante la clase producto y el imput
 
-## Additional Resources
+-import { Producto } from '../../models/producto';
+-import { input } from '@angular/core';
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+luego cuando exportemos la clase que nos genero debemos crear una variable llamada producto en la cual creamos una caja "input" obligatoria utilizando la clase prodcuto..
+
+## paso 5
+lo que ahremos es entrar en su propio html y generar la palantilla que queremoa hacer llamando a la variable que hemos creado antes con cada atributo asi
+
+<!--
+<div class="tarjeta">
+    <span class="icono">{{ producto().icono }}</span>
+    <p class="categoria">{{ producto().categoria }}</p>
+    <h3>{{ producto().nombre }}</h3>
+    <p class="precio">{{ producto().precio }}</p>
+    <button>+</button>
+</div> 
+-->
+
+cada uno ponemos producto el nombre que le dimos a la variable y . (atributo)
+
+## paso 6 
+vamos a generar la pantalla principal y apara eso ya empezaremos a crear la pagina principal asi que lanzamos este comando
+
+-ng g c pages/home
+
+acto seguido deberiamos de ir a app.routes.ts y añadir la ruta de esta quedari asi
+
+<!--
+import { Routes } from '@angular/router';
+import { Home } from './pages/home/home';
+
+export const routes: Routes = [
+   { path: '', component: Home },
+];
+-->
+
+## paso 7
+
+una vez que hayamos creado las rutas lo que haremos es entrar en home.ts e inyectar
+Productos, el servicio, para poder leer el array de productos que hay. tambien
+añadimos ProductoCard, el componente, para poder usar la etiqueta <app-producto-card>
+
+<!--
+import { Component, inject } from '@angular/core';
+import { Productos } from '../../services/productos';
+import { ProductoCard } from '../../components/producto-card/producto-card';
+
+@Component({
+  selector: 'app-home',
+  imports: [ProductoCard],
+  templateUrl: './home.html',
+  styleUrl: './home.css',
+})
+export class Home {
+  protected productosService = inject(Productos);
+}
+
+-->
+
+## Cómo arrancar el proyecto
+\`\`\`bash
+npm install
+ng serve -o
+\`\`\`
