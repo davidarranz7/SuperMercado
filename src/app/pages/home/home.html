@@ -1,3 +1,5 @@
+<h1>Productos</h1>
+
 <div class="grid-productos">
     @for (producto of productosService.productos; track producto.id) {
         <app-producto-card [producto]="producto" />

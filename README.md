@@ -116,6 +116,25 @@ export class Home {
 }
 
 -->
+## paso 8
+para poder conseguir lo del filtrado por nombre y por categoria en home.ts tendremos que hacer la logica, para eso tendremos que utilizar el signal que lo que hacia era un 2componente" que podria cambiar de valor
+
+- protected busqueda = signal('');
+- protected categoriaActiva = signal('Todos');
+
+creandoa  su vez dos variables la de busqueda para el nombre y la segunda para el nombre de categoria
+
+La cosa mas facil seria filtrar sobre producto service que injecta todos los productos de la array pero esto a niviel profesional no seria efectivo ya que tendria que lee toda la array
+y rescribirse constantemente a mano cada vez que el valor cambie para solucionar eso utilizaremos computed()
+
+computed() crea un solo signal de solo lectura que calcula su valor a partir de otros signals (busqueda() y categoriaActiva()) y se recalcula el solo cada vez que cualquiera de los dos cambia sin que el usuario lo mande hacer..
+
+Asi productosFiltrados siempre tiene la lista correcta actualizada y asi en el html solo pintare los prodcutos filtrados,el siguiente paso seria conectar los botones input al html
+
+
+
+
+
 
 ## Cómo arrancar el proyecto
 \`\`\`bash
