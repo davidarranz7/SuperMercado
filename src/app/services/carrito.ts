@@ -5,7 +5,7 @@ import { Producto } from '../models/producto';
 @Injectable({
   providedIn: 'root',
 })
-export class Carrito {
+export class CarritoService {
   readonly items = signal<ItemCarrito[]>([]);
 
   agregarAlCarrito(producto: Producto) {

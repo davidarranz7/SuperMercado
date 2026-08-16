@@ -213,7 +213,103 @@ readonly total = computed(() =>
 suma es el total acumulado hasta el momento, item es el elemento actual del array en cada vuelta se le suma el precio del prodcuto mltiplicado por la cantidad,para poder sumar bien debemos marcar cual es el incio y por eso ponemos 0
 
 ## paso 14
-para que le boton + de cada tarjeta añada de verdad al carrito
+para que le boton + de cada tarjeta añada de verdad al carrito en producto-card tengo que juntar dos cosas el input yel inject pero esta evz juntas
+
+<!--
+producto = input.required<Producto>();
+  protected carritoService = inject(Carrito);
+-->
+
+dentro añadimos un metodo que seria el de agregar
+
+- agregar() {
+    this.carritoService.agregarAlCarrito(this.producto());
+  }
+
+este metodo sirve para lee el producto que le llego por input(), en el html tendremos que conectar el boton con el agregar creando un evento que seria asi
+
+<!--
+<button (click)="agregar()">+</button>
+-->
+
+## paso 15
+el siguiente paso seria generar pages/carrito, pero nos hemos dado cuenta de
+que si dejamos todo como esta, la clase Carrito que tenemos en services/carrito
+va a chocar con el nombre de la propia pagina cuando la generemos. para no tener que usar "as" cada vez que la importemos, hemos decidido renombrar la clase del servicio a CarritoService.
+
+- ng g c pages/carrito
+
+## paso 16
+para poder pintar el contenido del carrito en carrito.html
+
+- @if / @else con .length === 0 
+eto sirve para que cuando el carrito este vacio muestr un mensaje de que el carrito esta vacio
+
+- @for (item of carritoService.items(); track item.producto.id)
+esto sirve para identificar cada fila y asi poder sumarse
+
+de momento no vamos a poder ver cambios ya que no lo hemos metido en el router asi que ese seria el siguiente paso.
+
+## paso 17
+para poder conecatr las paginas debemos acordarnos que ya no uiliza href como se hacia antes ahora loq uese utiliza es RoutesLink, pero antes de eso debemos poner la ruta en app.routes.ts
+
+quedaria asi
+
+<!--
+import { Routes } from '@angular/router';
+import { Home } from './pages/home/home';
+import { Carrito } from './pages/carrito/carrito';
+
+export const routes: Routes = [
+    { path: '', component: Home },
+    { path: 'carrito', component: Carrito }
+];
+
+-->
+
+luego esto no va a hacer nada de momento si no le decimos que url debemos ir.. por que esto solo valdria si pusieras la url a mano pero el problema que habria seria que por mucho que tu añadas alimentos y luego escribas /carrito todos esos datos se pierden por que no se guardan por que estarias recargando toda la pagina pero en cambio como hablamos antes tendremos que utilizar ROutesLInk asi que en app.ts aparte del oulet añadiremos esta y quedaria asi
+
+<!--
+import { Component, signal } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, RouterLink],
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class App {
+  protected readonly title = signal('supermercado');
+}
+
+-->
+
+con esto conseguimos poder utilizar lo que antes era los href entonces el app.html pasaria de solo tener un oulet a esto
+
+<!--
+<nav>
+  <a routerLink="/">SuperMercado</a>
+  <a routerLink="/carrito">Carrito</a>
+</nav>
+
+<router-outlet />
+-->
+
+con esto loq ue haria es pasar de url a otra sin borrar nada y conservando los datos
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Cómo arrancar el proyecto
 \`\`\`bash

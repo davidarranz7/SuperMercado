@@ -1,6 +1,6 @@
 import { Component, input, inject} from '@angular/core';
 import { Producto } from '../../models/producto';
-import { Carrito } from '../../services/carrito';
+import { CarritoService } from '../../services/carrito';
 
 @Component({
   selector: 'app-producto-card',
@@ -10,7 +10,7 @@ import { Carrito } from '../../services/carrito';
 })
 export class ProductoCard {
   producto = input.required<Producto>();
-  protected carritoService = inject(Carrito);
+  protected carritoService = inject(CarritoService);
 
   agregar() {
     this.carritoService.agregarAlCarrito(this.producto());

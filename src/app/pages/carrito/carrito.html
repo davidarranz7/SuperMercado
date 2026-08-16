@@ -1,0 +1,14 @@
+<p>Tu carrito</p>
+
+@if (carritoService.items().length === 0) {
+    <p>Tu carrito está vacío</p>
+} @else {
+    <ul>
+        @for (item of carritoService.items(); track item.producto.id) {
+            <li>
+                {{ item.producto.icono }} {{ item.producto.nombre }} - {{ item.cantidad }} × {{ item.producto.precio }} €
+            </li>
+        }
+    </ul>
+    <p class="total">Total: {{ carritoService.total() }} €</p>
+}
