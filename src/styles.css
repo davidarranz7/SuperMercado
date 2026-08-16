@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+* /* esto seria el selecotr universal*/
+{
+  box-sizing: border-box;
+  margin: 5px;
+  padding: 5px;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background-color: #f4f6f2;
+  color: #000000;
+}
+
+button {
+  cursor: pointer; /* Esto indica como es el cursor vamos la forma del cursor*/
+  border: 1px solid #ccc; /* esto es el borde del boton */
+  font-family: inherit; /* esot dice que coge la fuente del padre el tipo de letra ya que no la hereda de ningun lado */
+}
+
+nav {
+  background-color: #f4f6f2;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

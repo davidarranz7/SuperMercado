@@ -298,7 +298,11 @@ con esto conseguimos poder utilizar lo que antes era los href entonces el app.ht
 
 con esto loq ue haria es pasar de url a otra sin borrar nada y conservando los datos
 
+===========================================================================================
 
+## paso 18
+
+como se dice normalmente toca ponerlo bonito todo ys eguramente nos toque restructurar el esquema de html para situar todo mejor... dejo comentarios en el propio css,pero empezamos con la platilla general de la app que seria styles.css
 
 
 
