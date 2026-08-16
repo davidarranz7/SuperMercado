@@ -1,0 +1,56 @@
+/* Diseño de la tarjeta donde va a ir el producto */
+.tarjeta {
+    background-color: #ffffff; /* fondo blanco */
+    border: 1px solid #e5e5e5; /* borde gris claro */
+    border-radius: 12px; /* esquinas redondeadas */
+    padding: 16px; /* espacio interior de la tarjeta */
+    display: flex; /* esto hace que los hijos se coloquen en fila */
+    flex-direction: column; /* los hijos se colocan en columna */
+    gap: 8px; /* espacio entre cada hijo */
+    transition: transform 0.2s; /* suaviza el cambio al pasar el raton */
+    height: 100%; /* hace que la tarjeta ocupe todo el alto disponible cogiendo refereencia del mas alto siemrpe */    
+}
+
+/* creo un efecto del raton al pasar por l atarjeta */
+.tarjeta:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* sombra */
+}
+
+/* diseño de emoji del producto */
+.icono {
+    font-size: 48px; /* tamaño del emoji */
+    text-align: center; /* centrado horizontal */
+}
+
+/* la categoria */
+.categoria {
+    font-size: 12px; /* tamaño de letra */
+    text-transform: uppercase; /* mayusculas */
+    letter-spacing: 1px; /* espacio entre letras */
+    color: #2f7a4f; /* color verde */
+    font-weight: 600; 
+}
+
+/* el preecio */
+.precio {
+    font-size: 20px; /* tamaño de letra */
+    font-weight: 700; /* negrita */
+}
+
+/* boton de añadir al carrito */
+.tarjeta button {
+    margin-top: auto; /* hace que el boton se coloque al final de la tarjeta */
+    background-color: #2f7a4f; /* fondo verde */
+    color: #ffffff; /* texto blanco */
+    border: none; /* sin borde */
+    border-radius: 8px; /* esquinas redondeadas */
+    padding: 10px; /* espacio interior del boton */
+    font-size: 16px; /* tamaño de letra */
+    font-weight: 700; /* negrita */
+    transition: background-color 0.2s; /* suaviza el cambio de color al pasar el raton */
+}
+
+/* efecto al pasar el raton por el boton */
+.tarjeta button:hover {
+    background-color: #24603d; /* fondo verde oscuro */
+}

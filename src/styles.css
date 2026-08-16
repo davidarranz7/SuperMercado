@@ -16,11 +16,3 @@ button {
   border: 1px solid #ccc; /* esto es el borde del boton */
   font-family: inherit; /* esot dice que coge la fuente del padre el tipo de letra ya que no la hereda de ningun lado */
 }
-
-nav {
-  background-color: #f4f6f2;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}

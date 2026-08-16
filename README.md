@@ -304,16 +304,17 @@ con esto loq ue haria es pasar de url a otra sin borrar nada y conservando los d
 
 como se dice normalmente toca ponerlo bonito todo ys eguramente nos toque restructurar el esquema de html para situar todo mejor... dejo comentarios en el propio css,pero empezamos con la platilla general de la app que seria styles.css
 
+# paso 18 
 
+Una vez que hemos modificado la estructura general lo que haremos es diseñar las zonas especificas del home de la pagina por defecto...
 
+# paso 19
 
+Siguiente paso seria entrar ya en el diseño de tarjetas de producto asi que lo que toca modificar es producto-card.css
 
+## paso 20
 
-
-
-
-
-
+vale es
 
 ## Cómo arrancar el proyecto
 \`\`\`bash

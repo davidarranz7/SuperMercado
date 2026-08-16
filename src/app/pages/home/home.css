@@ -1,0 +1,28 @@
+/* Esta va a ser la fila de filtro por categoria*/
+.categorias{
+    display: flex; /* botones en fila uno al lado del otro */
+    gap: 8px; /* espacio entre cada boton */
+    flex-wrap: wrap; /* si no caben en una fila, se van a la siguiente */
+    margin: 16px 0; /* separacion entre arriba y abajo*/
+}
+
+.categorias button {
+    padding: 8px 16px; /* espacio interior del boton: 8px arriba/abajo, 16px lados */
+    border: 1px solid #d5d5d5; /* borde gris claro */
+    border-radius: 999px; /* esquinas redondeadas */
+    background-color: #ffffff; /* fondo blanco */
+    font-size: 14px; /* tamaño de letra */
+}
+
+.categorias button.activo {
+    background-color: #2f7a4f; /* fondo verde */
+    color: #ffffff; /* texto blanco */
+    border-color: #2f7a4f; /* borde verde */
+}
+
+.grid-productos {
+    display: grid; /* esto hace que los hijos se coloquen en una rejilla */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* cada columna tiene un ancho minimo de 200px y se ajusta automaticamente al espacio disponible */
+    gap: 16px; /* espacio entre cada producto */
+    margin: 16px 0; /* separacion entre arriba y abajo*/
+}

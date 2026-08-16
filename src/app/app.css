@@ -1,14 +1,17 @@
+/* Barra de navegacion de arriba*/
 nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 16px 32px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e5e5;
+  display: flex;                    /* coloca a sus hijos en fila, no uno debajo de otro */
+  align-items: center;              /* centra esos hijos verticalmente entre si */
+  gap: 24px;                        /* espacio entre cada hijo, sin margenes sueltos */
+  padding: 16px 32px;               /* espacio interior: 16px arriba/abajo, 32px lados */
+  background-color: #ffffff;        /* fondo blanco para la barra */
+  border-bottom: 1px solid #e5e5e5; /* linea fina que separa la barra del resto */
 }
 
+/* Estilo de los enlaces dentro del menu */
+
 nav a {
-  text-decoration: none;
-  color: #1a1a1a;
-  font-weight: 600;
+  text-decoration: none; /* quita por defecto los subrayados que tienen los enlaces asi se ve mejor*/
+  color: #1a1a1a; /* mismo color de texto que el resto de la pagina */
+  font-weight: 600; /* texto un poco en negrita*/
 }
