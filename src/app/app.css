@@ -1,10 +1,27 @@
+/* Parte superior */
+header {
+  background-color: #ffffff; /* fondo blanco */
+  border-bottom: 1px solid #e5e5e5; /* linea fina que separa la barra del resto */
+}
+
+.header-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
 /* Barra de navegacion de arriba*/
+
 nav {
   display: flex;                    /* coloca a sus hijos en fila, no uno debajo de otro */
-  align-items: center;              /* centra esos hijos verticalmente entre si */
   gap: 24px;                        /* espacio entre cada hijo, sin margenes sueltos */
   padding: 16px 32px;               /* espacio interior: 16px arriba/abajo, 32px lados */
-  background-color: #ffffff;        /* fondo blanco para la barra */
   border-bottom: 1px solid #e5e5e5; /* linea fina que separa la barra del resto */
 }
 
@@ -14,6 +31,40 @@ nav a {
   text-decoration: none; /* quita por defecto los subrayados que tienen los enlaces asi se ve mejor*/
   color: #1a1a1a; /* mismo color de texto que el resto de la pagina */
   font-weight: 600; /* texto un poco en negrita*/
+  font-size: 15px;
+}
+
+nav a:hover {
+  color: #2f7a4f; 
+}
+
+.boton-carrito {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f0f5f2;
+  border: 1px solid #d5e5db;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.boton-carrito:hover {
+  background-color: #e0ebe4;
+}
+
+.boton-carrito .contador {
+  background-color: #2f7a4f;
+  color: #ffffff;
+  border-radius: 999px;
+  min-width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 /* panel lateral*/

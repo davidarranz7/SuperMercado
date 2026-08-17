@@ -1,7 +1,15 @@
-<nav>
-  <a routerLink="/">SuperMercado</a>
-  <button (click)="alternarPanel()">Carrito ({{ carritoService.cantidadTotal() }})</button>
-</nav>
+<header>
+  <div class="header-superior">
+    <span class="logo">Supermercado</span>
+    <button class="boton-carrito" (click)="alternarPanel()">
+      🛒 <span class="contador">{{ carritoService.cantidadTotal() }}</span>
+    </button>
+  </div>
+
+  <nav>
+    <a routerLink="/">Home</a>
+  </nav>
+</header>
 
 @if (panelAbierto()) {
   <div class="panel">
