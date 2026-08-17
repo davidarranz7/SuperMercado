@@ -24,7 +24,25 @@ export class CarritoService {
     });
   }
 
-    readonly total = computed(() =>
+  readonly total = computed(() =>
     this.items().reduce((suma, item) => suma + item.producto.precio * item.cantidad, 0)
   );
+
+  readonly cantidadTotal = computed(() => this.items().length
+  );
+
+  quitarUnidad(id: number) {
+    this.items.update(itemsActuales => {
+      return itemsActuales.map(item => item.producto.id === id ? {
+        ...item, cantidad: item.cantidad - 1 
+      }
+      : item
+    )
+    .filter(item => item.cantidad > 0);
+    });
+  }
+
+  eliminarProducto(id: number) {
+    this.items.update(itemsActuales => itemsActuales.filter(item => item.producto.id !== id));
+  }
 }

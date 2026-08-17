@@ -314,9 +314,68 @@ Siguiente paso seria entrar ya en el diseño de tarjetas de producto asi que lo 
 
 ## paso 20
 
-vale es
+vale esto no es ningun error, solo es simplemente una mejora ya que aunqer sea una aplcacion de un ejercicio vamos a hcerla todo lo posible para poner en funcionamiento de manera mas real.
+
+Asi que vamos hacer que en la cabecerase vewa cuantos productos se lleva, por ejemplo si selecciono 5 manzanas y dos platanos lo que queremos mostrar es el numero de productos no la cantidad total de estas.
+
+Para poder hacer esto volveremos a utilizar computed() pero como solo queremos contar las lineas no la cantidades de cada linea(solo nos interesa la cantidad de prodcutos no la cantidad de cada producto) si no si que tendriamos que utilizar reduce()
+
+- readonly cantidadTotal = computed(() => this.items().length
+  );
+
+Luego para poder importarla tenemos que injectar el servicio al carrito.ts (pero del servicio) debemos añadir:
+
+- import { CarritoService } from './services/carrito';
+
+- protected carritoService = inject(CarritoService);
+
+poor ultimo en el html lo que haremos(app.html)como tenemos pintado la palara carrito al lado debemos pintar tambien la funcion que tenemos del contaodr de cada producto seleecionado!!
+
+- <a routerLink="/carrito">Carrito ({{ carritoService.cantidadTotal() }})</a>
+
+## paso 21
+
+Vamos a hacer ahora el panle desplegable, para no ir al carrito para ver que seleccionaste y asi poder interactuar emjor como pagina.Pero para eso un despleganble comun, es normalmente añadir y elimnar bloques o unidades entonces deberiamos primer hacer esa logica de carrito
+
+Crearemos un metodo que lo llamaremos quitarUnidad() para eso debemos utilizar el filter para que nos devuelva una array nueva. La cosa es recorrer el array con .map para poderle restar 1 a la cantidad de  ese prodcuto
+
+<!--
+  quitarUnidad(id: number) {
+    this.items.update(itemsActuales => {
+      return itemsActuales.map(item => item.producto.id === id ? {
+        ...item, cantidad: item.cantidad - 1 
+      }
+      : item
+    )
+    .filter(item => item.cantidad > 0);
+    });
+    -->
+
+## paso 22
+
+ahroa empezamos con el siguiente metodo que seria eliminar la line(el producto) sin importar cuntas unidades tenga es mas simple
+
+- eliminarProducto(id: number) {
+  this.items.update(itemsActuales => itemsActuales.filter(item => item.producto.id !== id));
+}
+
+el !== lo utilizamos para decirle que nos quedamos con todo lo distinto al id que llevmaos de la varibale 
+
+## paso 23
+
+el siguiente paso es conectar los metodos que hemos hecho con el html y asi poder utilizarlos de momento en el html de carrito ya que no hemos empezado con el panel lateral
+
+asi que dentro del bucle que teniamos añadimos estas dos lineas
+
+- <button (click)="carritoService.eliminarProducto(item.producto.id)">Eliminar</button>
+
+- <button (click)="carritoService.quitarUnidad(item.producto.id)">-</button>
+
+## paso 24
+
 
 ## Cómo arrancar el proyecto
+
 \`\`\`bash
 npm install
 ng serve -o

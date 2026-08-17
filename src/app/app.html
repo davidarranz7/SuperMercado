@@ -1,6 +1,12 @@
 <nav>
   <a routerLink="/">SuperMercado</a>
-  <a routerLink="/carrito">Carrito</a>
+  <button (click)="alternarPanel">Carrito ({{ carritoService.cantidadTotal() }})</button>
 </nav>
 
+@if (panelAbierto()) {
+  <div class="panel">
+    <h2>Carrito</h2>
+  </div>
+  
+}
 <router-outlet />

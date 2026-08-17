@@ -7,6 +7,8 @@
         @for (item of carritoService.items(); track item.producto.id) {
             <li>
                 {{ item.producto.icono }} {{ item.producto.nombre }} - {{ item.cantidad }} × {{ item.producto.precio }} €
+                <button (click)="carritoService.quitarUnidad(item.producto.id)">-</button>
+                <button (click)="carritoService.eliminarProducto(item.producto.id)">Eliminar</button>
             </li>
         }
     </ul>
