@@ -1,12 +1,31 @@
 <nav>
   <a routerLink="/">SuperMercado</a>
-  <button (click)="alternarPanel">Carrito ({{ carritoService.cantidadTotal() }})</button>
+  <button (click)="alternarPanel()">Carrito ({{ carritoService.cantidadTotal() }})</button>
 </nav>
 
 @if (panelAbierto()) {
   <div class="panel">
-    <h2>Carrito</h2>
+    <div class="panel-cabecera">
+      <h2>Carrito de compras</h2>
+      <button (click)="alternarPanel()">Cerrar</button>
+    </div>
+    
+    @if (carritoService.items().length === 0) {
+      <p>El carrito está vacío</p>
+    } @else {
+      @for (item of carritoService.items(); track item.producto.id) {
+        <div class="panel-item">
+          <span>{{ item.producto.icono }} {{ item.producto.nombre }}</span>
+          <span>{{ item.cantidad }} x {{ item.producto.precio }} €</span>
+          <button (click)="carritoService.quitarUnidad(item.producto.id)">-</button>
+          <button (click)="carritoService.eliminarProducto(item.producto.id)">Eliminar</button>
+        </div>
+      }
+
+      <p class="panel-total">Total: {{ carritoService.total() }} €</p>
+      <a routerLink="/carrito" (click)="alternarPanel()">Ir a comprar</a>
+    }
+
   </div>
-  
 }
 <router-outlet />

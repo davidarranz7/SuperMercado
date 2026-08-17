@@ -372,7 +372,58 @@ asi que dentro del bucle que teniamos añadimos estas dos lineas
 - <button (click)="carritoService.quitarUnidad(item.producto.id)">-</button>
 
 ## paso 24
+para empezar con el panel tenemos que hacer lo siguiente en el app.ts netemos que crear una variable la llamaremos panelAbierto para saber siempre si el panel esta abierto o no como es algo que no queremos que aparezca siemrpe al entrar a la app guardamos como false
 
+<!--
+  protected panelAbierto = signal(false);
+
+  alternarPanel() {
+    this.panelAbierto.update(abierto => !abierto);
+  }
+  -->
+
+el siguiente paso es añadirlo al html de momento no se va a ver nada simplemente se mirara un texto para que podamos ver si funciona o no,para eso quitaremos el routerlink que llevaba hasta el enlace de carrito y pondremos esto
+
+- <button (click)="alternarPanel()">Carrito ({{ carritoService.cantidadTotal() }})</button>
+</nav>
+
+pero para ver lo que trae de momento pondremos un texto simple
+
+<!--
+@if (panelAbierto()) {
+  <div class="panel">
+    <p>Panel abierto</p>
+  </div>
+}
+-->
+
+## paso 25
+
+para poder rellenar todo 
+para empezar haceos un evento que es para cerrar el panel lateral
+
+- <button (click)="alternarPanel()">Cerrar</button>
+
+si el carrito esta vacio por e contrario tiene que haber una condicion y tendria que poner que el carrito esta vacio 
+
+- @if (carritoService.items().length === 0) {
+      <p>El carrito está vacío</p>
+
+y luego la logia que tendria la misma de carrito que teniamos en el ese html
+
+<!--
+<div class="panel-item">
+  <span>{{ item.producto.icono }} {{ item.producto.nombre }}</span>
+  <span>{{ item.cantidad }} x {{ item.producto.precio }} €</span>
+  <button (click)="carritoService.quitarUnidad(item.producto.id)">-</button>
+  <button (click)="carritoService.eliminarProducto(item.producto.id)">Eliminar</button>
+   </div>
+-->
+
+luego lo siguiente lo ultimo es entrar de nuevo al carrito.html y tambien cerrar el panel si no seguiria abierto
+
+
+  
 
 ## Cómo arrancar el proyecto
 
