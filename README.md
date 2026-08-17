@@ -422,8 +422,29 @@ y luego la logia que tendria la misma de carrito que teniamos en el ese html
 
 luego lo siguiente lo ultimo es entrar de nuevo al carrito.html y tambien cerrar el panel si no seguiria abierto
 
+## paso 26
 
-  
+El siguiente paso seria ajustar el app.css para añadir el diseño del panel lateral
+
+
+## paso 27
+
+he tenido un priblema que tiene facil solucion en el panel aparte de tener por ejemplo el eliminar unidad de un producto esataria genial el poder añadir tambien desde el panel asi que añadimos el metodo que tenemos ya en ficha que es "agregarAlCarrito" y lo añadimos al app.html
+
+- <button (click)="carritoService.agregarAlCarrito(item.producto)">+</button>
+
+## paso 28
+
+he añadido hover para hacer efectos de por ejemplo eliminar o de añadir o de cerrar el panel, estoy tambien encontrando la solucion para poder alinear el nombre del producto con el precio por que no me esta gustando mucho.
+
+
+
+
+
+
+
+
+
 
 ## Cómo arrancar el proyecto
 

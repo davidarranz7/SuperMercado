@@ -7,7 +7,7 @@
   <div class="panel">
     <div class="panel-cabecera">
       <h2>Carrito de compras</h2>
-      <button (click)="alternarPanel()">Cerrar</button>
+      <button class="boton-cerrar" (click)="alternarPanel()">X</button>
     </div>
     
     @if (carritoService.items().length === 0) {
@@ -15,10 +15,11 @@
     } @else {
       @for (item of carritoService.items(); track item.producto.id) {
         <div class="panel-item">
-          <span>{{ item.producto.icono }} {{ item.producto.nombre }}</span>
-          <span>{{ item.cantidad }} x {{ item.producto.precio }} €</span>
-          <button (click)="carritoService.quitarUnidad(item.producto.id)">-</button>
-          <button (click)="carritoService.eliminarProducto(item.producto.id)">Eliminar</button>
+          <span class="nombre">{{ item.producto.icono }} {{ item.producto.nombre }}</span>
+          <span class="precio-linea">{{ item.cantidad }} x {{ item.producto.precio }} €</span>
+          <button class="boton-cantidad boton-restar" (click)="carritoService.quitarUnidad(item.producto.id)">-</button>
+          <button class="boton-cantidad boton-sumar" (click)="carritoService.agregarAlCarrito(item.producto)">+</button>
+          <button class="boton-eliminar" (click)="carritoService.eliminarProducto(item.producto.id)">Eliminar</button>
         </div>
       }
 
