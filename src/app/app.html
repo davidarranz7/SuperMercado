@@ -22,9 +22,10 @@
           <button class="boton-eliminar" (click)="carritoService.eliminarProducto(item.producto.id)">Eliminar</button>
         </div>
       }
-
-      <p class="panel-total">Total: {{ carritoService.total() }} €</p>
-      <a routerLink="/carrito" (click)="alternarPanel()">Ir a comprar</a>
+      <div class="panel-pie">
+        <p class="panel-total">Total: {{ carritoService.total() | currency:'EUR' }} €</p>
+        <a class="boton-comprar" routerLink="/carrito" (click)="alternarPanel()">Ir a comprar</a>
+      </div>
     }
 
   </div>

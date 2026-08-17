@@ -1,10 +1,11 @@
 import { Component, signal, inject } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { CarritoService } from './services/carrito';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, CurrencyPipe],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

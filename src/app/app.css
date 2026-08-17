@@ -29,6 +29,8 @@ nav a {
   padding: 24px;
   overflow-y: auto;                 /* por si hay mas productos en un futuos poder hacer scroll*/
   z-index: 10;                      /* se pinta por encima de tdoo*/
+  display: flex;                     /* para poder usar flexbox en su interior */
+  flex-direction: column;           /* los hijos se colocan en columna, uno debajo de otro */
 }
 
 /* Cabezera del panel*/
@@ -124,4 +126,30 @@ nav a {
   margin-top: 16px;
   font-size: 18px;
   font-weight: 700;
+}
+
+/* Pie de panel */
+.panel-pie {
+  margin-top: auto;;
+  padding-top: 16px;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* boton para ir a comprar */
+.boton-comprar {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #2f7a4f;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 12px;
+  transition: background-color 0.2s;
+}
+
+.boton-comprar:hover {
+  background-color: #24603d;
 }

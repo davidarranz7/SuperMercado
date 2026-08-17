@@ -437,6 +437,14 @@ he tenido un priblema que tiene facil solucion en el panel aparte de tener por e
 
 he añadido hover para hacer efectos de por ejemplo eliminar o de añadir o de cerrar el panel, estoy tambien encontrando la solucion para poder alinear el nombre del producto con el precio por que no me esta gustando mucho.
 
+## paso 29
+
+Tenemos un problema que es que por ejemplo pongo 7 zanahorias y me sale un resultado 
+ 5.6000000000000005, eso deberia ser inviable asi que... tenemos que parchear eso,para eso deberiamos utilizar "CURRENCY"
+
+- <p class="panel-total">Total: {{ carritoService.total() | currency:'EUR' }}</p>
+
+para importar esto debemos importarlo en el app.ts y en el array de component
 
 
 
