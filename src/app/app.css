@@ -113,26 +113,26 @@ nav a:hover {
 /* Ajuste de los items dentro del panel*/
 
 .panel-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px 28px 28px auto;
   align-items: center;
   gap: 8px;
-  padding: 8px 0;
+  padding: 14px 0;
   border-bottom: 1px solid #eee;          /* Separador entre productos*/
 }
 
 .panel-item .nombre {
-  flex: 1;                                 /* ocupa todo el espacio disponible*/
   min-width: 0;                            /* permite que el texto se reduzca si es necesario */
   font-size: 14px;
+  line-height: 1.4;
 }
 
 .panel-item .precio-linea {
-  width: 90px;
+  width: auto;
   text-align: right;
   font-size: 13px;
   color: #555;
   white-space: nowrap;                      /* evita que el texto se divida en varias lineas */
-  flex-shrink: 0;                           /* evita que se encoja si el espacio es limitado */
 }
 
 .panel-item .boton-cantidad {
