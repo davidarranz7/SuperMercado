@@ -1,15 +1,12 @@
 <h1>Productos</h1>
-
-<input #buscadorInput type="text" placeholder="Buscar productos..." (input)="busqueda.set(buscadorInput.value)">
-
 <div class="categorias">
-    @for (cat of categorias; track cat) {
-        <button [class.activo]="categoriaActiva() === cat" (click)="categoriaActiva.set(cat)">{{ cat }}</button>
+    @for (cat of productoService.categorias; track cat) {
+        <button [class.activo]="productoService.categoriaActiva() === cat" (click)="productoService.categoriaActiva.set(cat)">{{ cat }}</button>
     }
 </div>
 
 <div class="grid-productos">
-    @for (producto of productosFiltrados(); track producto.id) {
+    @for (producto of productoService.productosFiltrados(); track producto.id) {
         <app-producto-card [producto]="producto" />
     }
 </div>

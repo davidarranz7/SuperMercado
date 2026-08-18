@@ -446,8 +446,38 @@ Tenemos un problema que es que por ejemplo pongo 7 zanahorias y me sale un resul
 
 para importar esto debemos importarlo en el app.ts y en el array de component
 
+## paso 30
 
+No hemos detectado problema simplemente queremos restructurar y poner el buscador en el header entonces tenemos que cambiar varias cosas de sitio,lo que hay que mover es la logica de home a producto service
 
+- readonly categorias = ['Todos', 'Frutas', 'Verduras', 'Carnes', 'Panadería'];
+
+<!--
+readonly busqueda = signal('');
+  readonly categoriaActiva = signal('Todos');
+
+  readonly productosFiltrados = computed(() => {
+    const texto = this.busqueda().toLowerCase();
+    const categoria = this.categoriaActiva();
+
+    return this.productos.filter((producto) => {
+      const coincideTexto = producto.nombre.toLowerCase().includes(texto);
+      const coincideCategoria = categoria === 'Todos' || producto.categoria === categoria;
+
+      return coincideTexto && coincideCategoria;
+    });
+-->
+
+y home quedaria vacio ya!!!, luego cambiariamos las llamadas de busqueda y de filtro con "productoService."
+
+## paso 31
+el siguiente paso deberiamos importar en app.ts la clase productos
+
+- import { Productos } from './services/productos';
+
+y tambien añadimos la variable
+
+- protected productoService = inject(Productos);
 
 
 

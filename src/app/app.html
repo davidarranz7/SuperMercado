@@ -1,15 +1,22 @@
 <header>
-  <div class="header-superior">
-    <span class="logo">Supermercado</span>
-    <button class="boton-carrito" (click)="alternarPanel()">
-      🛒 <span class="contador">{{ carritoService.cantidadTotal() }}</span>
-    </button>
+  <div class="logo">
+    <div class="logo-icono">S</div>
+    <div class="logo-texto">
+      <span class="logo-nombre">Supermercado</span>
+      <span class="logo-slogan">Tu supermercado de confianza</span>
+    </div>
   </div>
 
-  <nav>
-    <a routerLink="/">Home</a>
-  </nav>
+  <input class="buscador" type="text" placeholder="buscar productos..."#buscadorInput (input)="productoService.busqueda.set(buscadorInput.value)">
+  <button class="boton-carrito" (click)="alternarPanel()">
+    🛒 <span class="contador">{{ carritoService.cantidadTotal() }}</span>
+  </button>
 </header>
+
+<nav>
+  <a routerLink="/">Home</a>
+</nav>
+
 
 @if (panelAbierto()) {
   <div class="panel">
