@@ -2,35 +2,38 @@
 
 /* margenes de la pagina */
 .contenido {
-    max-width: 1400px; /* ancho maximo de la pagina */
-    margin: 0 auto; /* centrado horizontal */
-    padding: 32px; /* espacio interior a los lados */
+  max-width: 1400px; /* ancho maximo de la pagina */
+  margin: 0 auto; /* centrado horizontal */
+  padding: 32px; /* espacio interior a los lados */
 }
 /* Esta va a ser la fila de filtro por categoria*/
-.categorias{
-    display: flex; /* botones en fila uno al lado del otro */
-    gap: 8px; /* espacio entre cada boton */
-    flex-wrap: wrap; /* si no caben en una fila, se van a la siguiente */
-    margin: 16px 0; /* separacion entre arriba y abajo*/
-    
-    button {
-        padding: 8px 16px; /* espacio interior del boton: 8px arriba/abajo, 16px lados */
-        border: 1px solid vars.$gris-borde; /* borde gris claro */
-        border-radius: 999px; /* esquinas redondeadas */
-        background-color: vars.$blanco; /* fondo blanco */
-        font-size: 14px; /* tamaño de letra */
+.categorias {
+  display: flex; /* botones en fila uno al lado del otro */
+  gap: 8px; /* espacio entre cada boton */
+  flex-wrap: wrap; /* si no caben en una fila, se van a la siguiente */
+  margin: 16px 0; /* separacion entre arriba y abajo*/
 
-        &.activo {
-            background-color: vars.$verde-principal; /* fondo verde */
-            color: vars.$blanco; /* texto blanco */
-            border-color: vars.$verde-principal; /* borde verde */
-        }
+  button {
+    padding: 8px 16px; /* espacio interior del boton: 8px arriba/abajo, 16px lados */
+    border: 1px solid vars.$gris-borde; /* borde gris claro */
+    border-radius: 999px; /* esquinas redondeadas */
+    background-color: vars.$blanco; /* fondo blanco */
+    font-size: 14px; /* tamaño de letra */
+
+    &.activo {
+      background-color: vars.$verde-principal; /* fondo verde */
+      color: vars.$blanco; /* texto blanco */
+      border-color: vars.$verde-principal; /* borde verde */
     }
+  }
 }
 
 .grid-productos {
-    display: grid; /* esto hace que los hijos se coloquen en una rejilla */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* cada columna tiene un ancho minimo de 200px y se ajusta automaticamente al espacio disponible */
-    gap: 16px; /* espacio entre cada producto */
-    margin: 16px 0; /* separacion entre arriba y abajo*/
+  display: grid; /* esto hace que los hijos se coloquen en una rejilla */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /* cada columna tiene un ancho minimo de 200px y se ajusta automaticamente al espacio disponible */
+  gap: 16px; /* espacio entre cada producto */
+  margin: 16px 0; /* separacion entre arriba y abajo*/
 }

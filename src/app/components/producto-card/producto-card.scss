@@ -2,69 +2,69 @@
 
 /* Diseño de la tarjeta donde va a ir el producto */
 .tarjeta {
-    background-color: vars.$blanco; /* fondo blanco */
-    border: 1px solid vars.$gris-borde; /* borde gris claro */
-    border-radius: 12px; /* esquinas redondeadas */
-    padding: 16px; /* espacio interior de la tarjeta */
-    display: flex; /* esto hace que los hijos se coloquen en fila */
-    flex-direction: column; /* los hijos se colocan en columna */
-    gap: 8px; /* espacio entre cada hijo */
-    transition: transform 0.2s; /* suaviza el cambio al pasar el raton */
-    height: 100%; /* hace que la tarjeta ocupe todo el alto disponible cogiendo refereencia del mas alto siemrpe */    
+  background-color: vars.$blanco; /* fondo blanco */
+  border: 1px solid vars.$gris-borde; /* borde gris claro */
+  border-radius: 12px; /* esquinas redondeadas */
+  padding: 16px; /* espacio interior de la tarjeta */
+  display: flex; /* esto hace que los hijos se coloquen en fila */
+  flex-direction: column; /* los hijos se colocan en columna */
+  gap: 8px; /* espacio entre cada hijo */
+  transition: transform 0.2s; /* suaviza el cambio al pasar el raton */
+  height: 100%; /* hace que la tarjeta ocupe todo el alto disponible cogiendo refereencia del mas alto siemrpe */
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: vars.$verde-principal;
+    color: vars.$blanco;
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
 
     &:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      background-color: vars.$verde-hover; /* fondo verde oscuro */
     }
-
-    button {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background-color: vars.$verde-principal;
-        color: vars.$blanco;
-        border: none;
-        font-size: 20px;
-        font-weight: 700;
-        flex-shrink: 0;
-        transition: background-color 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        line-height: 1;
-
-        &:hover {
-            background-color: vars.$verde-hover; /* fondo verde oscuro */
-        }
-    }
+  }
 }
 
 /* diseño de emoji del producto */
 .icono {
-    font-size: 48px; /* tamaño del emoji */
-    text-align: center; /* centrado horizontal */
+  font-size: 48px; /* tamaño del emoji */
+  text-align: center; /* centrado horizontal */
 }
 
 /* la categoria */
 .categoria {
-    font-size: 12px; /* tamaño de letra */
-    text-transform: uppercase; /* mayusculas */
-    letter-spacing: 1px; /* espacio entre letras */
-    color: vars.$verde-principal; 
-    font-weight: 600; 
+  font-size: 12px; /* tamaño de letra */
+  text-transform: uppercase; /* mayusculas */
+  letter-spacing: 1px; /* espacio entre letras */
+  color: vars.$verde-principal;
+  font-weight: 600;
 }
 
 /* el preecio */
 .precio {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
 }
 
 .pie-tarjeta {
-    margin-top: auto;                 /* empuja esta fila al fondo de la tarjeta */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;   /* precio a un extremo, boton al otro */
-    gap: 12px;
+  margin-top: auto; /* empuja esta fila al fondo de la tarjeta */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* precio a un extremo, boton al otro */
+  gap: 12px;
 }

@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prepare": "husky",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "private": true,
   "packageManager": "npm@11.6.2",

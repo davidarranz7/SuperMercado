@@ -9,14 +9,12 @@ export class CarritoService {
   readonly items = signal<ItemCarrito[]>([]);
 
   agregarAlCarrito(producto: Producto) {
-    this.items.update(itemsActuales => {
-      const yaExisteEnCarrito = itemsActuales.some(item => item.producto.id === producto.id);
+    this.items.update((itemsActuales) => {
+      const yaExisteEnCarrito = itemsActuales.some((item) => item.producto.id === producto.id);
 
       if (yaExisteEnCarrito) {
-        return itemsActuales.map(item => 
-          item.producto.id === producto.id
-            ? { ...item, cantidad: item.cantidad + 1 }
-            : item
+        return itemsActuales.map((item) =>
+          item.producto.id === producto.id ? { ...item, cantidad: item.cantidad + 1 } : item,
         );
       } else {
         return [...itemsActuales, { producto, cantidad: 1 }];
@@ -25,24 +23,27 @@ export class CarritoService {
   }
 
   readonly total = computed(() =>
-    this.items().reduce((suma, item) => suma + item.producto.precio * item.cantidad, 0)
+    this.items().reduce((suma, item) => suma + item.producto.precio * item.cantidad, 0),
   );
 
-  readonly cantidadTotal = computed(() => this.items().length
-  );
+  readonly cantidadTotal = computed(() => this.items().length);
 
   quitarUnidad(id: number) {
-    this.items.update(itemsActuales => {
-      return itemsActuales.map(item => item.producto.id === id ? {
-        ...item, cantidad: item.cantidad - 1 
-      }
-      : item
-    )
-    .filter(item => item.cantidad > 0);
+    this.items.update((itemsActuales) => {
+      return itemsActuales
+        .map((item) =>
+          item.producto.id === id
+            ? {
+                ...item,
+                cantidad: item.cantidad - 1,
+              }
+            : item,
+        )
+        .filter((item) => item.cantidad > 0);
     });
   }
 
   eliminarProducto(id: number) {
-    this.items.update(itemsActuales => itemsActuales.filter(item => item.producto.id !== id));
+    this.items.update((itemsActuales) => itemsActuales.filter((item) => item.producto.id !== id));
   }
 }

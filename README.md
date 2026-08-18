@@ -10,10 +10,10 @@ Aplicación de supermercado construida con Angular 21, como proyecto de práctic
 ## Estructura del proyecto
 
 src/app/
-├── models/      # Interfaces de datos
-├── services/    # Lógica y datos compartidos
-├── components/  # Piezas reutilizables
-├── pages/       # Pantallas ligadas a una ruta
+├── models/ # Interfaces de datos
+├── services/ # Lógica y datos compartidos
+├── components/ # Piezas reutilizables
+├── pages/ # Pantallas ligadas a una ruta
 
 ## Funcionalidades
 
@@ -22,22 +22,22 @@ src/app/
 - [ ] Filtro por categoría
 - [ ] Carrito de la compra
 
-
-
 ## paso 1
 
 lo primero que he hecho fue crear un models donde indicare los atributos de mi clase producto
+
 - ng g i models/producto
 
 export interface Producto {
-    id: number;
-    nombre: string;
-    categoria: string;
-    precio: number;
-    icono: string;
+id: number;
+nombre: string;
+categoria: string;
+precio: number;
+icono: string;
 }
 
 ## paso 2
+
 he creado el servicio de la clase producto asi podre traer los atributos de esta y asi hardcodear productos de prueba que en el futuro vendran de la base de datos que nos enviara el back y la base de datos
 
 -ng g s services/productos
@@ -49,6 +49,7 @@ para empezar a poner codigo tenemos que acordarnos que para importar la ruta don
 es muy importante ya que si no lo haces el problema que habra es que no te deje crear los productos ya que no reconoce la palabra Producto entonces no puede comprobar que los objetos que se han hardcodeado tengan la forma correcta .
 
 ## paso 3
+
 el siugiente paso seria generar un componente para poder pintar cada producto:
 
 -ng g c components/producto-card
@@ -56,6 +57,7 @@ el siugiente paso seria generar un componente para poder pintar cada producto:
 este componente no va a tener lo datos del producto dentro de el por que cada vez que lo use tiene que mostrar un producto distino,manzana,platano etc loq ue queremosq ue el html sea el mismo archivo siempre y entonces apra poder rellenar cada producto utilizaremos input
 
 ## paso 4
+
 cuando hayamos generado todo el apquete nuevo lo que haremos es que debemos entrar en producto-card.ts y debemnos añadir dos cosas lo mas importante la clase producto y el imput
 
 -import { Producto } from '../../models/producto';
@@ -64,6 +66,7 @@ cuando hayamos generado todo el apquete nuevo lo que haremos es que debemos entr
 luego cuando exportemos la clase que nos genero debemos crear una variable llamada producto en la cual creamos una caja "input" obligatoria utilizando la clase prodcuto..
 
 ## paso 5
+
 lo que ahremos es entrar en su propio html y generar la palantilla que queremoa hacer llamando a la variable que hemos creado antes con cada atributo asi
 
 <!--
@@ -73,12 +76,13 @@ lo que ahremos es entrar en su propio html y generar la palantilla que queremoa 
     <h3>{{ producto().nombre }}</h3>
     <p class="precio">{{ producto().precio }}</p>
     <button>+</button>
-</div> 
+</div>
 -->
 
 cada uno ponemos producto el nombre que le dimos a la variable y . (atributo)
 
-## paso 6 
+## paso 6
+
 vamos a generar la pantalla principal y apara eso ya empezaremos a crear la pagina principal asi que lanzamos este comando
 
 -ng g c pages/home
@@ -116,13 +120,15 @@ export class Home {
 }
 
 -->
+
 ## paso 8
+
 para poder conseguir lo del filtrado por nombre y por categoria en home.ts tendremos que hacer la logica, para eso tendremos que utilizar el signal que lo que hacia era un 2componente" que podria cambiar de valor
 
 - protected busqueda = signal('');
 - protected categoriaActiva = signal('Todos');
 
-creandoa  su vez dos variables la de busqueda para el nombre y la segunda para el nombre de categoria
+creandoa su vez dos variables la de busqueda para el nombre y la segunda para el nombre de categoria
 
 La cosa mas facil seria filtrar sobre producto service que injecta todos los productos de la array pero esto a niviel profesional no seria efectivo ya que tendria que lee toda la array
 y rescribirse constantemente a mano cada vez que el valor cambie para solucionar eso utilizaremos computed()
@@ -132,13 +138,14 @@ computed() crea un solo signal de solo lectura que calcula su valor a partir de 
 Asi productosFiltrados siempre tiene la lista correcta actualizada y asi en el html solo pintare los prodcutos filtrados,el siguiente paso seria conectar los botones input al html
 
 ## paso 9
+
 para empezar a añadir el buscador vamos a saber que vamos a querer,si queremos un buscador que haga la busqueda una vez le demos a un evento buscar por ejemplo (click) a enviar utilizaremos "click" pero si lo que buscamos es que a medida que el campo se modifique debemos utilizar (input)
 
 - <input #buscadorInput type="text" placeholder="Buscar productos..." (input)="busqueda.set(buscadorInput.value)">
 
 Luego creamos una variable hardcodeada con las categorias para luego asi poder pintarlas... de momento es asi pero en un futuro lo ahremos mas limpio y que cuando se añada un producto si es una categoria nueva se ñada sinq ue nosotros tengamos que añadirla aqui asi evitaremos errores..
 
- esto lo ponemos en home.ts
+esto lo ponemos en home.ts
 -protected categorias = ['Todos', 'Frutas', 'Verduras', 'Carnes', 'Panadería'];
 
 por ultimo, en el grid de productos, tengo que cambiar el @for para que recorra
@@ -147,12 +154,13 @@ completo sin filtrar, el buscador y las categorias podrian cambiar de signal
 por dentro, pero en pantalla se seguirian viendo siempre los 6 productos, porque
 el bucle nunca estaria mirando el resultado filtrado, solo el catalogo entero.
 
-- @for (producto of productosFiltrados(); track producto.id) 
+- @for (producto of productosFiltrados(); track producto.id)
 
 con esto ya el html pinta solo lo que sale de computed(), que se mantiene
 actualizado solo cada vez que busqueda o categoriaActiva cambian.
 
 ## paso 10
+
 el siguiente paso que haremos sera el añadir un carrito... para ello debemos saber la relacion que ahy... por ejemplo si creamos una clase itemCarrito tendremos que saber que cada carrito tiene un producto y cada producto puede haber un numero de ese mismo producto..
 de momento no vamos a generar relacion de carritos con usuario ya que ahora mismo solo tenemos una persona que esta en la web y no necesita identificarse ni hacer nada.
 
@@ -165,11 +173,12 @@ y en el item-carrito.ts deberiamos de importar la clase producto y definir los a
 - import { Producto } from "./producto";
 
 export interface ItemCarrito {
-    producto: Producto;
-    cantidad: number;
+producto: Producto;
+cantidad: number;
 }
 
 ## paso 11
+
 para poder crear el servicio que daria el carrito primero lo que tendremos que hacer es crear en la carpeta de services el carrito entonces lanzamos el comando
 
 - ng g s services/carrito
@@ -181,12 +190,13 @@ luego entramos en carrito.ts y lo que ahremos es en la calse es crear una variab
 y tambien importamos ItemCarrito
 
 ## paso 12
-por ultimo deberiamos añadir el metodo de agregarAlCarrito, pero teniendo en cuenta de que si el producto ya estaba en el carrito o es nuevo( de suamr cantidad o crear una linea nueva) 
+
+por ultimo deberiamos añadir el metodo de agregarAlCarrito, pero teniendo en cuenta de que si el producto ya estaba en el carrito o es nuevo( de suamr cantidad o crear una linea nueva)
 
 para comprobar se utiliza some() solo devuelve true o false
 
 - const yaEstaEnCarrito = itemsActuales.some(item => item.producto.id === producto.id);
- 
+
 si sale por ejemplo true recorremos los items con .map() y al item que coicida le sumamos 1 en la cantidad pero el resto lo dejamos igual
 
 <!--
@@ -202,6 +212,7 @@ si por el contrario da false creo un array nuevo con todo lo de antes mas una li
 - return [...itemsActuales, { producto, cantidad: 1 }];
 
 ## paso 13
+
 seria hacer la logica de acumulador y para eso utilizaremos el computed, creamos la variable total, para sumar todo el array en un unico numero se usa .reduce(), este devuelve un univo vslot final acumulado elemento a elemento.
 
 <!--
@@ -213,6 +224,7 @@ readonly total = computed(() =>
 suma es el total acumulado hasta el momento, item es el elemento actual del array en cada vuelta se le suma el precio del prodcuto mltiplicado por la cantidad,para poder sumar bien debemos marcar cual es el incio y por eso ponemos 0
 
 ## paso 14
+
 para que le boton + de cada tarjeta añada de verdad al carrito en producto-card tengo que juntar dos cosas el input yel inject pero esta evz juntas
 
 <!--
@@ -223,7 +235,7 @@ producto = input.required<Producto>();
 dentro añadimos un metodo que seria el de agregar
 
 - agregar() {
-    this.carritoService.agregarAlCarrito(this.producto());
+  this.carritoService.agregarAlCarrito(this.producto());
   }
 
 este metodo sirve para lee el producto que le llego por input(), en el html tendremos que conectar el boton con el agregar creando un evento que seria asi
@@ -233,6 +245,7 @@ este metodo sirve para lee el producto que le llego por input(), en el html tend
 -->
 
 ## paso 15
+
 el siguiente paso seria generar pages/carrito, pero nos hemos dado cuenta de
 que si dejamos todo como esta, la clase Carrito que tenemos en services/carrito
 va a chocar con el nombre de la propia pagina cuando la generemos. para no tener que usar "as" cada vez que la importemos, hemos decidido renombrar la clase del servicio a CarritoService.
@@ -240,17 +253,19 @@ va a chocar con el nombre de la propia pagina cuando la generemos. para no tener
 - ng g c pages/carrito
 
 ## paso 16
+
 para poder pintar el contenido del carrito en carrito.html
 
-- @if / @else con .length === 0 
-eto sirve para que cuando el carrito este vacio muestr un mensaje de que el carrito esta vacio
+- @if / @else con .length === 0
+  eto sirve para que cuando el carrito este vacio muestr un mensaje de que el carrito esta vacio
 
 - @for (item of carritoService.items(); track item.producto.id)
-esto sirve para identificar cada fila y asi poder sumarse
+  esto sirve para identificar cada fila y asi poder sumarse
 
 de momento no vamos a poder ver cambios ya que no lo hemos metido en el router asi que ese seria el siguiente paso.
 
 ## paso 17
+
 para poder conecatr las paginas debemos acordarnos que ya no uiliza href como se hacia antes ahora loq uese utiliza es RoutesLink, pero antes de eso debemos poner la ruta en app.routes.ts
 
 quedaria asi
@@ -304,7 +319,7 @@ con esto loq ue haria es pasar de url a otra sin borrar nada y conservando los d
 
 como se dice normalmente toca ponerlo bonito todo ys eguramente nos toque restructurar el esquema de html para situar todo mejor... dejo comentarios en el propio css,pero empezamos con la platilla general de la app que seria styles.css
 
-# paso 18 
+# paso 18
 
 Una vez que hemos modificado la estructura general lo que haremos es diseñar las zonas especificas del home de la pagina por defecto...
 
@@ -337,13 +352,13 @@ poor ultimo en el html lo que haremos(app.html)como tenemos pintado la palara ca
 
 Vamos a hacer ahora el panle desplegable, para no ir al carrito para ver que seleccionaste y asi poder interactuar emjor como pagina.Pero para eso un despleganble comun, es normalmente añadir y elimnar bloques o unidades entonces deberiamos primer hacer esa logica de carrito
 
-Crearemos un metodo que lo llamaremos quitarUnidad() para eso debemos utilizar el filter para que nos devuelva una array nueva. La cosa es recorrer el array con .map para poderle restar 1 a la cantidad de  ese prodcuto
+Crearemos un metodo que lo llamaremos quitarUnidad() para eso debemos utilizar el filter para que nos devuelva una array nueva. La cosa es recorrer el array con .map para poderle restar 1 a la cantidad de ese prodcuto
 
 <!--
   quitarUnidad(id: number) {
     this.items.update(itemsActuales => {
       return itemsActuales.map(item => item.producto.id === id ? {
-        ...item, cantidad: item.cantidad - 1 
+        ...item, cantidad: item.cantidad - 1
       }
       : item
     )
@@ -357,9 +372,9 @@ ahroa empezamos con el siguiente metodo que seria eliminar la line(el producto) 
 
 - eliminarProducto(id: number) {
   this.items.update(itemsActuales => itemsActuales.filter(item => item.producto.id !== id));
-}
+  }
 
-el !== lo utilizamos para decirle que nos quedamos con todo lo distinto al id que llevmaos de la varibale 
+el !== lo utilizamos para decirle que nos quedamos con todo lo distinto al id que llevmaos de la varibale
 
 ## paso 23
 
@@ -372,6 +387,7 @@ asi que dentro del bucle que teniamos añadimos estas dos lineas
 - <button (click)="carritoService.quitarUnidad(item.producto.id)">-</button>
 
 ## paso 24
+
 para empezar con el panel tenemos que hacer lo siguiente en el app.ts netemos que crear una variable la llamaremos panelAbierto para saber siempre si el panel esta abierto o no como es algo que no queremos que aparezca siemrpe al entrar a la app guardamos como false
 
 <!--
@@ -385,6 +401,7 @@ para empezar con el panel tenemos que hacer lo siguiente en el app.ts netemos qu
 el siguiente paso es añadirlo al html de momento no se va a ver nada simplemente se mirara un texto para que podamos ver si funciona o no,para eso quitaremos el routerlink que llevaba hasta el enlace de carrito y pondremos esto
 
 - <button (click)="alternarPanel()">Carrito ({{ carritoService.cantidadTotal() }})</button>
+
 </nav>
 
 pero para ver lo que trae de momento pondremos un texto simple
@@ -399,15 +416,15 @@ pero para ver lo que trae de momento pondremos un texto simple
 
 ## paso 25
 
-para poder rellenar todo 
+para poder rellenar todo
 para empezar haceos un evento que es para cerrar el panel lateral
 
 - <button (click)="alternarPanel()">Cerrar</button>
 
-si el carrito esta vacio por e contrario tiene que haber una condicion y tendria que poner que el carrito esta vacio 
+si el carrito esta vacio por e contrario tiene que haber una condicion y tendria que poner que el carrito esta vacio
 
 - @if (carritoService.items().length === 0) {
-      <p>El carrito está vacío</p>
+  <p>El carrito está vacío</p>
 
 y luego la logia que tendria la misma de carrito que teniamos en el ese html
 
@@ -426,7 +443,6 @@ luego lo siguiente lo ultimo es entrar de nuevo al carrito.html y tambien cerrar
 
 El siguiente paso seria ajustar el app.css para añadir el diseño del panel lateral
 
-
 ## paso 27
 
 he tenido un priblema que tiene facil solucion en el panel aparte de tener por ejemplo el eliminar unidad de un producto esataria genial el poder añadir tambien desde el panel asi que añadimos el metodo que tenemos ya en ficha que es "agregarAlCarrito" y lo añadimos al app.html
@@ -439,8 +455,8 @@ he añadido hover para hacer efectos de por ejemplo eliminar o de añadir o de c
 
 ## paso 29
 
-Tenemos un problema que es que por ejemplo pongo 7 zanahorias y me sale un resultado 
- 5.6000000000000005, eso deberia ser inviable asi que... tenemos que parchear eso,para eso deberiamos utilizar "CURRENCY"
+Tenemos un problema que es que por ejemplo pongo 7 zanahorias y me sale un resultado
+5.6000000000000005, eso deberia ser inviable asi que... tenemos que parchear eso,para eso deberiamos utilizar "CURRENCY"
 
 - <p class="panel-total">Total: {{ carritoService.total() | currency:'EUR' }}</p>
 
@@ -471,6 +487,7 @@ readonly busqueda = signal('');
 y home quedaria vacio ya!!!, luego cambiariamos las llamadas de busqueda y de filtro con "productoService."
 
 ## paso 31
+
 el siguiente paso deberiamos importar en app.ts la clase productos
 
 - import { Productos } from './services/productos';
@@ -507,8 +524,7 @@ Completo seria asi....
 
 - node -e "fs.writeFileSync('commitlint.config.js', process.argv[1])" "export default { extends: ['@commitlint/config-conventional'] };"
 
-
-Con esto lo que hace es instalar las dependencias 
+Con esto lo que hace es instalar las dependencias
 
 Luego lo que haremos es crear commitlint.config.msj
 
@@ -516,10 +532,9 @@ Luego lo que haremos es crear commitlint.config.msj
 
 esto es que commitlint utilizara las reglas glovales
 
-para que husky lo detecte para poder conectarlo con github 
+para que husky lo detecte para poder conectarlo con github
 
 - npx husky init
-
 
 ## paso 33
 
@@ -527,33 +542,40 @@ Vamos a empezar a migrar lo que llevamos hecho de estilo... Para esto loq ue vam
 
 - "schematics": {
   "@schematics/angular:component": {
-    "style": "scss"
+  "style": "scss"
   }
-}
+  }
 
 ## paso 34
 
 Lo siguiente fue el ir renombrando los archivos para poder añadirle la extension correcta de css a scss.
-Hemos creado una variable una carpeta conforme ponemos variables con 
+Hemos creado una variable una carpeta conforme ponemos variables con
 
+- @use '../../../styles/variables' as vars;
 
+lo que hace es en ese archivo cogemos y le ponemos parametros que se repiten y para ahorrar tiempo y que se entienda todo mejor llamamos en cada css si utilizamos una varibale de esas pues llamamos a ese archivo
 
+## paso 35
 
+Luego instalamos ESlint
 
+- ng add angular-eslint@21
 
+que sirve para:
+-Archivos TypeScript (.ts)
+-Plantillas HTML de Angular
+-Reglas específicas de Angular
+-Algunas reglas de accesibilidad
 
+Esto seria el flujo!!!!
 
+npm run format
 
+corrige el formato
 
+npm run format:check
 
-
-
-
-
-
-
-
-
+comprueba el formato
 
 ## Cómo arrancar el proyecto
 

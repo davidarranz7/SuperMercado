@@ -8,7 +8,7 @@ import { Productos } from './services/productos';
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, CurrencyPipe],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('supermercado');
@@ -18,6 +18,6 @@ export class App {
   protected panelAbierto = signal(false);
 
   alternarPanel() {
-    this.panelAbierto.update(abierto => !abierto);
+    this.panelAbierto.update((abierto) => !abierto);
   }
 }

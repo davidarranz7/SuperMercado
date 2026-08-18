@@ -1,1 +1,2 @@
-npx ng lint
+npm run format:check
+npm run lint
