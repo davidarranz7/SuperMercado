@@ -491,6 +491,65 @@ esa linea lo que hace es que carga es el formato español
 
 esta linea lo que dice es que cuando alguienpregunte cual es el idioma de la pagina se dice español y asi solucionamos el problema del orden del signo monetario con la cantidad
 
+## paso 32
+
+Vamos a instalar commitlint basiacemnte para acostumbrarnos a hacer commits utiles en ingles en el formato asi...
+
+- tipo(scope): descripción
+
+Para eso tendremos que isntalar commitlint y husky:
+
+- @commitlint/cli esto lo que hace es comprueba el mensaje
+- @commitlint/config-conventional Contiene las reglas convencionales de commits
+- husky permite ejecutar commitlint automaticamente cuando hacemos unn commit
+
+Completo seria asi....
+
+- node -e "fs.writeFileSync('commitlint.config.js', process.argv[1])" "export default { extends: ['@commitlint/config-conventional'] };"
+
+
+Con esto lo que hace es instalar las dependencias 
+
+Luego lo que haremos es crear commitlint.config.msj
+
+- node -e "fs.writeFileSync('commitlint.config.mjs', process.argv[1])" "export default { extends: ['@commitlint/config-conventional'] };"
+
+esto es que commitlint utilizara las reglas glovales
+
+para que husky lo detecte para poder conectarlo con github 
+
+- npx husky init
+
+
+## paso 33
+
+Vamos a empezar a migrar lo que llevamos hecho de estilo... Para esto loq ue vamos a empezar seria decirle a angular que apartir de ahora cuando creemos un componente no cree un css y cree un scss de acuerdo.
+
+- "schematics": {
+  "@schematics/angular:component": {
+    "style": "scss"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Cómo arrancar el proyecto
