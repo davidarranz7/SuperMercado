@@ -33,37 +33,36 @@
 
 /* el preecio */
 .precio {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
 }
 
 .pie-tarjeta {
-  margin-top: auto;                 /* empuja esta fila al fondo de la tarjeta */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;   /* precio a un extremo, boton al otro */
-  gap: 12px;
+    margin-top: auto;                 /* empuja esta fila al fondo de la tarjeta */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* precio a un extremo, boton al otro */
+    gap: 12px;
 }
 
 /* boton de añadir al carrito */
 .tarjeta button {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: #2f7a4f;
-  color: #ffffff;
-  border: none;
-  font-size: 20px;
-  font-weight: 700;
-  flex-shrink: 0;
-  transition: background-color 0.2s;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  line-height: 1;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #2f7a4f;
+    color: #ffffff;
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
 }
 
 /* efecto al pasar el raton por el boton */
