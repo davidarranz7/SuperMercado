@@ -7,14 +7,16 @@
     </div>
   </div>
 
-  <input class="buscador" type="text" placeholder="buscar productos..."#buscadorInput (input)="productoService.busqueda.set(buscadorInput.value)">
+  <input class="buscador" type="text" placeholder="buscar productos..." #buscadorInput (input)="productoService.busqueda.set(buscadorInput.value)">
   <button class="boton-carrito" (click)="alternarPanel()">
     🛒 <span class="contador">{{ carritoService.cantidadTotal() }}</span>
   </button>
 </header>
 
 <nav>
-  <a routerLink="/">Home</a>
+  <div class="nav-contenido">
+    <a routerLink="/">Home</a>
+  </div>
 </nav>
 
 
@@ -38,7 +40,7 @@
         </div>
       }
       <div class="panel-pie">
-        <p class="panel-total">Total: {{ carritoService.total() | currency:'EUR' }} €</p>
+        <p class="panel-total">Total: {{ carritoService.total() | currency:'EUR' }} </p>
         <a class="boton-comprar" routerLink="/carrito" (click)="alternarPanel()">Ir a comprar</a>
       </div>
     }

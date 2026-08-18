@@ -1,3 +1,9 @@
+/* margenes de la pagina */
+.contenido {
+    max-width: 1200px; /* ancho maximo de la pagina */
+    margin: 0 auto; /* centrado horizontal */
+    padding: 32px; /* espacio interior a los lados */
+}
 /* Esta va a ser la fila de filtro por categoria*/
 .categorias{
     display: flex; /* botones en fila uno al lado del otro */

@@ -1,10 +1,11 @@
 import { Component, input, inject} from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import { Producto } from '../../models/producto';
 import { CarritoService } from '../../services/carrito';
 
 @Component({
   selector: 'app-producto-card',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './producto-card.html',
   styleUrl: './producto-card.css',
 })

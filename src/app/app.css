@@ -63,9 +63,7 @@ header {
 /* Barra de navegacion de arriba*/
 
 nav {
-  display: flex;                    /* coloca a sus hijos en fila, no uno debajo de otro */
-  gap: 24px;                        /* espacio entre cada hijo, sin margenes sueltos */
-  padding: 16px 32px;               /* espacio interior: 16px arriba/abajo, 32px lados */
+  background-color: #ffffff; /* fondo gris claro */
   border-bottom: 1px solid #e5e5e5; /* linea fina que separa la barra del resto */
 }
 
@@ -76,10 +74,22 @@ nav a {
   color: #1a1a1a; /* mismo color de texto que el resto de la pagina */
   font-weight: 600; /* texto un poco en negrita*/
   font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s; /* transicion suave al cambiar el color de fondo y del texto */
+}
+
+.nav-contenido {
+  max-width: 1200px; 
+  margin: 0 auto;
+  padding: 12px 32px; 
+  display: flex;
+  gap: 24px; 
 }
 
 nav a:hover {
-  color: #2f7a4f; 
+  background-color: #2f7a4f; 
+  color: #ffffff;
 }
 
 .boton-carrito {

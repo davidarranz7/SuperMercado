@@ -479,8 +479,17 @@ y tambien añadimos la variable
 
 - protected productoService = inject(Productos);
 
+## paso 31
 
+he cambiado un poco la estructura de la pagina y he decidio hacer un cambio que es bastante importante,el idioma de angualr por lo general es en ingles entonces cuando queria cambiar las tarjetas y ponerlas con el precio con currencypipe me salia el € y luego la cantidad por el orden ingles asi qeu tenemos uqe cambiar y modificar el app.config.ts
 
+- registerLocaleData(localeEs);
+
+esa linea lo que hace es que carga es el formato español
+
+- { provide: LOCALE_ID, useValue: 'es-ES' }
+
+esta linea lo que dice es que cuando alguienpregunte cual es el idioma de la pagina se dice español y asi solucionamos el problema del orden del signo monetario con la cantidad
 
 
 
