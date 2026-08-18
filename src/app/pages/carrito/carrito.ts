@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CarritoService } from '../../services/carrito';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-carrito',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './carrito.html',
   styleUrl: './carrito.css',
 })
