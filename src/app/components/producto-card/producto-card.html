@@ -2,6 +2,9 @@
     <span class="icono">{{ producto().icono }}</span>
     <p class="categoria">{{ producto().categoria }}</p>
     <h3>{{ producto().nombre }}</h3>
-    <p class="precio">{{ producto().precio | currency:"EUR" }}</p>
-    <button (click)="agregar()">+</button>
+    
+    <div class="pie-tarjeta">
+        <p class="precio">{{ producto().precio | currency:"EUR" }}</p>
+        <button (click)="agregar()">+</button>
+    </div>
 </div>
