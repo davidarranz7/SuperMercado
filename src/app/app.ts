@@ -8,7 +8,7 @@ import { Productos } from './services/productos';
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, CurrencyPipe],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.scss'
 })
 export class App {
   protected readonly title = signal('supermercado');

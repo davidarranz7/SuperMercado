@@ -531,7 +531,10 @@ Vamos a empezar a migrar lo que llevamos hecho de estilo... Para esto loq ue vam
   }
 }
 
+## paso 34
 
+Lo siguiente fue el ir renombrando los archivos para poder añadirle la extension correcta de css a scss.
+Hemos creado una variable una carpeta conforme ponemos variables con 
 
 
 

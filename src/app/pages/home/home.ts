@@ -6,7 +6,7 @@ import { ProductoCard } from '../../components/producto-card/producto-card';
   selector: 'app-home',
   imports: [ProductoCard],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: './home.scss',
 })
 export class Home {
   protected productoService = inject(Productos);

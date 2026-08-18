@@ -1,7 +1,9 @@
+@use '../../../styles/variables' as vars;
+
 /* Diseño de la tarjeta donde va a ir el producto */
 .tarjeta {
-    background-color: #ffffff; /* fondo blanco */
-    border: 1px solid #e5e5e5; /* borde gris claro */
+    background-color: vars.$blanco; /* fondo blanco */
+    border: 1px solid vars.$gris-borde; /* borde gris claro */
     border-radius: 12px; /* esquinas redondeadas */
     padding: 16px; /* espacio interior de la tarjeta */
     display: flex; /* esto hace que los hijos se coloquen en fila */
@@ -9,11 +11,32 @@
     gap: 8px; /* espacio entre cada hijo */
     transition: transform 0.2s; /* suaviza el cambio al pasar el raton */
     height: 100%; /* hace que la tarjeta ocupe todo el alto disponible cogiendo refereencia del mas alto siemrpe */    
-}
 
-/* creo un efecto del raton al pasar por l atarjeta */
-.tarjeta:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* sombra */
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    button {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: vars.$verde-principal;
+        color: vars.$blanco;
+        border: none;
+        font-size: 20px;
+        font-weight: 700;
+        flex-shrink: 0;
+        transition: background-color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        line-height: 1;
+
+        &:hover {
+            background-color: vars.$verde-hover; /* fondo verde oscuro */
+        }
+    }
 }
 
 /* diseño de emoji del producto */
@@ -27,7 +50,7 @@
     font-size: 12px; /* tamaño de letra */
     text-transform: uppercase; /* mayusculas */
     letter-spacing: 1px; /* espacio entre letras */
-    color: #2f7a4f; /* color verde */
+    color: vars.$verde-principal; 
     font-weight: 600; 
 }
 
@@ -44,28 +67,4 @@
     align-items: center;
     justify-content: space-between;   /* precio a un extremo, boton al otro */
     gap: 12px;
-}
-
-/* boton de añadir al carrito */
-.tarjeta button {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background-color: #2f7a4f;
-    color: #ffffff;
-    border: none;
-    font-size: 20px;
-    font-weight: 700;
-    flex-shrink: 0;
-    transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    line-height: 1;
-}
-
-/* efecto al pasar el raton por el boton */
-.tarjeta button:hover {
-    background-color: #24603d; /* fondo verde oscuro */
 }

@@ -1,3 +1,5 @@
+@use '../../../styles/variables' as vars;
+
 /* margenes de la pagina */
 .contenido {
     max-width: 1400px; /* ancho maximo de la pagina */
@@ -10,20 +12,20 @@
     gap: 8px; /* espacio entre cada boton */
     flex-wrap: wrap; /* si no caben en una fila, se van a la siguiente */
     margin: 16px 0; /* separacion entre arriba y abajo*/
-}
+    
+    button {
+        padding: 8px 16px; /* espacio interior del boton: 8px arriba/abajo, 16px lados */
+        border: 1px solid vars.$gris-borde; /* borde gris claro */
+        border-radius: 999px; /* esquinas redondeadas */
+        background-color: vars.$blanco; /* fondo blanco */
+        font-size: 14px; /* tamaño de letra */
 
-.categorias button {
-    padding: 8px 16px; /* espacio interior del boton: 8px arriba/abajo, 16px lados */
-    border: 1px solid #d5d5d5; /* borde gris claro */
-    border-radius: 999px; /* esquinas redondeadas */
-    background-color: #ffffff; /* fondo blanco */
-    font-size: 14px; /* tamaño de letra */
-}
-
-.categorias button.activo {
-    background-color: #2f7a4f; /* fondo verde */
-    color: #ffffff; /* texto blanco */
-    border-color: #2f7a4f; /* borde verde */
+        &.activo {
+            background-color: vars.$verde-principal; /* fondo verde */
+            color: vars.$blanco; /* texto blanco */
+            border-color: vars.$verde-principal; /* borde verde */
+        }
+    }
 }
 
 .grid-productos {

@@ -7,7 +7,7 @@ import { CarritoService } from '../../services/carrito';
   selector: 'app-producto-card',
   imports: [CurrencyPipe],
   templateUrl: './producto-card.html',
-  styleUrl: './producto-card.css',
+  styleUrl: './producto-card.scss',
 })
 export class ProductoCard {
   producto = input.required<Producto>();

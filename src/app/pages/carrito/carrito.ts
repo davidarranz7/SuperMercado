@@ -6,7 +6,7 @@ import { CurrencyPipe } from '@angular/common';
   selector: 'app-carrito',
   imports: [CurrencyPipe],
   templateUrl: './carrito.html',
-  styleUrl: './carrito.css',
+  styleUrl: './carrito.scss',
 })
 export class Carrito {
   protected carritoService = inject(CarritoService);
