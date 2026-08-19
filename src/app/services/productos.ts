@@ -6,19 +6,32 @@ import { Producto } from '../models/producto';
   providedIn: 'root',
 })
 export class Productos {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   private readonly apiUrl = 'http://localhost:3000/productos';
 
   readonly productos = signal<Producto[]>([]);
+
+  readonly cargando = signal(false);
+  readonly error = signal<string | null>(null);
 
   obtenerProductos() {
     return this.http.get<Producto[]>(this.apiUrl);
   }
 
   cargarProductos() {
-    this.obtenerProductos().subscribe((productos) => {
-      this.productos.set(productos);
+    this.cargando.set(true);
+    this.error.set(null);
+
+    this.obtenerProductos().subscribe({
+      next: (productos) => {
+        this.productos.set(productos);
+        this.cargando.set(false);
+      },
+      error: () => {
+        this.error.set('Error al cargar los productos');
+        this.cargando.set(false);
+      },
     });
   }
 

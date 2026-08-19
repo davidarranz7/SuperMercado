@@ -598,6 +598,8 @@ tendremos que levantar el json server para ver si salen los productos
 
 - npx json-server db.json
 
+## paso
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash

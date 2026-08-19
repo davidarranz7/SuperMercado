@@ -1,19 +1,25 @@
 <div class="contenido">
   <h1>Productos</h1>
-  <div class="categorias">
-    @for (cat of productoService.categorias(); track cat) {
-      <button
-        [class.activo]="productoService.categoriaActiva() === cat"
-        (click)="productoService.categoriaActiva.set(cat)"
-      >
-        {{ cat }}
-      </button>
-    }
-  </div>
+  @if (productoService.cargando()) {
+    <p>Cargando productos...</p>
+  } @else if (productoService.error()) {
+    <p>{{ productoService.error() }}</p>
+  } @else {
+    <div class="categorias">
+      @for (cat of productoService.categorias(); track cat) {
+        <button
+          [class.activo]="productoService.categoriaActiva() === cat"
+          (click)="productoService.categoriaActiva.set(cat)"
+        >
+          {{ cat }}
+        </button>
+      }
+    </div>
 
-  <div class="grid-productos">
-    @for (producto of productoService.productosFiltrados(); track producto.id) {
-      <app-producto-card [producto]="producto" />
-    }
-  </div>
+    <div class="grid-productos">
+      @for (producto of productoService.productosFiltrados(); track producto.id) {
+        <app-producto-card [producto]="producto" />
+      }
+    </div>
+  }
 </div>
