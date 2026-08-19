@@ -598,7 +598,90 @@ tendremos que levantar el json server para ver si salen los productos
 
 - npx json-server db.json
 
-## paso
+## paso 39
+
+ahora que json-server esta levantado y podemos ver los productos en la URL que nos crea tendremos que dejar de tenerlo hardcodeados para asi poder traerlos desde la api.
+
+para poder hacer peticiones http hace falta inyectar HttpClient en el servidor
+
+- private readonly http = inject(HttpClient);
+- private readonly apiUrl = 'http://localhost:3000/productos';
+
+con esto el array de productos desparece pero se crea un signal vacio que recogera los datos desde la api
+
+- readonly productos = signal<Producto[]>([]);
+
+Ahora el metodo que hace la peticion es:
+
+<!--
+obtenerProductos() {
+  return this.http.get<Producto[]>(this.apiUrl);
+}
+-->
+
+esto no devuelve los productos esto lo uqe hace es decir que van a llegara los productos en algun momento 
+Por eso hace falta otro metodo que hace que se subscriba y guarde lo que llega
+
+<!--
+cargarProductos() {
+  this.obtenerProductos().subscribe((productos) => {
+    this.productos.set(productos);
+  });
+}
+-->
+
+subscribe es lo que hace la peticion de verdad y se queda esperdando:
+el flujo completo: GET /productos → HttpClient → Observable → subscribe() →
+productos.set(productos) → angular repinta solo
+
+## paso 40
+
+una peticion http puede tardar si por ejemplo hay miles y miles de datos para devolver o puede fallar entonces para esto si por ejemplo si json server estaba apagado el usuario simplemente veria nada! estaria vacio sin ninguna explicacion para eso habria que controlar esas situaciones
+
+para eso en el servicio se crean dos signals nuevos
+
+- readonly cargando = signal(false);
+- readonly error = signal<string | null>(null);
+
+cargando guarda si estamos esperando respuesta error guarda un mensaje si algo falla en tipo string...
+
+ahroa cambio cargarProducto() lo primero antes de pedir nada
+
+- this.cargando.set(true);
+- this.error.set(null);
+
+esto es como marcar como quiero que empiece la carga como siempre se tiene que poner primero el carga y si falla se ejecuta el error
+
+y suscibre() se tendra que poner dos opciones una si todo va bien y otra si falla
+
+<!--
+next: (productos) => {
+  this.productos.set(productos);
+  this.cargando.set(false);
+},
+-->
+next() se ejecuta si la peticion sale bine guarda los productos
+
+<!--
+error: () => {
+  this.error.set('Error al cargar los productos');
+  this.cargando.set(false);
+},
+-->
+
+error() se ejecuta si falla: guardo el mensaje 
+
+luego abria que modificar el html
+
+<!--
+@if (productoService.cargando()) {
+  <p>Cargando productos...</p>
+} @else if (productoService.error()) {
+  <p>{{ productoService.error() }}</p>
+} @else {
+-->
+el orden importa: primero comprobar si esta cargando, luego si hay error, y
+solo si no se cumple ninguna de las dos, pintar los productos.
 
 ## Cómo arrancar el proyecto
 
