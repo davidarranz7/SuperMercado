@@ -569,13 +569,34 @@ que sirve para:
 
 Esto seria el flujo!!!!
 
-npm run format
+- npm run format
 
 corrige el formato
 
-npm run format:check
+- npm run format:check
 
 comprueba el formato
+
+## paso 36
+
+el siguiente paso qeu realizariamos el flujo que vamos a tener de json server y para eso tendremos qeu instalar la dependecia
+
+- npm install --save-dev json-server
+
+## paso 37
+
+una vez que hayamos instalado el programa debemos crear un archivo en la raiz de src "db.json"
+ahi lo que pondremos sera las reglas que debe cumplir el json server
+
+- "$schema": "./node_modules/json-server/schema.json",
+
+luego en nuesto caso haremos el array de productos...
+
+## paso 38
+
+tendremos que levantar el json server para ver si salen los productos
+
+- npx json-server db.json
 
 ## Cómo arrancar el proyecto
 

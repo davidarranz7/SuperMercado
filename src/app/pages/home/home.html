@@ -1,7 +1,7 @@
 <div class="contenido">
   <h1>Productos</h1>
   <div class="categorias">
-    @for (cat of productoService.categorias; track cat) {
+    @for (cat of productoService.categorias(); track cat) {
       <button
         [class.activo]="productoService.categoriaActiva() === cat"
         (click)="productoService.categoriaActiva.set(cat)"

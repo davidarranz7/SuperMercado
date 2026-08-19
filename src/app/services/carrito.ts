@@ -28,7 +28,7 @@ export class CarritoService {
 
   readonly cantidadTotal = computed(() => this.items().length);
 
-  quitarUnidad(id: number) {
+  quitarUnidad(id: string) {
     this.items.update((itemsActuales) => {
       return itemsActuales
         .map((item) =>
@@ -43,7 +43,7 @@ export class CarritoService {
     });
   }
 
-  eliminarProducto(id: number) {
+  eliminarProducto(id: string) {
     this.items.update((itemsActuales) => itemsActuales.filter((item) => item.producto.id !== id));
   }
 }
