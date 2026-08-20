@@ -713,6 +713,14 @@ de esta forma podemos dejar una responsabilidad:
 
 en unestro caso lo que hace es poner cargar en false asi evitamos el error duplicado en esas dos lineas...
 
+## paso 42
+
+he añadido un boton para reintentar la carga de productos cuanbdo la API da error
+
+- <button (click)="productoService.cargarProductos()">Reintentar</button>
+
+Con esto el usuario no tendria que recargar toda la pagina si no que solo le daria a un boton y se volveria a lanzar la peticion
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash
