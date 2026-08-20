@@ -23,6 +23,8 @@
     <div class="grid-productos">
       @for (producto of productoService.productosFiltrados(); track producto.id) {
         <app-producto-card [producto]="producto" />
+      } @empty {
+        <p>No se encontraron productos.</p>
       }
     </div>
   }

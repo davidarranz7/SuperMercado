@@ -721,6 +721,18 @@ he añadido un boton para reintentar la carga de productos cuanbdo la API da err
 
 Con esto el usuario no tendria que recargar toda la pagina si no que solo le daria a un boton y se volveria a lanzar la peticion
 
+## paso 43
+
+Para solucionar el tema de que cuando estas buscando un producto en vez de salirte pantalla en negro haremos que si no hay ninugna coicidencia lo que haremos es que salte un mensaje diciendo "no se encontraron productos"
+
+para eso tendremos que utilizar el emty
+
+<!--
+ @empty {
+    <p>No se encontraron productos.</p>
+--
+>
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash
