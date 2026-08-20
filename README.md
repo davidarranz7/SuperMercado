@@ -619,7 +619,7 @@ obtenerProductos() {
 }
 -->
 
-esto no devuelve los productos esto lo uqe hace es decir que van a llegara los productos en algun momento 
+esto no devuelve los productos esto lo uqe hace es decir que van a llegara los productos en algun momento
 Por eso hace falta otro metodo que hace que se subscriba y guarde lo que llega
 
 <!--
@@ -660,6 +660,7 @@ next: (productos) => {
   this.cargando.set(false);
 },
 -->
+
 next() se ejecuta si la peticion sale bine guarda los productos
 
 <!--
@@ -669,7 +670,7 @@ error: () => {
 },
 -->
 
-error() se ejecuta si falla: guardo el mensaje 
+error() se ejecuta si falla: guardo el mensaje
 
 luego abria que modificar el html
 
@@ -680,8 +681,37 @@ luego abria que modificar el html
   <p>{{ productoService.error() }}</p>
 } @else {
 -->
+
 el orden importa: primero comprobar si esta cargando, luego si hay error, y
 solo si no se cumple ninguna de las dos, pintar los productos.
+
+## observable y subcribe()
+
+observable es un flujo de datos que emite valores a lo alrgo del tiempo.
+Para comunicarse con wuien esta subcrito para eso utiliza tres tipos de notificacion:
+next que pueden ser muchas veces puede emetir mas valores a lo largo del tiempo!
+error que dice que fallo pero no emite nada despues
+complete el flujo termino bien ppero no emite nada despues
+
+## paso 41
+
+He mejorado la carga de products utilizando finalize,antes teniamos como repetido:
+
+- this.cargando.set(false);
+
+y lo utizaba tanto si la app iba bien o mal ahora utilizoesto:
+
+- .pipe(finalize(() => this.cargando.set(false)))
+
+lo que hace el finalize es ejecutar una accion cuando termina tanto si termina correctamente o se cancela o va bien
+
+de esta forma podemos dejar una responsabilidad:
+
+- next = han llegado datos y los guardamos
+- error = controlamos el fallo
+- finalize = hacemos la accion que siemrpe debe ocurrir al terminar
+
+en unestro caso lo que hace es poner cargar en false asi evitamos el error duplicado en esas dos lineas...
 
 ## Cómo arrancar el proyecto
 
