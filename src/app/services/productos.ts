@@ -1,7 +1,7 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Producto } from '../models/producto';
-import { finalize } from 'rxjs';
+import { catchError, EMPTY, finalize } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,13 +25,18 @@ export class Productos {
     this.error.set(null);
 
     this.obtenerProductos()
-      .pipe(finalize(() => this.cargando.set(false)))
-      .subscribe({
-        next: (productos) => this.productos.set(productos),
-        error: (err) => {
-          console.error('Error al cargar productos:', err);
-          this.error.set('Error al cargar productos. Por favor, inténtalo de nuevo más tarde.');
-        },
+      .pipe(
+        catchError((error) => {
+          console.error('Error al cargar productos:', error);
+          this.error.set('Error al cargar productos');
+          return EMPTY;
+        }),
+        finalize(() => {
+          this.cargando.set(false);
+        }),
+      )
+      .subscribe((productos) => {
+        this.productos.set(productos);
       });
   }
 

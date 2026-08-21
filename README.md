@@ -730,8 +730,25 @@ para eso tendremos que utilizar el emty
 <!--
  @empty {
     <p>No se encontraron productos.</p>
---
->
+-->
+
+## paso 44
+
+he cambiado la forma de controlar los errores del Observable utilizando catchError, anetes lo controlabamos el error dentro del suscribe();
+
+ahora lo hago dentro del pipe:
+
+- catchError((err) => {
+  console.error('Error al cargar productos:', err);
+
+  this.error.set(
+  'Error al cargar productos. Por favor, inténtalo de nuevo más tarde.'
+  );
+
+  return EMPTY;
+  })
+
+catchError intercepta el error dentro del flujo del observabvle y nos permite decidir que hacer antes de entrar en el suscribe en mi caso loq ue quieroq ue muestre es EMTY que es no dar ningun valor
 
 ## Cómo arrancar el proyecto
 
