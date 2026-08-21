@@ -20,6 +20,10 @@ export class Productos {
     return this.http.get<Producto[]>(this.apiUrl);
   }
 
+  obtenerProductoPorId(id: string) {
+    return this.http.get<Producto>(`${this.apiUrl}/${id}`);
+  }
+
   cargarProductos() {
     this.cargando.set(true);
     this.error.set(null);

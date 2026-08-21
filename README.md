@@ -750,6 +750,58 @@ ahora lo hago dentro del pipe:
 
 catchError intercepta el error dentro del flujo del observabvle y nos permite decidir que hacer antes de entrar en el suscribe en mi caso loq ue quieroq ue muestre es EMTY que es no dar ningun valor
 
+## paso 45
+
+voy a crear una pagina para pintar los daetalles de cada producto y asi por lo menos poder utilizar el id
+priemro generamos el componente
+
+- ng g c pages/producto-detalle
+
+luego añadimos una ruta dinamica en app.toutes.ts
+
+- { path: 'producto/:id', component: ProductoDetalle }
+
+lo del id lo que significa que esa parte de la ruta puede cambiar ":id"
+
+anguar guarda ese valor como parametro de ruta y para poder leer utilizamos ActivateRoute:
+
+- private readonly route = inject(ActivatedRoute);
+
+sirve para obtener informacion de la ruta actual, no obtiene datos del producto nui de la pagina anterior
+
+- this.route.snapshot.paramMap.get('id');
+
+podemos obtener algo asi entonces snapshot mira el estado de la ruta en ese momento.
+paramap contiene los parametros de la ruta
+
+despues añadimos al servicio Producto un metodo para pedir un soolo producto:
+
+- obtenerProductoPorId(id: string) {
+  return this.http.get<Producto>(`${this.apiUrl}/${id}`);
+  }
+
+en productoDetalle creamos un signal:
+
+- protected readonly producto = signal<Producto | null>(null);
+
+se empieza en null por que cuando se carga la pagina no se sabe el producto que cargamos
+
+- this.productoService.obtenerProductoPorId(this.productoId).subscribe({
+  next: (producto) => {
+  this.producto.set(producto);
+  },
+  });
+
+caundo llegue la respuesta guardamos el producto dentro del signal
+
+luego en el html lo que haremos es
+
+- @if (producto(); as producto)
+
+dentro de producto a tiene un producto lo guardamos temporalmente como producto
+
+mientas producto sea null mostraremos que esta cargando el producto
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash

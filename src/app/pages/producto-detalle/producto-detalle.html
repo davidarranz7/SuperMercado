@@ -1,0 +1,13 @@
+<div class="producto-detalle">
+  @if (producto(); as producto) {
+    <span>{{ producto.icono }}</span>
+
+    <p>{{ producto.categoria }}</p>
+
+    <h1>{{ producto.nombre }}</h1>
+
+    <p>{{ producto.precio }} €</p>
+  } @else {
+    <p>Cargando producto...</p>
+  }
+</div>
