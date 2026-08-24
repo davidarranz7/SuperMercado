@@ -5,8 +5,23 @@
     <p class="categoria">{{ producto().categoria }}</p>
 
     <h3>{{ producto().nombre }}</h3>
-
-    <p class="precio">{{ producto().precio | currency: 'EUR' }}</p>
   </a>
-  <button (click)="agregar()">+</button>
+
+  <div class="pie-tarjeta">
+    <p class="precio">
+      {{ producto().precio | currency: 'EUR' }}
+    </p>
+
+    @if (cantidadEnCarrito() === 0) {
+      <button (click)="agregar()">+</button>
+    } @else {
+      <div class="controles-cantidad">
+        <button class="boton-restar" (click)="carritoService.quitarUnidad(producto().id)">−</button>
+
+        <span>{{ cantidadEnCarrito() }}</span>
+
+        <button class="boton-sumar" (click)="agregar()">+</button>
+      </div>
+    }
+  </div>
 </div>

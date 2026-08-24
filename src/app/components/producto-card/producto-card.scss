@@ -1,4 +1,5 @@
 @use '../../../styles/variables' as vars;
+@use '../../../styles/mixins' as mixins;
 
 /* Diseño de la tarjeta donde va a ir el producto */
 .tarjeta {
@@ -29,6 +30,7 @@
     transition: background-color 0.2s;
     display: flex;
     align-items: center;
+    align-self: flex-end;
     justify-content: center;
     padding: 0;
     line-height: 1;
@@ -67,4 +69,22 @@
   align-items: center;
   justify-content: space-between; /* precio a un extremo, boton al otro */
   gap: 12px;
+}
+
+.producto-enlace {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  color: inherit; /* hereda el color del texto */
+  text-decoration: none; /* quita el subrayado del enlace */
+  border-radius: 8px;
+
+  &:focus-visible {
+    outline: 2px solid vars.$verde-principal;
+    outline-offset: 3px;
+  }
+}
+.controles-cantidad {
+  @include mixins.controles-cantidad(30px, 16px);
 }

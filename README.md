@@ -830,6 +830,18 @@ para eso como utilice ya antes catchError utilizo de nuevo esto
 luego enviare un error 404 si el prodcuto no existe
 y si el servidor esta apagado pues un mensaje que lo intene mas tarde
 
+## paso 47
+
+Como es haitual queria añadir el + para añadir al carrito asi que lo implementamos y reutilizamos el metodo que teniamos en carrtioService
+
+Entonces en el detalle hago lo siguiente:
+
+- si cantidadEnCarrito() === 0 aparece el boton "Añadir al carrito"
+
+- si cantidadEnCarrito() es mayor que 0 aparecen los controles:
+
+luego como cantidad tenial el mismo patron he añadido una variable y la implementamos por que segurmante lo añadamos en varios lugares mnas
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash

@@ -1,0 +1,48 @@
+@use './variables' as vars;
+
+@mixin controles-cantidad($tamano-boton: 30px, $tamano-fuente: 16px) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  button {
+    width: $tamano-boton;
+    height: $tamano-boton;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: vars.$blanco;
+    color: vars.$gris-texto;
+
+    border: 1px solid vars.$gris-borde;
+    border-radius: 50%;
+
+    font-size: $tamano-fuente;
+    font-weight: 700;
+
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .boton-restar:hover {
+    background-color: vars.$rojo-eliminar;
+    border-color: vars.$rojo-eliminar;
+    color: vars.$blanco;
+  }
+
+  .boton-sumar:hover {
+    background-color: vars.$verde-principal;
+    border-color: vars.$verde-principal;
+    color: vars.$blanco;
+  }
+
+  span {
+    min-width: 18px;
+    text-align: center;
+    font-weight: 700;
+  }
+}

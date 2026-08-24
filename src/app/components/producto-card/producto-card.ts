@@ -1,4 +1,4 @@
-import { Component, input, inject } from '@angular/core';
+import { Component, input, inject, computed } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Producto } from '../../models/producto';
@@ -17,4 +17,12 @@ export class ProductoCard {
   agregar() {
     this.carritoService.agregarAlCarrito(this.producto());
   }
+
+  protected readonly cantidadEnCarrito = computed(() => {
+    const item = this.carritoService
+      .items()
+      .find((item) => item.producto.id === this.producto().id);
+
+    return item?.cantidad ?? 0;
+  });
 }
