@@ -1,10 +1,12 @@
 <div class="tarjeta">
-  <span class="icono">{{ producto().icono }}</span>
-  <p class="categoria">{{ producto().categoria }}</p>
-  <h3>{{ producto().nombre }}</h3>
+  <a class="producto-enlace" [routerLink]="['/producto', producto().id]">
+    <span class="icono">{{ producto().icono }}</span>
 
-  <div class="pie-tarjeta">
+    <p class="categoria">{{ producto().categoria }}</p>
+
+    <h3>{{ producto().nombre }}</h3>
+
     <p class="precio">{{ producto().precio | currency: 'EUR' }}</p>
-    <button (click)="agregar()">+</button>
-  </div>
+  </a>
+  <button (click)="agregar()">+</button>
 </div>
