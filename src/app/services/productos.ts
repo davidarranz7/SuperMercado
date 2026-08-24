@@ -32,7 +32,7 @@ export class Productos {
       .pipe(
         catchError((error) => {
           console.error('Error al cargar productos:', error);
-          this.error.set('Error al cargar productos');
+          this.error.set('No se pudieron cargar los productos.');
           return EMPTY;
         }),
         finalize(() => {

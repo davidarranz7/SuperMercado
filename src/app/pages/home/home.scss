@@ -37,3 +37,46 @@
   gap: 16px; /* espacio entre cada producto */
   margin: 16px 0; /* separacion entre arriba y abajo*/
 }
+
+.error {
+  max-width: 650px;
+  margin: 24px auto 0;
+  padding: 32px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  background-color: vars.$blanco;
+  border: 1px solid vars.$gris-borde;
+  border-radius: 12px;
+
+  text-align: center;
+
+  .error-titulo {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .error-ayuda {
+    margin: 0;
+    color: vars.$gris-texto;
+  }
+
+  button {
+    margin-top: 4px;
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: vars.$verde-principal;
+    color: vars.$blanco;
+    font-weight: 600;
+
+    &:hover {
+      background-color: vars.$verde-hover;
+    }
+  }
+}

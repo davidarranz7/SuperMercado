@@ -5,7 +5,9 @@
     <p>Cargando productos...</p>
   } @else if (productoService.error()) {
     <div class="error">
-      <p>{{ productoService.error() }}</p>
+      <p class="error-titulo">{{ productoService.error() }}</p>
+      <p class="error-ayuda">Inténtalo de nuevo en unos segundos.</p>
+
       <button (click)="productoService.cargarProductos()">Reintentar</button>
     </div>
   } @else {
