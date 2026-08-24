@@ -802,6 +802,34 @@ dentro de producto a tiene un producto lo guardamos temporalmente como producto
 
 mientas producto sea null mostraremos que esta cargando el producto
 
+## paso 46
+
+tenemos que controlar los isuientes estados de detalle de producto por que nates solo tenia:
+
+- producto = signal<Producto | null>(null)
+
+El problema era que null podia significar dos cosas:
+
+- que el producto seguia cargando y eso podria pasar si habria muchisimos productos pero no deberia tardar hasta que se conecte
+
+- que el producto no existia
+
+Para poder separar lo que he hecho fue exactamente lo que hicimos si el json se cayese
+
+- cargando = signal(true)
+- error = signal<string | null>(null)
+
+asi podre identificar los estados de la petiicion
+
+- si esta la pèticion sigue en su curso cargando()
+- si el producto no exist o la peticion ha fallado error()
+- producto encontrado
+
+para eso como utilice ya antes catchError utilizo de nuevo esto
+
+luego enviare un error 404 si el prodcuto no existe
+y si el servidor esta apagado pues un mensaje que lo intene mas tarde
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash
