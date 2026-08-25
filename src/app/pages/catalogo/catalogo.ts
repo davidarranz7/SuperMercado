@@ -1,18 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
+
 import { Productos } from '../../services/productos';
 import { ProductoCard } from '../../components/producto-card/producto-card';
-import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  imports: [ProductoCard, RouterLink],
-  templateUrl: './home.html',
-  styleUrl: './home.scss',
+  selector: 'app-catalogo',
+  imports: [ProductoCard],
+  templateUrl: './catalogo.html',
+  styleUrl: './catalogo.scss',
 })
-export class Home implements OnInit {
+export class Catalogo implements OnInit {
   protected productoService = inject(Productos);
 
   ngOnInit() {
-    this.productoService.cargarProductos();
+    if (this.productoService.productos().length === 0) {
+      this.productoService.cargarProductos();
+    }
   }
 }

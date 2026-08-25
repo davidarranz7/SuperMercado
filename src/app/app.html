@@ -7,24 +7,27 @@
     </a>
 
     <button class="ubicacion" type="button">
-      <span class="material-symbols-outlined">location_on</span>
+      <span class="material-symbols-outlined"> location_on </span>
+
       <span>Seleccionar ubicación</span>
     </button>
 
     <div class="buscador">
-      <span class="material-symbols-outlined">search</span>
+      <span class="material-symbols-outlined"> search </span>
 
       <input
+        #buscadorInput
         type="text"
         placeholder="Busca productos, marcas y más..."
-        (input)="productoService.busqueda.set($any($event.target).value)"
+        [value]="productoService.busqueda()"
+        (input)="buscar(buscadorInput.value)"
       />
     </div>
 
     <div class="header-acciones">
       <button class="cuenta" type="button">
         <span class="cuenta-avatar">
-          <span class="material-symbols-outlined">person</span>
+          <span class="material-symbols-outlined"> person </span>
         </span>
 
         <span>Mi Cuenta</span>
@@ -36,7 +39,7 @@
         aria-label="Abrir carrito"
         (click)="alternarPanel()"
       >
-        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="material-symbols-outlined"> shopping_cart </span>
 
         @if (carritoService.cantidadTotal() > 0) {
           <span class="carrito-contador">
@@ -48,12 +51,23 @@
   </div>
 
   <nav class="navegacion-categorias">
-    <button type="button">Frutas y Verduras</button>
-    <button type="button">Carnes y Pescados</button>
-    <button type="button">Lácteos</button>
-    <button type="button">Panadería</button>
-    <button type="button">Bebidas</button>
-    <button type="button">Limpieza</button>
+    <a routerLink="/catalogo" (click)="productoService.categoriaActiva.set('Frutas')">
+      Frutas y Verduras
+    </a>
+
+    <a routerLink="/catalogo" (click)="productoService.categoriaActiva.set('Carnes')">
+      Carnes y Pescados
+    </a>
+
+    <a routerLink="/catalogo" (click)="productoService.categoriaActiva.set('Todos')"> Lácteos </a>
+
+    <a routerLink="/catalogo" (click)="productoService.categoriaActiva.set('Panadería')">
+      Panadería
+    </a>
+
+    <a routerLink="/catalogo" (click)="productoService.categoriaActiva.set('Todos')"> Bebidas </a>
+
+    <a routerLink="/catalogo" (click)="productoService.categoriaActiva.set('Todos')"> Limpieza </a>
   </nav>
 </header>
 
@@ -70,7 +84,7 @@
   <aside class="panel-carrito">
     <div class="panel-cabecera">
       <div>
-        <span class="panel-etiqueta">Tu compra</span>
+        <span class="panel-etiqueta"> Tu compra </span>
 
         <h2>Carrito de compras</h2>
       </div>
@@ -81,15 +95,15 @@
         aria-label="Cerrar carrito"
         (click)="alternarPanel()"
       >
-        <span class="material-symbols-outlined">close</span>
+        <span class="material-symbols-outlined"> close </span>
       </button>
     </div>
 
     @if (carritoService.items().length === 0) {
       <div class="panel-vacio">
-        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="material-symbols-outlined"> shopping_cart </span>
 
-        <strong>Tu carrito está vacío</strong>
+        <strong> Tu carrito está vacío </strong>
 
         <p>Añade algún producto para empezar tu compra.</p>
       </div>
@@ -110,9 +124,13 @@
             <div class="panel-producto-info">
               <div class="panel-producto-superior">
                 <div>
-                  <h3>{{ item.producto.nombre }}</h3>
+                  <h3>
+                    {{ item.producto.nombre }}
+                  </h3>
 
-                  <span>{{ item.producto.categoria }}</span>
+                  <span>
+                    {{ item.producto.categoria }}
+                  </span>
                 </div>
 
                 <button
@@ -121,7 +139,7 @@
                   aria-label="Eliminar producto"
                   (click)="carritoService.eliminarProducto(item.producto.id)"
                 >
-                  <span class="material-symbols-outlined">delete</span>
+                  <span class="material-symbols-outlined"> delete </span>
                 </button>
               </div>
 
@@ -132,17 +150,19 @@
                     aria-label="Quitar unidad"
                     (click)="carritoService.quitarUnidad(item.producto.id)"
                   >
-                    <span class="material-symbols-outlined">remove</span>
+                    <span class="material-symbols-outlined"> remove </span>
                   </button>
 
-                  <span>{{ item.cantidad }}</span>
+                  <span>
+                    {{ item.cantidad }}
+                  </span>
 
                   <button
                     type="button"
                     aria-label="Añadir unidad"
                     (click)="carritoService.agregarAlCarrito(item.producto)"
                   >
-                    <span class="material-symbols-outlined">add</span>
+                    <span class="material-symbols-outlined"> add </span>
                   </button>
                 </div>
 
@@ -157,7 +177,7 @@
 
       <div class="panel-resumen">
         <div>
-          <span>Total</span>
+          <span> Total </span>
 
           <strong>
             {{ carritoService.total() | currency: 'EUR' }}
@@ -167,7 +187,7 @@
         <a class="panel-ver-carrito" routerLink="/carrito" (click)="alternarPanel()">
           Ver carrito
 
-          <span class="material-symbols-outlined">arrow_forward</span>
+          <span class="material-symbols-outlined"> arrow_forward </span>
         </a>
       </div>
     }

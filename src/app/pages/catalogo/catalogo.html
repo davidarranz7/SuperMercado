@@ -1,0 +1,186 @@
+<main class="pagina-catalogo">
+  <div class="catalogo-contenido">
+    <aside class="filtros">
+      <div class="filtros-card">
+        <div class="filtros-cabecera">
+          <h2>Filtros</h2>
+
+          <button type="button" (click)="productoService.categoriaActiva.set('Todos')">
+            Limpiar
+          </button>
+        </div>
+
+        <div class="filtro-bloque">
+          <h3>Categoría</h3>
+
+          <div class="filtro-opciones">
+            <label>
+              <input
+                type="checkbox"
+                [checked]="productoService.categoriaActiva() === 'Todos'"
+                (change)="productoService.categoriaActiva.set('Todos')"
+              />
+
+              <span>Todas</span>
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                [checked]="productoService.categoriaActiva() === 'Frutas'"
+                (change)="productoService.categoriaActiva.set('Frutas')"
+              />
+
+              <span>Frutas</span>
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                [checked]="productoService.categoriaActiva() === 'Verduras'"
+                (change)="productoService.categoriaActiva.set('Verduras')"
+              />
+
+              <span>Verduras</span>
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                [checked]="productoService.categoriaActiva() === 'Carnes'"
+                (change)="productoService.categoriaActiva.set('Carnes')"
+              />
+
+              <span>Carnes</span>
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                [checked]="productoService.categoriaActiva() === 'Panadería'"
+                (change)="productoService.categoriaActiva.set('Panadería')"
+              />
+
+              <span>Panadería</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="filtro-bloque">
+          <h3>Rango de Precio</h3>
+
+          <div class="filtro-precio">
+            <div class="precio-barra">
+              <div class="precio-progreso"></div>
+
+              <span class="precio-control precio-control-inicio"></span>
+              <span class="precio-control precio-control-fin"></span>
+            </div>
+
+            <div class="precio-valores">
+              <span>0 €</span>
+              <span>50 €+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="filtro-bloque">
+          <h3>Características</h3>
+
+          <div class="filtro-opciones">
+            <label>
+              <input type="checkbox" />
+
+              <span>Orgánico</span>
+
+              <strong>24</strong>
+            </label>
+
+            <label>
+              <input type="checkbox" />
+
+              <span>Local</span>
+
+              <strong>18</strong>
+            </label>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="catalogo-productos">
+      <div class="catalogo-barra">
+        <p>
+          Mostrando
+          <strong>
+            {{ productoService.productosFiltrados().length }}
+          </strong>
+          resultados
+
+          @if (productoService.categoriaActiva() !== 'Todos') {
+            para
+            <span> "{{ productoService.categoriaActiva() }}" </span>
+          }
+        </p>
+
+        <div class="ordenar">
+          <label for="orden-productos"> Ordenar por: </label>
+
+          <div class="ordenar-select">
+            <select id="orden-productos">
+              <option>Relevancia</option>
+              <option>Precio: Menor a Mayor</option>
+              <option>Precio: Mayor a Menor</option>
+              <option>Más frescos</option>
+            </select>
+
+            <span class="material-symbols-outlined"> expand_more </span>
+          </div>
+        </div>
+      </div>
+
+      @if (productoService.cargando()) {
+        <div class="catalogo-estado">
+          <span class="material-symbols-outlined"> progress_activity </span>
+
+          <p>Cargando productos...</p>
+        </div>
+      } @else if (productoService.error()) {
+        <div class="catalogo-error">
+          <span class="material-symbols-outlined"> error </span>
+
+          <h2>No pudimos cargar los productos</h2>
+
+          <p>
+            {{ productoService.error() }}
+          </p>
+
+          <button type="button" (click)="productoService.cargarProductos()">Reintentar</button>
+        </div>
+      } @else {
+        <div class="catalogo-grid">
+          @for (producto of productoService.productosFiltrados(); track producto.id) {
+            <app-producto-card [producto]="producto" />
+          } @empty {
+            <div class="catalogo-vacio">
+              <span class="material-symbols-outlined"> search_off </span>
+
+              <h2>No encontramos productos</h2>
+
+              <p>Prueba con otra categoría o modifica tu búsqueda.</p>
+
+              <button
+                type="button"
+                (click)="
+                  productoService.categoriaActiva.set('Todos'); productoService.busqueda.set('')
+                "
+              >
+                Ver todos los productos
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </section>
+  </div>
+</main>

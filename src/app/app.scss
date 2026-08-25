@@ -85,6 +85,7 @@
 
   .material-symbols-outlined {
     color: vars.$primary;
+
     font-size: 21px;
   }
 
@@ -265,7 +266,7 @@
 
   background-color: rgba(248, 249, 255, 0.5);
 
-  overflow-x: auto; // Permite scroll horizontal si las categorías no caben
+  overflow-x: auto; // Permite scroll horizontal si no caben
   white-space: nowrap; // Evita que las categorías salten de línea
 
   scrollbar-width: none;
@@ -274,7 +275,7 @@
     display: none;
   }
 
-  button {
+  a {
     height: 100%;
 
     display: flex;
@@ -287,7 +288,6 @@
     background-color: transparent;
     color: vars.$text-secondary;
 
-    border: none;
     border-bottom: 2px solid transparent;
 
     font-size: 14px;
@@ -422,7 +422,7 @@
   flex-direction: column;
   gap: vars.$sm;
 
-  overflow-y: auto; // Hace scroll solo la lista de productos
+  overflow-y: auto; // Hace scroll solo en los productos
 
   padding: vars.$md;
 }
@@ -469,7 +469,7 @@
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
+    object-fit: cover; // Rellena el espacio sin deformar la imagen
 
     transition: transform 0.4s;
   }
@@ -505,7 +505,7 @@
     font-weight: 600;
 
     white-space: nowrap;
-    text-overflow: ellipsis; // Muestra ... si el nombre no cabe
+    text-overflow: ellipsis; // Muestra ... cuando el nombre no cabe
   }
 
   > div > span {

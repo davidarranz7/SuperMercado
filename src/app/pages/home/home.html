@@ -18,15 +18,15 @@
         Entregas rápidas y productos siempre frescos.
       </p>
 
-      <button
+      <a
         class="hero-boton"
-        type="button"
+        routerLink="/catalogo"
         (click)="productoService.categoriaActiva.set('Todos')"
       >
         Comprar ahora
 
-        <span class="material-symbols-outlined">arrow_forward</span>
-      </button>
+        <span class="material-symbols-outlined"> arrow_forward </span>
+      </a>
     </div>
   </div>
 </section>
@@ -39,65 +39,65 @@
         categorías principales
       </h2>
 
-      <button
-        type="button"
+      <a
         class="ver-catalogo"
+        routerLink="/catalogo"
         (click)="productoService.categoriaActiva.set('Todos')"
       >
         Ver todo el catálogo
 
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
+        <span class="material-symbols-outlined"> chevron_right </span>
+      </a>
     </div>
 
     <div class="categorias-grid">
-      <button
+      <a
         class="categoria-destacada"
-        type="button"
+        routerLink="/catalogo"
         (click)="productoService.categoriaActiva.set('Frutas')"
       >
         <div class="categoria-icono">
-          <span class="material-symbols-outlined">nutrition</span>
+          <span class="material-symbols-outlined"> nutrition </span>
         </div>
 
         <span>Frutas</span>
-      </button>
+      </a>
 
-      <button
+      <a
         class="categoria-destacada"
-        type="button"
+        routerLink="/catalogo"
         (click)="productoService.categoriaActiva.set('Verduras')"
       >
         <div class="categoria-icono">
-          <span class="material-symbols-outlined">eco</span>
+          <span class="material-symbols-outlined"> eco </span>
         </div>
 
         <span>Verduras</span>
-      </button>
+      </a>
 
-      <button
+      <a
         class="categoria-destacada"
-        type="button"
+        routerLink="/catalogo"
         (click)="productoService.categoriaActiva.set('Carnes')"
       >
         <div class="categoria-icono">
-          <span class="material-symbols-outlined">set_meal</span>
+          <span class="material-symbols-outlined"> set_meal </span>
         </div>
 
         <span>Carnes</span>
-      </button>
+      </a>
 
-      <button
+      <a
         class="categoria-destacada"
-        type="button"
+        routerLink="/catalogo"
         (click)="productoService.categoriaActiva.set('Panadería')"
       >
         <div class="categoria-icono">
-          <span class="material-symbols-outlined">bakery_dining</span>
+          <span class="material-symbols-outlined"> bakery_dining </span>
         </div>
 
         <span>Panadería</span>
-      </button>
+      </a>
     </div>
   </div>
 </section>
@@ -106,7 +106,7 @@
   <div class="productos-contenido">
     <div class="productos-cabecera">
       <div>
-        <span class="productos-etiqueta">Nuestro catálogo</span>
+        <span class="productos-etiqueta"> Nuestro catálogo </span>
 
         <h2>
           @if (productoService.categoriaActiva() === 'Todos') {
@@ -125,19 +125,20 @@
         >
           Ver todos
 
-          <span class="material-symbols-outlined">chevron_right</span>
+          <span class="material-symbols-outlined"> chevron_right </span>
         </button>
       }
     </div>
 
     @if (productoService.cargando()) {
       <div class="estado-productos">
-        <span class="material-symbols-outlined">progress_activity</span>
+        <span class="material-symbols-outlined"> progress_activity </span>
+
         <p>Cargando productos...</p>
       </div>
     } @else if (productoService.error()) {
       <div class="error">
-        <span class="material-symbols-outlined">error</span>
+        <span class="material-symbols-outlined"> error </span>
 
         <p class="error-titulo">
           {{ productoService.error() }}
@@ -153,7 +154,8 @@
           <app-producto-card [producto]="producto" />
         } @empty {
           <div class="estado-productos">
-            <span class="material-symbols-outlined">search_off</span>
+            <span class="material-symbols-outlined"> search_off </span>
+
             <p>No se encontraron productos.</p>
           </div>
         }
