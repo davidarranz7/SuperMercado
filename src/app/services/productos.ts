@@ -123,9 +123,13 @@ export class Productos {
 
   limpiarFiltros() {
     this.busqueda.set('');
+
     this.categoriaActiva.set('Todos');
+
     this.precioMin.set(0);
+
     this.precioMax.set(50);
+
     this.orden.set('relevancia');
   }
 }

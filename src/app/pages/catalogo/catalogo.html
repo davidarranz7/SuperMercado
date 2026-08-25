@@ -12,55 +12,19 @@
           <h3>Categoría</h3>
 
           <div class="filtro-opciones">
-            <label>
-              <input
-                type="checkbox"
-                [checked]="productoService.categoriaActiva() === 'Todos'"
-                (change)="productoService.categoriaActiva.set('Todos')"
-              />
+            @for (categoria of productoService.categorias(); track categoria) {
+              <label>
+                <input
+                  type="checkbox"
+                  [checked]="productoService.categoriaActiva() === categoria"
+                  (change)="productoService.categoriaActiva.set(categoria)"
+                />
 
-              <span>Todas</span>
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
-                [checked]="productoService.categoriaActiva() === 'Frutas'"
-                (change)="productoService.categoriaActiva.set('Frutas')"
-              />
-
-              <span>Frutas</span>
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
-                [checked]="productoService.categoriaActiva() === 'Verduras'"
-                (change)="productoService.categoriaActiva.set('Verduras')"
-              />
-
-              <span>Verduras</span>
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
-                [checked]="productoService.categoriaActiva() === 'Carnes'"
-                (change)="productoService.categoriaActiva.set('Carnes')"
-              />
-
-              <span>Carnes</span>
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
-                [checked]="productoService.categoriaActiva() === 'Panadería'"
-                (change)="productoService.categoriaActiva.set('Panadería')"
-              />
-
-              <span>Panadería</span>
-            </label>
+                <span>
+                  {{ categoria === 'Todos' ? 'Todas' : categoria }}
+                </span>
+              </label>
+            }
           </div>
         </div>
 

@@ -13,7 +13,8 @@
       "nombre": "Plátano",
       "categoria": "Frutas",
       "precio": 0.5,
-      "icono": "🍌"
+      "icono": "🍌",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdhFu0Z_MN3ouYta-J-7rZaZ_py_6o6f_Pqy_KR73fDw&s=10"
     },
     {
       "id": "3",
