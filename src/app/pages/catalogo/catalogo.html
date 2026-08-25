@@ -5,9 +5,7 @@
         <div class="filtros-cabecera">
           <h2>Filtros</h2>
 
-          <button type="button" (click)="productoService.categoriaActiva.set('Todos')">
-            Limpiar
-          </button>
+          <button type="button" (click)="productoService.limpiarFiltros()">Limpiar</button>
         </div>
 
         <div class="filtro-bloque">
@@ -70,16 +68,44 @@
           <h3>Rango de Precio</h3>
 
           <div class="filtro-precio">
-            <div class="precio-barra">
-              <div class="precio-progreso"></div>
+            <div class="precio-seleccionado">
+              <span> {{ productoService.precioMin() }} € </span>
 
-              <span class="precio-control precio-control-inicio"></span>
-              <span class="precio-control precio-control-fin"></span>
+              <span> {{ productoService.precioMax() }} € </span>
             </div>
+
+            <label class="precio-slider">
+              <span>Precio mínimo</span>
+
+              <input
+                #precioMinInput
+                type="range"
+                min="0"
+                max="50"
+                step="0.5"
+                [value]="productoService.precioMin()"
+                (input)="productoService.cambiarPrecioMin(precioMinInput.value)"
+              />
+            </label>
+
+            <label class="precio-slider">
+              <span>Precio máximo</span>
+
+              <input
+                #precioMaxInput
+                type="range"
+                min="0"
+                max="50"
+                step="0.5"
+                [value]="productoService.precioMax()"
+                (input)="productoService.cambiarPrecioMax(precioMaxInput.value)"
+              />
+            </label>
 
             <div class="precio-valores">
               <span>0 €</span>
-              <span>50 €+</span>
+
+              <span>50 €</span>
             </div>
           </div>
         </div>
@@ -89,7 +115,7 @@
 
           <div class="filtro-opciones">
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" disabled />
 
               <span>Orgánico</span>
 
@@ -97,7 +123,7 @@
             </label>
 
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" disabled />
 
               <span>Local</span>
 
@@ -112,14 +138,23 @@
       <div class="catalogo-barra">
         <p>
           Mostrando
+
           <strong>
-            {{ productoService.productosFiltrados().length }}
+            {{ productoService.productosCatalogo().length }}
           </strong>
+
           resultados
 
           @if (productoService.categoriaActiva() !== 'Todos') {
             para
+
             <span> "{{ productoService.categoriaActiva() }}" </span>
+          }
+
+          @if (productoService.busqueda()) {
+            con la búsqueda
+
+            <span> "{{ productoService.busqueda() }}" </span>
           }
         </p>
 
@@ -127,11 +162,19 @@
           <label for="orden-productos"> Ordenar por: </label>
 
           <div class="ordenar-select">
-            <select id="orden-productos">
-              <option>Relevancia</option>
-              <option>Precio: Menor a Mayor</option>
-              <option>Precio: Mayor a Menor</option>
-              <option>Más frescos</option>
+            <select
+              #ordenSelect
+              id="orden-productos"
+              [value]="productoService.orden()"
+              (change)="productoService.cambiarOrden(ordenSelect.value)"
+            >
+              <option value="relevancia">Relevancia</option>
+
+              <option value="precio-asc">Precio: Menor a Mayor</option>
+
+              <option value="precio-desc">Precio: Mayor a Menor</option>
+
+              <option value="frescos" disabled>Más frescos</option>
             </select>
 
             <span class="material-symbols-outlined"> expand_more </span>
@@ -159,7 +202,7 @@
         </div>
       } @else {
         <div class="catalogo-grid">
-          @for (producto of productoService.productosFiltrados(); track producto.id) {
+          @for (producto of productoService.productosCatalogo(); track producto.id) {
             <app-producto-card [producto]="producto" />
           } @empty {
             <div class="catalogo-vacio">
@@ -167,14 +210,9 @@
 
               <h2>No encontramos productos</h2>
 
-              <p>Prueba con otra categoría o modifica tu búsqueda.</p>
+              <p>Prueba con otra categoría, búsqueda o rango de precio.</p>
 
-              <button
-                type="button"
-                (click)="
-                  productoService.categoriaActiva.set('Todos'); productoService.busqueda.set('')
-                "
-              >
+              <button type="button" (click)="productoService.limpiarFiltros()">
                 Ver todos los productos
               </button>
             </div>
