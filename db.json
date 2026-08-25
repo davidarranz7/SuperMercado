@@ -1,5 +1,4 @@
 {
-  "$schema": "./node_modules/json-server/schema.json",
   "productos": [
     {
       "id": "1",
@@ -19,7 +18,7 @@
       "id": "3",
       "nombre": "Lechuga",
       "categoria": "Verduras",
-      "precio": 1.0,
+      "precio": 1,
       "icono": "🥬"
     },
     {
@@ -33,14 +32,14 @@
       "id": "5",
       "nombre": "Pechuga de pollo",
       "categoria": "Carnes",
-      "precio": 5.0,
+      "precio": 5,
       "icono": "🍗"
     },
     {
       "id": "6",
       "nombre": "Pan",
       "categoria": "Panadería",
-      "precio": 2.0,
+      "precio": 2,
       "icono": "🍞"
     },
     {
@@ -124,7 +123,7 @@
       "id": "18",
       "nombre": "Cebolla",
       "categoria": "Verduras",
-      "precio": 1.0,
+      "precio": 1,
       "icono": "🧅"
     },
     {
@@ -197,5 +196,6 @@
       "precio": 2.6,
       "icono": "🧁"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

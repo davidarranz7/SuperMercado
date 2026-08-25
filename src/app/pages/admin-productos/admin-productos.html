@@ -1,0 +1,26 @@
+<form [formGroup]="formularioProducto">
+  <div>
+    <label for="nombre">Nombre</label>
+
+    <input id="nombre" type="text" formControlName="nombre" />
+
+    @if (formularioProducto.controls.nombre.invalid && formularioProducto.controls.nombre.touched) {
+      <p class="error-campo">El nombre es obligatorio.</p>
+    }
+  </div>
+
+  <div>
+    <label for="categoria">Categoría</label>
+    <input id="categoria" type="text" formControlName="categoria" />
+  </div>
+
+  <div>
+    <label for="precio">Precio</label>
+    <input id="precio" type="number" step="0.01" formControlName="precio" />
+  </div>
+
+  <div>
+    <label for="icono">Icono</label>
+    <input id="icono" type="text" formControlName="icono" />
+  </div>
+</form>
