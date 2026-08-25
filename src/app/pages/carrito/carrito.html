@@ -1,46 +1,169 @@
-<div class="carrito-contenido">
-  <h1>Tu carrito</h1>
+<main class="pagina-carrito">
+  <div class="carrito-contenido">
+    @if (carritoService.items().length === 0) {
+      <div class="carrito-vacio">
+        <span class="material-symbols-outlined">shopping_cart</span>
 
-  @if (carritoService.items().length === 0) {
-    <div class="carrito-vacio">
-      <span class="icono-vacio">🛒</span>
-      <h2>Tu carrito está vacío</h2>
-      <p>Añade algunos productos para empezar tu compra.</p>
-    </div>
-  } @else {
-    <div class="lista-carrito">
-      @for (item of carritoService.items(); track item.producto.id) {
-        <div class="item-carrito">
-          <div class="producto-info">
-            <span class="producto-icono">
-              {{ item.producto.icono }}
+        <h1>Tu carrito está vacío</h1>
+
+        <p>Todavía no has añadido ningún producto.</p>
+      </div>
+    } @else {
+      <div class="carrito-layout">
+        <section class="carrito-productos">
+          <div class="carrito-cabecera">
+            <h1>Carrito de Compras</h1>
+
+            <span>
+              {{ carritoService.cantidadTotal() }}
+              @if (carritoService.cantidadTotal() === 1) {
+                artículo
+              } @else {
+                artículos
+              }
             </span>
-            <div>
-              <h3>{{ item.producto.nombre }}</h3>
-              <p>{{ item.producto.precio }} € / unidad</p>
+          </div>
+
+          <div class="lista-productos">
+            @for (item of carritoService.items(); track item.producto.id) {
+              <article class="producto-carrito">
+                <div class="producto-marca"></div>
+
+                <div class="producto-imagen">
+                  @if (item.producto.imagen) {
+                    <img [src]="item.producto.imagen" [alt]="item.producto.nombre" />
+                  } @else {
+                    <span>
+                      {{ item.producto.icono }}
+                    </span>
+                  }
+                </div>
+
+                <div class="producto-informacion">
+                  <div class="producto-superior">
+                    <div>
+                      <h2>{{ item.producto.nombre }}</h2>
+
+                      <p>
+                        {{ item.producto.categoria }}
+                        • Producto seleccionado
+                      </p>
+                    </div>
+
+                    <button
+                      class="boton-eliminar"
+                      type="button"
+                      title="Eliminar artículo"
+                      aria-label="Eliminar producto"
+                      (click)="carritoService.eliminarProducto(item.producto.id)"
+                    >
+                      <span class="material-symbols-outlined"> delete </span>
+                    </button>
+                  </div>
+
+                  <div class="producto-inferior">
+                    <div class="controles-cantidad">
+                      <button
+                        type="button"
+                        aria-label="Disminuir cantidad"
+                        (click)="carritoService.quitarUnidad(item.producto.id)"
+                      >
+                        <span class="material-symbols-outlined"> remove </span>
+                      </button>
+
+                      <span class="cantidad">
+                        {{ item.cantidad }}
+                      </span>
+
+                      <button
+                        type="button"
+                        aria-label="Aumentar cantidad"
+                        (click)="carritoService.agregarAlCarrito(item.producto)"
+                      >
+                        <span class="material-symbols-outlined"> add </span>
+                      </button>
+                    </div>
+
+                    <span class="producto-precio">
+                      {{ item.producto.precio * item.cantidad | currency: 'EUR' }}
+                    </span>
+                  </div>
+                </div>
+              </article>
+            }
+          </div>
+        </section>
+
+        <aside class="resumen-compra">
+          <div class="resumen-card">
+            <h2>Resumen de Compra</h2>
+
+            <div class="resumen-datos">
+              <div>
+                <span>
+                  Subtotal ({{ carritoService.cantidadTotal() }}
+                  @if (carritoService.cantidadTotal() === 1) {
+                    artículo
+                  } @else {
+                    artículos
+                  }
+                  )
+                </span>
+
+                <strong>
+                  {{ carritoService.total() | currency: 'EUR' }}
+                </strong>
+              </div>
+
+              <div>
+                <span>Costo de envío</span>
+
+                <strong>
+                  {{ 2.5 | currency: 'EUR' }}
+                </strong>
+              </div>
+
+              <div>
+                <span>Impuestos estimados</span>
+
+                <strong>
+                  {{ 0.85 | currency: 'EUR' }}
+                </strong>
+              </div>
             </div>
+
+            <div class="codigo-descuento">
+              <label for="codigo"> Código de Descuento </label>
+
+              <div>
+                <input id="codigo" type="text" placeholder="Ingresa tu código" />
+
+                <button type="button">Aplicar</button>
+              </div>
+            </div>
+
+            <div class="resumen-total">
+              <span>Total</span>
+
+              <strong>
+                {{ carritoService.total() + 2.5 + 0.85 | currency: 'EUR' }}
+              </strong>
+            </div>
+
+            <button class="boton-pago" type="button">
+              <span>Proceder al Pago</span>
+
+              <span class="material-symbols-outlined"> arrow_forward </span>
+            </button>
+
+            <p class="pago-seguro">
+              <span class="material-symbols-outlined"> lock </span>
+
+              Pago 100% seguro y encriptado
+            </p>
           </div>
-          <div class="cantidad">
-            <button (click)="carritoService.quitarUnidad(item.producto.id)">-</button>
-            <span>{{ item.cantidad }}</span>
-            <button (click)="carritoService.agregarAlCarrito(item.producto)">+</button>
-          </div>
-          <p class="subtotal">{{ item.cantidad * item.producto.precio | currency: 'EUR' }}</p>
-          <button
-            class="boton-eliminar"
-            (click)="carritoService.eliminarProducto(item.producto.id)"
-          >
-            Eliminar
-          </button>
-        </div>
-      }
-    </div>
-    <div class="pie-carrito">
-      <p class="total-carrito">
-        Total:
-        <strong>{{ carritoService.total() | currency: 'EUR' }}</strong>
-      </p>
-      <button class="boton-comprar">Comprar</button>
-    </div>
-  }
-</div>
+        </aside>
+      </div>
+    }
+  </div>
+</main>

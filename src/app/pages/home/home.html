@@ -1,33 +1,163 @@
-<div class="contenido">
-  <h1>Productos</h1>
+<section class="hero">
+  <div class="hero-overlay"></div>
 
-  @if (productoService.cargando()) {
-    <p>Cargando productos...</p>
-  } @else if (productoService.error()) {
-    <div class="error">
-      <p class="error-titulo">{{ productoService.error() }}</p>
-      <p class="error-ayuda">Inténtalo de nuevo en unos segundos.</p>
+  <div class="hero-contenido">
+    <div class="hero-texto">
+      <div class="hero-envio">
+        <span class="material-symbols-outlined">local_shipping</span>
+        <span>Envío gratis desde 50 €</span>
+      </div>
 
-      <button (click)="productoService.cargarProductos()">Reintentar</button>
+      <h1>
+        Tus compras más <span>frescas</span>,<br />
+        directas a tu puerta.
+      </h1>
+
+      <p class="hero-descripcion">
+        Seleccionamos cuidadosamente cada producto para asegurar la máxima calidad en tu mesa.
+        Entregas rápidas y productos siempre frescos.
+      </p>
+
+      <button
+        class="hero-boton"
+        type="button"
+        (click)="productoService.categoriaActiva.set('Todos')"
+      >
+        Comprar ahora
+
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </button>
     </div>
-  } @else {
-    <div class="categorias">
-      @for (cat of productoService.categorias(); track cat) {
+  </div>
+</section>
+
+<section class="seccion-categorias">
+  <div class="categorias-contenido">
+    <div class="categorias-cabecera">
+      <h2>
+        Explora nuestras <br />
+        categorías principales
+      </h2>
+
+      <button
+        type="button"
+        class="ver-catalogo"
+        (click)="productoService.categoriaActiva.set('Todos')"
+      >
+        Ver todo el catálogo
+
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+
+    <div class="categorias-grid">
+      <button
+        class="categoria-destacada"
+        type="button"
+        (click)="productoService.categoriaActiva.set('Frutas')"
+      >
+        <div class="categoria-icono">
+          <span class="material-symbols-outlined">nutrition</span>
+        </div>
+
+        <span>Frutas</span>
+      </button>
+
+      <button
+        class="categoria-destacada"
+        type="button"
+        (click)="productoService.categoriaActiva.set('Verduras')"
+      >
+        <div class="categoria-icono">
+          <span class="material-symbols-outlined">eco</span>
+        </div>
+
+        <span>Verduras</span>
+      </button>
+
+      <button
+        class="categoria-destacada"
+        type="button"
+        (click)="productoService.categoriaActiva.set('Carnes')"
+      >
+        <div class="categoria-icono">
+          <span class="material-symbols-outlined">set_meal</span>
+        </div>
+
+        <span>Carnes</span>
+      </button>
+
+      <button
+        class="categoria-destacada"
+        type="button"
+        (click)="productoService.categoriaActiva.set('Panadería')"
+      >
+        <div class="categoria-icono">
+          <span class="material-symbols-outlined">bakery_dining</span>
+        </div>
+
+        <span>Panadería</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="seccion-productos">
+  <div class="productos-contenido">
+    <div class="productos-cabecera">
+      <div>
+        <span class="productos-etiqueta">Nuestro catálogo</span>
+
+        <h2>
+          @if (productoService.categoriaActiva() === 'Todos') {
+            Productos para ti
+          } @else {
+            {{ productoService.categoriaActiva() }}
+          }
+        </h2>
+      </div>
+
+      @if (productoService.categoriaActiva() !== 'Todos') {
         <button
-          [class.activo]="productoService.categoriaActiva() === cat"
-          (click)="productoService.categoriaActiva.set(cat)"
+          class="ver-todos"
+          type="button"
+          (click)="productoService.categoriaActiva.set('Todos')"
         >
-          {{ cat }}
+          Ver todos
+
+          <span class="material-symbols-outlined">chevron_right</span>
         </button>
       }
     </div>
 
-    <div class="grid-productos">
-      @for (producto of productoService.productosFiltrados(); track producto.id) {
-        <app-producto-card [producto]="producto" />
-      } @empty {
-        <p>No se encontraron productos.</p>
-      }
-    </div>
-  }
-</div>
+    @if (productoService.cargando()) {
+      <div class="estado-productos">
+        <span class="material-symbols-outlined">progress_activity</span>
+        <p>Cargando productos...</p>
+      </div>
+    } @else if (productoService.error()) {
+      <div class="error">
+        <span class="material-symbols-outlined">error</span>
+
+        <p class="error-titulo">
+          {{ productoService.error() }}
+        </p>
+
+        <p class="error-ayuda">Inténtalo de nuevo en unos segundos.</p>
+
+        <button type="button" (click)="productoService.cargarProductos()">Reintentar</button>
+      </div>
+    } @else {
+      <div class="grid-productos">
+        @for (producto of productoService.productosFiltrados(); track producto.id) {
+          <app-producto-card [producto]="producto" />
+        } @empty {
+          <div class="estado-productos">
+            <span class="material-symbols-outlined">search_off</span>
+            <p>No se encontraron productos.</p>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

@@ -1,72 +1,175 @@
-<header>
-  <div class="header-contenido">
-    <div class="logo">
+<header class="header-principal">
+  <div class="header-superior">
+    <a class="logo" routerLink="/">
       <div class="logo-icono">S</div>
-      <div class="logo-texto">
-        <span class="logo-nombre">Supermercado</span>
-        <span class="logo-slogan">Tu supermercado de confianza</span>
-      </div>
+
+      <span>SuperMercado</span>
+    </a>
+
+    <button class="ubicacion" type="button">
+      <span class="material-symbols-outlined">location_on</span>
+      <span>Seleccionar ubicación</span>
+    </button>
+
+    <div class="buscador">
+      <span class="material-symbols-outlined">search</span>
+
+      <input
+        type="text"
+        placeholder="Busca productos, marcas y más..."
+        (input)="productoService.busqueda.set($any($event.target).value)"
+      />
     </div>
 
-    <input
-      class="buscador"
-      type="text"
-      placeholder="buscar productos..."
-      #buscadorInput
-      (input)="productoService.busqueda.set(buscadorInput.value)"
-    />
+    <div class="header-acciones">
+      <button class="cuenta" type="button">
+        <span class="cuenta-avatar">
+          <span class="material-symbols-outlined">person</span>
+        </span>
 
-    <button class="boton-carrito" (click)="alternarPanel()">
-      🛒 <span class="contador">{{ carritoService.cantidadTotal() }}</span>
-    </button>
+        <span>Mi Cuenta</span>
+      </button>
+
+      <button
+        class="carrito-header"
+        type="button"
+        aria-label="Abrir carrito"
+        (click)="alternarPanel()"
+      >
+        <span class="material-symbols-outlined">shopping_cart</span>
+
+        @if (carritoService.cantidadTotal() > 0) {
+          <span class="carrito-contador">
+            {{ carritoService.cantidadTotal() }}
+          </span>
+        }
+      </button>
+    </div>
   </div>
+
+  <nav class="navegacion-categorias">
+    <button type="button">Frutas y Verduras</button>
+    <button type="button">Carnes y Pescados</button>
+    <button type="button">Lácteos</button>
+    <button type="button">Panadería</button>
+    <button type="button">Bebidas</button>
+    <button type="button">Limpieza</button>
+  </nav>
 </header>
 
-<nav>
-  <div class="nav-contenido">
-    <a routerLink="/">Home</a>
-  </div>
-</nav>
+<router-outlet />
 
 @if (panelAbierto()) {
-  <div class="panel">
+  <button
+    class="panel-overlay"
+    type="button"
+    aria-label="Cerrar carrito"
+    (click)="alternarPanel()"
+  ></button>
+
+  <aside class="panel-carrito">
     <div class="panel-cabecera">
-      <h2>Carrito de compras</h2>
-      <button class="boton-cerrar" (click)="alternarPanel()">X</button>
+      <div>
+        <span class="panel-etiqueta">Tu compra</span>
+
+        <h2>Carrito de compras</h2>
+      </div>
+
+      <button
+        class="panel-cerrar"
+        type="button"
+        aria-label="Cerrar carrito"
+        (click)="alternarPanel()"
+      >
+        <span class="material-symbols-outlined">close</span>
+      </button>
     </div>
 
     @if (carritoService.items().length === 0) {
-      <p>El carrito está vacío</p>
+      <div class="panel-vacio">
+        <span class="material-symbols-outlined">shopping_cart</span>
+
+        <strong>Tu carrito está vacío</strong>
+
+        <p>Añade algún producto para empezar tu compra.</p>
+      </div>
     } @else {
-      @for (item of carritoService.items(); track item.producto.id) {
-        <div class="panel-item">
-          <span class="nombre">{{ item.producto.icono }} {{ item.producto.nombre }}</span>
-          <span class="precio-linea">{{ item.cantidad }} x {{ item.producto.precio }} €</span>
-          <button
-            class="boton-cantidad boton-restar"
-            (click)="carritoService.quitarUnidad(item.producto.id)"
-          >
-            -
-          </button>
-          <button
-            class="boton-cantidad boton-sumar"
-            (click)="carritoService.agregarAlCarrito(item.producto)"
-          >
-            +
-          </button>
-          <button
-            class="boton-eliminar"
-            (click)="carritoService.eliminarProducto(item.producto.id)"
-          >
-            Eliminar
-          </button>
+      <div class="panel-lista">
+        @for (item of carritoService.items(); track item.producto.id) {
+          <article class="panel-producto">
+            <div class="panel-producto-imagen">
+              @if (item.producto.imagen) {
+                <img [src]="item.producto.imagen" [alt]="item.producto.nombre" />
+              } @else {
+                <span>
+                  {{ item.producto.icono }}
+                </span>
+              }
+            </div>
+
+            <div class="panel-producto-info">
+              <div class="panel-producto-superior">
+                <div>
+                  <h3>{{ item.producto.nombre }}</h3>
+
+                  <span>{{ item.producto.categoria }}</span>
+                </div>
+
+                <button
+                  class="panel-eliminar"
+                  type="button"
+                  aria-label="Eliminar producto"
+                  (click)="carritoService.eliminarProducto(item.producto.id)"
+                >
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+
+              <div class="panel-producto-inferior">
+                <div class="panel-cantidad">
+                  <button
+                    type="button"
+                    aria-label="Quitar unidad"
+                    (click)="carritoService.quitarUnidad(item.producto.id)"
+                  >
+                    <span class="material-symbols-outlined">remove</span>
+                  </button>
+
+                  <span>{{ item.cantidad }}</span>
+
+                  <button
+                    type="button"
+                    aria-label="Añadir unidad"
+                    (click)="carritoService.agregarAlCarrito(item.producto)"
+                  >
+                    <span class="material-symbols-outlined">add</span>
+                  </button>
+                </div>
+
+                <strong>
+                  {{ item.producto.precio * item.cantidad | currency: 'EUR' }}
+                </strong>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+
+      <div class="panel-resumen">
+        <div>
+          <span>Total</span>
+
+          <strong>
+            {{ carritoService.total() | currency: 'EUR' }}
+          </strong>
         </div>
-      }
-      <div class="panel-pie">
-        <p class="panel-total">Total: {{ carritoService.total() | currency: 'EUR' }}</p>
-        <a class="boton-comprar" routerLink="/carrito" (click)="alternarPanel()">Ir a comprar</a>
+
+        <a class="panel-ver-carrito" routerLink="/carrito" (click)="alternarPanel()">
+          Ver carrito
+
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
       </div>
     }
-  </div>
+  </aside>
 }
-<router-outlet />

@@ -1,272 +1,719 @@
 @use '../styles/variables' as vars;
 
-/* Parte superior */
-header {
-  background-color: vars.$blanco;
-  border-bottom: 1px solid vars.$gris-borde;
+.header-principal {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  width: 100%;
+
+  background-color: rgba(248, 249, 255, 0.94);
+
+  backdrop-filter: blur(16px); // Desenfoca lo que pasa detrás del header
+
+  box-shadow: vars.$shadow-header;
 }
 
-.header-contenido {
-  width: 100%;
-  padding: 12px 32px;
-  display: grid;
-  grid-template-columns: 1fr minmax(300px, 600px) 1fr;
+.header-superior {
+  min-height: 80px;
+
+  display: flex;
   align-items: center;
-  gap: 32px;
+  gap: vars.$md;
+
+  padding: 0 vars.$md;
+
+  border-bottom: 1px solid vars.$surface-variant;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-  justify-self: start;
+  gap: vars.$base;
 
-  .logo-icono {
-    width: 40px;
-    height: 40px;
-    background-color: vars.$verde-principal;
-    color: vars.$blanco;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 700;
+  flex-shrink: 0;
+
+  color: vars.$primary;
+
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.logo-icono {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: vars.$primary;
+  color: vars.$white;
+
+  border-radius: vars.$radius-md;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ubicacion {
+  display: flex;
+  align-items: center;
+  gap: vars.$xs;
+
+  flex-shrink: 0;
+
+  padding: vars.$xs vars.$sm;
+
+  background-color: vars.$surface-low;
+  color: vars.$text-secondary;
+
+  border: none;
+  border-radius: vars.$radius-full;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: background-color 0.2s;
+
+  .material-symbols-outlined {
+    color: vars.$primary;
+    font-size: 21px;
   }
 
-  .logo-texto {
-    display: flex;
-    flex-direction: column;
-
-    .logo-nombre {
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    .logo-slogan {
-      font-size: 11px;
-      color: #888;
-    }
+  &:hover {
+    background-color: vars.$surface-container;
   }
 }
 
 .buscador {
   width: 100%;
-  padding: 10px 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background-color: #f7f7f7;
-  font-size: 14px;
+  max-width: 576px;
 
-  &:focus {
+  display: flex;
+  align-items: center;
+  gap: vars.$base;
+
+  margin: 0 auto;
+  padding: 10px 16px;
+
+  background-color: vars.$surface-container;
+
+  border-radius: vars.$radius-md;
+
+  transition: box-shadow 0.2s;
+
+  .material-symbols-outlined {
+    flex-shrink: 0;
+
+    color: vars.$outline;
+
+    font-size: 22px;
+  }
+
+  input {
+    width: 100%;
+
+    background-color: transparent;
+    color: vars.$text-primary;
+
+    border: none;
     outline: none;
-    border-color: vars.$verde-principal; /* color verde al enfocar */
-    background-color: vars.$blanco; /* fondo blanco al enfocar */
+
+    font-size: 14px;
+
+    &::placeholder {
+      color: vars.$outline;
+    }
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px rgba(0, 110, 47, 0.15);
   }
 }
 
-.boton-carrito {
+.header-acciones {
   display: flex;
-  justify-self: end;
   align-items: center;
-  gap: 8px;
-  background-color: #f0f5f2;
-  border: 1px solid #d5e5db;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-size: 16px;
-  transition: background-color 0.2s;
+  gap: vars.$md;
+
+  flex-shrink: 0;
+}
+
+.cuenta {
+  display: flex;
+  align-items: center;
+  gap: vars.$sm;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  background-color: transparent;
+  color: vars.$text-secondary;
+
+  border: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: color 0.2s;
 
   &:hover {
-    background-color: #e0ebe4;
+    color: vars.$primary;
+  }
+}
+
+.cuenta-avatar {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: vars.$surface-container;
+
+  border-radius: vars.$radius-full;
+
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+
+  .material-symbols-outlined {
+    font-size: 20px;
   }
 
-  .contador {
-    background-color: vars.$verde-principal;
-    color: vars.$blanco;
-    border-radius: 999px;
-    min-width: 22px;
-    height: 22px;
+  .cuenta:hover & {
+    background-color: vars.$primary;
+    color: vars.$white;
+  }
+}
+
+.carrito-header {
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  background-color: transparent;
+  color: vars.$text-primary;
+
+  border: none;
+  border-radius: vars.$radius-full;
+
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+
+  .material-symbols-outlined {
+    font-size: 25px;
+  }
+
+  &:hover {
+    background-color: vars.$surface-low;
+    color: vars.$primary;
+  }
+}
+
+.carrito-contador {
+  position: absolute;
+
+  top: -2px;
+  right: -3px;
+
+  min-width: 17px;
+  height: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 4px;
+
+  background-color: vars.$tertiary-container;
+  color: #6d2d00;
+
+  border-radius: vars.$radius-full;
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.navegacion-categorias {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  gap: vars.$lg;
+
+  padding: 0 vars.$md;
+
+  background-color: rgba(248, 249, 255, 0.5);
+
+  overflow-x: auto; // Permite scroll horizontal si las categorías no caben
+  white-space: nowrap; // Evita que las categorías salten de línea
+
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  button {
+    height: 100%;
+
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-  }
-}
 
-/* Barra de navegacion de arriba*/
+    flex-shrink: 0;
 
-nav {
-  background-color: vars.$blanco; /* fondo gris claro */
-  border-bottom: 1px solid vars.$gris-borde; /* linea fina que separa la barra del resto */
+    padding: 0;
 
-  .nav-contenido {
-    max-width: 1400px; /* ancho maximo de la barra */
-    margin: 0 auto; /* centrado horizontal */
-    padding: 12px 32px; /* espacio interior a los lados */
-    display: flex; /* esto hace que los hijos se coloquen en fila */
-    gap: 24px; /* espacio entre cada enlace */
-  }
+    background-color: transparent;
+    color: vars.$text-secondary;
 
-  a {
-    text-decoration: none;
-    color: #1a1a1a;
+    border: none;
+    border-bottom: 2px solid transparent;
+
+    font-size: 14px;
     font-weight: 600;
-    font-size: 15px;
-    padding: 8px 16px;
-    border-radius: 8px;
+
     transition:
-      background-color 0.2s,
-      color 0.2s;
-  }
+      color 0.2s,
+      border-color 0.2s;
 
-  & a:hover {
-    background-color: vars.$verde-principal;
-    color: vars.$blanco;
+    &:hover {
+      color: vars.$primary;
+      border-bottom-color: vars.$primary;
+    }
   }
 }
 
-/* panel lateral*/
+.panel-overlay {
+  position: fixed;
+  inset: 0; // Ocupa toda la pantalla
 
-.panel {
-  position: fixed; /* flota sobte el resto */
-  top: 0; /* pegado al borde superior */
-  right: 0; /* pegado al borde derecho */
-  width: 360px; /* ancho */
-  height: 100vh; /* alto */
-  background-color: vars.$blanco;
-  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1); /* sombra a la izquierda*/
-  padding: 24px;
-  overflow-y: auto; /* por si hay mas productos en un futuos poder hacer scroll*/
-  z-index: 10; /* se pinta por encima de tdoo*/
-  display: flex; /* para poder usar flexbox en su interior */
-  flex-direction: column; /* los hijos se colocan en columna, uno debajo de otro */
+  z-index: 200;
+
+  padding: 0;
+
+  background-color: rgba(11, 28, 48, 0.28);
+
+  border: none;
+
+  backdrop-filter: blur(2px);
 }
 
-/* Cabezera del panel*/
+.panel-carrito {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 201;
+
+  width: 440px;
+  max-width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: vars.$surface-lowest;
+
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.12);
+
+  animation: abrir-panel 0.25s ease-out;
+}
+
+@keyframes abrir-panel {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
 
 .panel-cabecera {
   display: flex;
-  justify-content: space-between; /* separa el itutlo de los botones*/
-  align-items: center;
-  margin-bottom: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: vars.$md;
+
+  padding: vars.$md;
+
+  border-bottom: 1px solid vars.$surface-variant;
+
+  h2 {
+    color: vars.$text-primary;
+
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+  }
 }
 
-/* Boton para ccerrar el panel*/
+.panel-etiqueta {
+  display: block;
 
-.boton-cerrar {
-  background: none;
-  border: 1px solid vars.$rojo-eliminar;
-  border-radius: 6px;
-  padding: 4px 10px;
-  color: vars.$rojo-eliminar;
-  font-size: 13px;
+  margin-bottom: vars.$xs;
+
+  color: vars.$primary;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.panel-cerrar {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  background-color: vars.$surface-low;
+  color: vars.$text-primary;
+
+  border: none;
+  border-radius: vars.$radius-full;
+
   transition:
     background-color 0.2s,
     color 0.2s;
 
   &:hover {
-    background-color: vars.$rojo-eliminar;
-    color: vars.$blanco;
+    background-color: vars.$surface-container;
+    color: vars.$primary;
+  }
+
+  .material-symbols-outlined {
+    font-size: 22px;
   }
 }
 
-/* Ajuste de los items dentro del panel*/
+.panel-lista {
+  flex: 1;
 
-.panel-item {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 72px 28px 28px auto;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$sm;
+
+  overflow-y: auto; // Hace scroll solo la lista de productos
+
+  padding: vars.$md;
+}
+
+.panel-producto {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 0;
-  border-bottom: 1px solid #eee; /* Separador entre productos*/
+  gap: vars.$sm;
 
-  .nombre {
-    min-width: 0;
-    font-size: 14px;
-    line-height: 1.4;
+  padding: vars.$sm;
+
+  background-color: vars.$surface-low;
+
+  border-radius: vars.$radius-lg;
+
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: vars.$surface-container;
+
+    .panel-producto-imagen img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.panel-producto-imagen {
+  width: 72px;
+  height: 72px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background-color: vars.$surface-variant;
+
+  border-radius: vars.$radius-md;
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.4s;
   }
 
-  .precio-linea {
-    width: auto;
-    text-align: right;
-    font-size: 13px;
-    color: #555;
-    white-space: nowrap; /* evita que el texto se divida en varias lineas */
+  > span {
+    font-size: 36px;
+  }
+}
+
+.panel-producto-info {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: vars.$base;
+}
+
+.panel-producto-superior {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: vars.$sm;
+
+  h3 {
+    overflow: hidden;
+
+    color: vars.$text-primary;
+
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    text-overflow: ellipsis; // Muestra ... si el nombre no cabe
   }
 
-  .boton-cantidad {
+  > div > span {
+    color: vars.$text-secondary;
+
+    font-size: 12px;
+  }
+}
+
+.panel-eliminar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  background-color: transparent;
+  color: vars.$outline;
+
+  border: none;
+
+  transition: color 0.2s;
+
+  &:hover {
+    color: vars.$error;
+  }
+
+  .material-symbols-outlined {
+    font-size: 20px;
+  }
+}
+
+.panel-producto-inferior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$sm;
+
+  > strong {
+    color: vars.$primary;
+
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+.panel-cantidad {
+  display: flex;
+  align-items: center;
+  gap: vars.$base;
+
+  padding: vars.$xs;
+
+  background-color: vars.$surface;
+
+  border-radius: vars.$radius-full;
+
+  button {
     width: 28px;
     height: 28px;
-    border-radius: 6px;
-    background-color: #f0f0f0;
-    font-size: 16px;
-    font-weight: 700;
-    flex-shrink: 0; /* evita que se encoja si el espacio es limitado */
-    transition: background-color 0.2s; /* transicion suave al cambiar el color de fondo */
-  }
 
-  .boton-restar {
-    &:hover {
-      background-color: vars.$rojo-eliminar;
-      color: vars.$blanco;
-    }
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  .boton-sumar {
-    &:hover {
-      background-color: vars.$verde-principal;
-      color: vars.$blanco;
-    }
-  }
+    padding: 0;
 
-  .boton-eliminar {
-    background: none;
-    border: 1px solid vars.$rojo-eliminar;
-    border-radius: 6px;
-    padding: 4px 8px;
-    color: vars.$rojo-eliminar;
-    font-size: 12px;
-    flex-shrink: 0;
+    background-color: vars.$surface-lowest;
+    color: vars.$text-primary;
+
+    border: none;
+    border-radius: vars.$radius-full;
+
     transition:
       background-color 0.2s,
       color 0.2s;
 
-    &:hover {
-      background-color: vars.$rojo-eliminar;
-      color: vars.$blanco;
+    &:first-child:hover {
+      background-color: vars.$error;
+      color: vars.$white;
+    }
+
+    &:last-child:hover {
+      background-color: vars.$primary;
+      color: vars.$white;
+    }
+
+    .material-symbols-outlined {
+      font-size: 17px;
+    }
+  }
+
+  > span {
+    min-width: 18px;
+
+    text-align: center;
+
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+.panel-resumen {
+  padding: vars.$md;
+
+  background-color: vars.$surface-lowest;
+
+  border-top: 1px solid vars.$surface-variant;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: vars.$md;
+
+    > span {
+      color: vars.$text-primary;
+
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    > strong {
+      color: vars.$primary;
+
+      font-size: 26px;
+      font-weight: 700;
     }
   }
 }
 
-.panel-pie {
-  margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid vars.$gris-borde;
+.panel-ver-carrito {
+  width: 100%;
 
-  .panel-total {
-    margin-top: 16px;
-    font-size: 18px;
-    font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$xs;
+
+  padding: vars.$sm vars.$md;
+
+  background-color: vars.$primary;
+  color: vars.$white;
+
+  border-radius: vars.$radius-full;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow: 0 4px 14px rgba(0, 110, 47, 0.25);
+
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
+
+  &:hover {
+    background-color: vars.$primary-hover;
+
+    transform: translateY(-2px);
+
+    .material-symbols-outlined {
+      transform: translateX(3px);
+    }
   }
 
-  .boton-comprar {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background-color: vars.$verde-principal;
-    color: vars.$blanco;
-    text-decoration: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: 600;
-    margin-top: 12px;
-    transition: background-color 0.2s;
+  .material-symbols-outlined {
+    font-size: 19px;
 
-    &:hover {
-      background-color: vars.$verde-hover;
-    }
+    transition: transform 0.2s;
+  }
+}
+
+.panel-vacio {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$sm;
+
+  padding: vars.$lg;
+
+  text-align: center;
+
+  > .material-symbols-outlined {
+    margin-bottom: vars.$sm;
+
+    color: vars.$primary;
+
+    font-size: 56px;
+  }
+
+  strong {
+    color: vars.$text-primary;
+
+    font-size: 18px;
+  }
+
+  p {
+    max-width: 260px;
+
+    color: vars.$text-secondary;
+
+    font-size: 14px;
+    line-height: 20px;
   }
 }

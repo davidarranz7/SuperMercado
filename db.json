@@ -5,7 +5,8 @@
       "nombre": "Manzana",
       "categoria": "Frutas",
       "precio": 1.5,
-      "icono": "🍎"
+      "icono": "🍎",
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBKtJG9pwP18RWfwTqgKABYDwS3oBT9TIcxp1zj-PVGBvyJcZg2_0-OUB4Plnm7-8AXpzL5kR4tiHysOcV4iMEx4KzXPMCS4FGrZtWnU-b5LQ0Ftxs4Coy5Mw_CMzMklmmlL0OAmd6VDWNmb3EUjWEXlXD2OdR5X1hmKjkhz4F-NrgIDk29bD_qoXnC0he3UFlgLlgXsV__DYd2d3k8g11JRW5LvjJg6_yvcAJekJajkStbsaGT5glrbg"
     },
     {
       "id": "2",

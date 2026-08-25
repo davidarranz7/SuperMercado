@@ -1,90 +1,231 @@
 @use '../../../styles/variables' as vars;
-@use '../../../styles/mixins' as mixins;
 
-/* Diseño de la tarjeta donde va a ir el producto */
 .tarjeta {
-  background-color: vars.$blanco; /* fondo blanco */
-  border: 1px solid vars.$gris-borde; /* borde gris claro */
-  border-radius: 12px; /* esquinas redondeadas */
-  padding: 16px; /* espacio interior de la tarjeta */
-  display: flex; /* esto hace que los hijos se coloquen en fila */
-  flex-direction: column; /* los hijos se colocan en columna */
-  gap: 8px; /* espacio entre cada hijo */
-  transition: transform 0.2s; /* suaviza el cambio al pasar el raton */
-  height: 100%; /* hace que la tarjeta ocupe todo el alto disponible cogiendo refereencia del mas alto siemrpe */
+  height: 100%;
+
+  overflow: hidden;
+
+  background-color: vars.$surface-lowest;
+
+  border-radius: vars.$radius-lg;
+
+  box-shadow: vars.$shadow-card;
+
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 
   &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
+    transform: translateY(-8px);
+    box-shadow: vars.$shadow-card-hover;
 
-  button {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background-color: vars.$verde-principal;
-    color: vars.$blanco;
-    border: none;
-    font-size: 20px;
-    font-weight: 700;
-    flex-shrink: 0;
-    transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
-    align-self: flex-end;
-    justify-content: center;
-    padding: 0;
-    line-height: 1;
-
-    &:hover {
-      background-color: vars.$verde-hover; /* fondo verde oscuro */
+    .producto-imagen img,
+    .producto-icono {
+      transform: scale(1.05);
     }
   }
 }
 
-/* diseño de emoji del producto */
-.icono {
-  font-size: 48px; /* tamaño del emoji */
-  text-align: center; /* centrado horizontal */
+.producto-enlace {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
 }
 
-/* la categoria */
-.categoria {
-  font-size: 12px; /* tamaño de letra */
-  text-transform: uppercase; /* mayusculas */
-  letter-spacing: 1px; /* espacio entre letras */
-  color: vars.$verde-principal;
+.producto-imagen {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 4 / 3; // Mantiene la misma proporción visual que Stitch
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background-color: vars.$surface-container;
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover; // Recorta la imagen sin deformarla
+
+    transition: transform 0.5s;
+  }
+}
+
+.producto-icono {
+  font-size: 82px;
+
+  transition: transform 0.5s;
+}
+
+.producto-contenido {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: vars.$sm;
+}
+
+.producto-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: vars.$base;
+
+  margin-bottom: vars.$xs;
+
+  h3 {
+    color: vars.$text-primary;
+
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+  }
+}
+
+.favorito {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  background-color: transparent;
+  color: vars.$outline;
+
+  border: none;
+
+  transition: color 0.2s;
+
+  .material-symbols-outlined {
+    font-size: 22px;
+  }
+
+  &:hover {
+    color: vars.$error;
+  }
+}
+
+.producto-categoria {
+  margin-bottom: vars.$sm;
+
+  color: vars.$text-secondary;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.producto-pie {
+  margin-top: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$sm;
+}
+
+.precio {
+  color: vars.$primary;
+
+  font-size: 24px;
+  line-height: 32px;
   font-weight: 600;
 }
 
-/* el preecio */
-.precio {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0;
-}
+.boton-carrito {
+  width: 48px;
+  height: 48px;
 
-.pie-tarjeta {
-  margin-top: auto; /* empuja esta fila al fondo de la tarjeta */
   display: flex;
   align-items: center;
-  justify-content: space-between; /* precio a un extremo, boton al otro */
-  gap: 12px;
-}
+  justify-content: center;
 
-.producto-enlace {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 8px;
-  color: inherit; /* hereda el color del texto */
-  text-decoration: none; /* quita el subrayado del enlace */
-  border-radius: 8px;
+  flex-shrink: 0;
 
-  &:focus-visible {
-    outline: 2px solid vars.$verde-principal;
-    outline-offset: 3px;
+  background-color: vars.$surface-high;
+  color: vars.$primary;
+
+  border: none;
+  border-radius: vars.$radius-full;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.2s;
+
+  .material-symbols-outlined {
+    font-size: 23px;
+  }
+
+  &:hover {
+    background-color: vars.$primary;
+    color: vars.$white;
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 }
+
 .controles-cantidad {
-  @include mixins.controles-cantidad(30px, 16px);
+  display: flex;
+  align-items: center;
+  gap: vars.$base;
+
+  padding: vars.$xs;
+
+  background-color: vars.$surface-low;
+
+  border-radius: vars.$radius-full;
+
+  button {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: vars.$surface-lowest;
+    color: vars.$text-primary;
+
+    border: none;
+    border-radius: vars.$radius-full;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+
+  .boton-restar:hover {
+    background-color: vars.$error;
+    color: vars.$white;
+  }
+
+  .boton-sumar:hover {
+    background-color: vars.$primary;
+    color: vars.$white;
+  }
+
+  > span {
+    min-width: 20px;
+
+    text-align: center;
+
+    font-size: 14px;
+    font-weight: 600;
+  }
 }

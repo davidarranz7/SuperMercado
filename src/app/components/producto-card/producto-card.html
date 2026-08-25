@@ -1,27 +1,75 @@
-<div class="tarjeta">
+<article class="tarjeta">
   <a class="producto-enlace" [routerLink]="['/producto', producto().id]">
-    <span class="icono">{{ producto().icono }}</span>
+    <div class="producto-imagen">
+      @if (producto().imagen) {
+        <img [src]="producto().imagen" [alt]="producto().nombre" />
+      } @else {
+        <span class="producto-icono">
+          {{ producto().icono }}
+        </span>
+      }
+    </div>
 
-    <p class="categoria">{{ producto().categoria }}</p>
+    <div class="producto-contenido">
+      <div class="producto-cabecera">
+        <h3>{{ producto().nombre }}</h3>
 
-    <h3>{{ producto().nombre }}</h3>
-  </a>
-
-  <div class="pie-tarjeta">
-    <p class="precio">
-      {{ producto().precio | currency: 'EUR' }}
-    </p>
-
-    @if (cantidadEnCarrito() === 0) {
-      <button (click)="agregar()">+</button>
-    } @else {
-      <div class="controles-cantidad">
-        <button class="boton-restar" (click)="carritoService.quitarUnidad(producto().id)">−</button>
-
-        <span>{{ cantidadEnCarrito() }}</span>
-
-        <button class="boton-sumar" (click)="agregar()">+</button>
+        <button
+          class="favorito"
+          type="button"
+          aria-label="Añadir a favoritos"
+          (click)="$event.preventDefault(); $event.stopPropagation()"
+        >
+          <span class="material-symbols-outlined"> favorite </span>
+        </button>
       </div>
-    }
-  </div>
-</div>
+
+      <span class="producto-categoria">
+        {{ producto().categoria }}
+      </span>
+
+      <div class="producto-pie">
+        <span class="precio">
+          {{ producto().precio | currency: 'EUR' }}
+        </span>
+
+        @if (cantidadEnCarrito() === 0) {
+          <button
+            class="boton-carrito"
+            type="button"
+            aria-label="Añadir al carrito"
+            (click)="$event.preventDefault(); $event.stopPropagation(); agregar()"
+          >
+            <span class="material-symbols-outlined"> add_shopping_cart </span>
+          </button>
+        } @else {
+          <div class="controles-cantidad">
+            <button
+              class="boton-restar"
+              type="button"
+              aria-label="Quitar unidad"
+              (click)="
+                $event.preventDefault();
+                $event.stopPropagation();
+                carritoService.quitarUnidad(producto().id)
+              "
+            >
+              −
+            </button>
+
+            <span>{{ cantidadEnCarrito() }}</span>
+
+            <button
+              class="boton-sumar"
+              type="button"
+              aria-label="Añadir unidad"
+              (click)="$event.preventDefault(); $event.stopPropagation(); agregar()"
+            >
+              +
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </a>
+</article>

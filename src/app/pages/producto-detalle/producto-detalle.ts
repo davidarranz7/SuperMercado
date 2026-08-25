@@ -4,13 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 import { catchError, EMPTY, finalize } from 'rxjs';
 import { CarritoService } from '../../services/carrito';
 import { CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 import { Producto } from '../../models/producto';
 import { Productos } from '../../services/productos';
 
 @Component({
   selector: 'app-producto-detalle',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './producto-detalle.html',
   styleUrl: './producto-detalle.scss',
 })

@@ -1,50 +1,124 @@
 <div class="producto-detalle">
   @if (cargando()) {
-    <p class="estado-cargando">Cargando producto...</p>
+    <div class="estado-cargando">
+      <span class="material-symbols-outlined">progress_activity</span>
+      <p>Cargando producto...</p>
+    </div>
   } @else if (error()) {
     <div class="estado-error">
+      <span class="material-symbols-outlined">error</span>
       <p>{{ error() }}</p>
     </div>
   } @else if (producto(); as producto) {
     <div class="detalle-contenido">
-      <div class="detalle-icono">
-        <span>{{ producto.icono }}</span>
+      <div class="detalle-ruta">
+        <a routerLink="/">Inicio</a>
+
+        <span class="material-symbols-outlined"> chevron_right </span>
+
+        <span>{{ producto.categoria }}</span>
+
+        <span class="material-symbols-outlined"> chevron_right </span>
+
+        <strong>{{ producto.nombre }}</strong>
       </div>
 
-      <div class="detalle-informacion">
-        <p class="detalle-categoria">
-          {{ producto.categoria }}
-        </p>
+      <div class="detalle-grid">
+        <div class="detalle-imagen">
+          @if (producto.imagen) {
+            <img [src]="producto.imagen" [alt]="producto.nombre" />
+          } @else {
+            <span class="detalle-icono">
+              {{ producto.icono }}
+            </span>
+          }
+        </div>
 
-        <h1>
-          {{ producto.nombre }}
-        </h1>
+        <div class="detalle-informacion">
+          <span class="detalle-categoria">
+            {{ producto.categoria }}
+          </span>
 
-        <p class="detalle-precio">
-          {{ producto.precio | currency: 'EUR' }}
-        </p>
+          <h1>{{ producto.nombre }}</h1>
 
-        @if (cantidadEnCarrito() === 0) {
-          <button class="boton-anadir" (click)="carritoService.agregarAlCarrito(producto)">
-            Añadir al carrito
-          </button>
-        } @else {
-          <div class="cantidad-carrito">
-            <p>Cantidad en el carrito</p>
+          <div class="detalle-valoracion">
+            <div class="estrellas">
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+            </div>
 
-            <div class="controles-cantidad">
-              <button class="boton-restar" (click)="carritoService.quitarUnidad(producto.id)">
-                −
+            <span>Producto seleccionado</span>
+          </div>
+
+          <p class="detalle-precio">
+            {{ producto.precio | currency: 'EUR' }}
+          </p>
+
+          <p class="detalle-descripcion">
+            Producto fresco seleccionado cuidadosamente para ofrecer la mejor calidad en tu compra.
+          </p>
+
+          <div class="detalle-compra">
+            @if (cantidadEnCarrito() === 0) {
+              <button
+                class="boton-anadir"
+                type="button"
+                (click)="carritoService.agregarAlCarrito(producto)"
+              >
+                <span class="material-symbols-outlined"> shopping_cart </span>
+
+                Añadir al carrito
               </button>
+            } @else {
+              <div class="cantidad-bloque">
+                <span class="cantidad-titulo"> Cantidad </span>
 
-              <span>{{ cantidadEnCarrito() }}</span>
+                <div class="controles-cantidad">
+                  <button
+                    class="boton-restar"
+                    type="button"
+                    (click)="carritoService.quitarUnidad(producto.id)"
+                  >
+                    −
+                  </button>
 
-              <button class="boton-sumar" (click)="carritoService.agregarAlCarrito(producto)">
-                +
-              </button>
+                  <span>{{ cantidadEnCarrito() }}</span>
+
+                  <button
+                    class="boton-sumar"
+                    type="button"
+                    (click)="carritoService.agregarAlCarrito(producto)"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="detalle-ventajas">
+            <div>
+              <span class="material-symbols-outlined"> local_shipping </span>
+
+              <div>
+                <strong>Entrega rápida</strong>
+                <span>Recibe tu compra cómodamente</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="material-symbols-outlined"> verified </span>
+
+              <div>
+                <strong>Calidad garantizada</strong>
+                <span>Productos cuidadosamente seleccionados</span>
+              </div>
             </div>
           </div>
-        }
+        </div>
       </div>
     </div>
   }
