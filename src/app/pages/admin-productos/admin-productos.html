@@ -1,26 +1,259 @@
-<form [formGroup]="formularioProducto">
-  <div>
-    <label for="nombre">Nombre</label>
+<div class="inventario">
+  <div class="inventario-cabecera">
+    <div>
+      <h1>
+        Inventario
+        <span class="titulo-linea"></span>
+      </h1>
 
-    <input id="nombre" type="text" formControlName="nombre" />
+      <p>Gestión de productos y control de existencias.</p>
+    </div>
 
-    @if (formularioProducto.controls.nombre.invalid && formularioProducto.controls.nombre.touched) {
-      <p class="error-campo">El nombre es obligatorio.</p>
-    }
+    <button class="boton-anadir" type="button">
+      <span class="material-symbols-outlined">add</span>
+      Añadir Producto
+    </button>
   </div>
 
-  <div>
-    <label for="categoria">Categoría</label>
-    <input id="categoria" type="text" formControlName="categoria" />
-  </div>
+  <div class="inventario-contenido">
+    <aside class="inventario-lateral">
+      <section class="filtros">
+        <h2>
+          <span class="material-symbols-outlined">filter_alt</span>
+          Filtros
+        </h2>
 
-  <div>
-    <label for="precio">Precio</label>
-    <input id="precio" type="number" step="0.01" formControlName="precio" />
-  </div>
+        <div class="filtro-bloque">
+          <label for="busqueda-admin"> Búsqueda Rápida </label>
 
-  <div>
-    <label for="icono">Icono</label>
-    <input id="icono" type="text" formControlName="icono" />
+          <div class="busqueda-rapida">
+            <span class="material-symbols-outlined">search</span>
+
+            <input id="busqueda-admin" type="text" placeholder="Nombre, código..." />
+          </div>
+        </div>
+
+        <div class="filtro-bloque">
+          <span class="filtro-titulo">Categoría</span>
+
+          <div class="filtro-categorias">
+            @for (categoria of productoService.categorias(); track categoria) {
+              <button type="button" [class.activa]="categoria === 'Todos'">
+                {{ categoria }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="filtro-bloque">
+          <span class="filtro-titulo"> Estado Stock </span>
+
+          <div class="filtro-stock">
+            <div class="filtro-stock-opcion">
+              <span class="checkbox-personalizado activo">
+                <span class="material-symbols-outlined"> check </span>
+              </span>
+
+              <span>En stock</span>
+            </div>
+
+            <div class="filtro-stock-opcion">
+              <span class="checkbox-personalizado"></span>
+
+              <span> Stock bajo (&lt; 20) </span>
+            </div>
+
+            <div class="filtro-stock-opcion">
+              <span class="checkbox-personalizado"></span>
+
+              <span>Agotado</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="resumen-rapido">
+        <div class="resumen-decoracion"></div>
+
+        <h3>Resumen Rápido</h3>
+
+        <div class="resumen-cantidad">
+          <strong>
+            {{ totalProductos() }}
+          </strong>
+
+          <span>Items Totales</span>
+        </div>
+
+        <div class="resumen-barra">
+          <div></div>
+        </div>
+
+        <div class="resumen-pie">
+          <span>Activos</span>
+          <span>85%</span>
+        </div>
+      </section>
+    </aside>
+
+    <section class="tabla-inventario">
+      @if (productoService.cargando()) {
+        <div class="estado-tabla">
+          <span class="material-symbols-outlined"> progress_activity </span>
+
+          <p>Cargando productos...</p>
+        </div>
+      } @else if (productoService.error()) {
+        <div class="estado-tabla error">
+          <span class="material-symbols-outlined"> error </span>
+
+          <p>
+            {{ productoService.error() }}
+          </p>
+
+          <button type="button" (click)="productoService.cargarProductos()">Reintentar</button>
+        </div>
+      } @else {
+        <div class="tabla-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th class="columna-imagen">Img</th>
+
+                <th class="columna-producto">Producto</th>
+
+                <th>Categoría</th>
+
+                <th class="alinear-derecha">Precio</th>
+
+                <th class="alinear-centro">Stock</th>
+
+                <th class="alinear-centro">Estado</th>
+
+                <th class="alinear-derecha columna-acciones">Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (producto of productoService.productos(); track producto.id) {
+                <tr [class.fila-agotada]="(producto.stock ?? 0) === 0">
+                  <td>
+                    <div
+                      class="producto-imagen"
+                      [class.imagen-agotada]="(producto.stock ?? 0) === 0"
+                    >
+                      @if (producto.imagen) {
+                        <img [src]="producto.imagen" [alt]="producto.nombre" />
+                      } @else {
+                        <span class="producto-icono">
+                          {{ producto.icono }}
+                        </span>
+                      }
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="producto-informacion">
+                      <strong [class.producto-tachado]="(producto.stock ?? 0) === 0">
+                        {{ producto.nombre }}
+                      </strong>
+
+                      <span>
+                        {{ producto.sku ?? 'SKU-' + producto.id }}
+                      </span>
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="categoria-etiqueta">
+                      {{ producto.categoria }}
+                    </span>
+                  </td>
+
+                  <td class="precio">
+                    {{ producto.precio | currency: 'EUR' }}
+
+                    <span>/ud</span>
+                  </td>
+
+                  <td class="alinear-centro">
+                    <span
+                      class="stock"
+                      [class.stock-bajo]="(producto.stock ?? 0) > 0 && (producto.stock ?? 0) <= 20"
+                      [class.stock-agotado]="(producto.stock ?? 0) === 0"
+                    >
+                      {{ producto.stock ?? 0 }}
+                    </span>
+                  </td>
+
+                  <td class="alinear-centro">
+                    @if ((producto.stock ?? 0) === 0) {
+                      <div class="estado agotado">
+                        <span class="estado-punto"></span>
+                        Agotado
+                      </div>
+                    } @else if ((producto.stock ?? 0) <= 20) {
+                      <div class="estado bajo">
+                        <span class="estado-punto"></span>
+                        Stock Bajo
+                      </div>
+                    } @else {
+                      <div class="estado activo">
+                        <span class="estado-punto"></span>
+                        Activo
+                      </div>
+                    }
+                  </td>
+
+                  <td>
+                    <div class="acciones">
+                      <button type="button" title="Editar" aria-label="Editar producto">
+                        <span class="material-symbols-outlined"> edit </span>
+                      </button>
+
+                      <button
+                        class="eliminar"
+                        type="button"
+                        title="Eliminar"
+                        aria-label="Eliminar producto"
+                      >
+                        <span class="material-symbols-outlined"> delete </span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tabla-paginacion">
+          <span>
+            Mostrando
+            {{ productoService.productos().length }}
+            de
+            {{ productoService.productos().length }}
+          </span>
+
+          <div class="paginas">
+            <button type="button" disabled>
+              <span class="material-symbols-outlined"> chevron_left </span>
+            </button>
+
+            <button class="pagina-activa" type="button">1</button>
+
+            <button type="button">2</button>
+
+            <button type="button">3</button>
+
+            <span>...</span>
+
+            <button type="button">
+              <span class="material-symbols-outlined"> chevron_right </span>
+            </button>
+          </div>
+        </div>
+      }
+    </section>
   </div>
-</form>
+</div>

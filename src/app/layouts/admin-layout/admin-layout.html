@@ -1,0 +1,88 @@
+<p>admin-layout works!</p>
+<div class="admin">
+  <aside class="admin-sidebar">
+    <div class="admin-logo">
+      <div class="admin-logo-icono">S</div>
+
+      <span>SuperMercado</span>
+    </div>
+
+    <nav class="admin-navegacion">
+      <a routerLink="/admin/dashboard" routerLinkActive="activo">
+        <span class="material-symbols-outlined"> dashboard </span>
+
+        <span>Dashboard</span>
+      </a>
+
+      <a routerLink="/admin/productos" routerLinkActive="activo">
+        <span class="material-symbols-outlined"> inventory_2 </span>
+
+        <span>Productos</span>
+      </a>
+
+      <a routerLink="/admin/pedidos" routerLinkActive="activo">
+        <span class="material-symbols-outlined"> shopping_cart </span>
+
+        <span>Pedidos</span>
+      </a>
+
+      <a routerLink="/admin/clientes" routerLinkActive="activo">
+        <span class="material-symbols-outlined"> group </span>
+
+        <span>Clientes</span>
+      </a>
+
+      <a routerLink="/admin/configuracion" routerLinkActive="activo">
+        <span class="material-symbols-outlined"> settings </span>
+
+        <span>Configuración</span>
+      </a>
+    </nav>
+
+    <div class="admin-usuario">
+      <div class="admin-usuario-contenido">
+        <div class="admin-avatar">
+          <span class="material-symbols-outlined"> person </span>
+        </div>
+
+        <div class="admin-usuario-info">
+          <strong>Admin Principal</strong>
+
+          <span>admin@supermercado.com</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="admin-principal">
+    <header class="admin-header">
+      <div class="admin-buscador">
+        <span class="material-symbols-outlined"> search </span>
+
+        <input type="text" placeholder="Buscar en el panel..." />
+      </div>
+
+      <div class="admin-header-acciones">
+        <button class="admin-notificaciones" type="button" aria-label="Notificaciones">
+          <span class="material-symbols-outlined"> notifications </span>
+
+          <span class="notificacion-punto"></span>
+        </button>
+
+        <div class="admin-separador"></div>
+
+        <button class="admin-perfil" type="button">
+          <span class="admin-avatar">
+            <span class="material-symbols-outlined"> person </span>
+          </span>
+
+          <span>Perfil</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="admin-contenido">
+      <router-outlet />
+    </main>
+  </div>
+</div>

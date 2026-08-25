@@ -17,7 +17,7 @@ export class App {
   protected carritoService = inject(CarritoService);
   protected productoService = inject(Productos);
 
-  private router = inject(Router);
+  protected router = inject(Router);
 
   protected panelAbierto = signal(false);
 
