@@ -26,6 +26,7 @@
       "categoria": "Verduras",
       "precio": 1,
       "icono": "🥬",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTwz8I9DkEdNJ_zh7EA24ZBTaFiUAvMyvmRFBlsUUvog&s=10",
       "sku": "SKU-0003",
       "stock": 12
     },
@@ -35,6 +36,7 @@
       "categoria": "Verduras",
       "precio": 0.8,
       "icono": "🥕",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQByoK3l6FBf5Kv9oHPzOv7W_T_kvhFRPIw_3cYKYAztA&s=10",
       "sku": "SKU-0004",
       "stock": 27
     },
@@ -44,6 +46,7 @@
       "categoria": "Carnes",
       "precio": 5,
       "icono": "🍗",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVAhydn6a-DeKOKEvS4XhUahtWzlcWsnvsORXC04FxA&s=10",
       "sku": "SKU-0005",
       "stock": 8
     },
@@ -53,6 +56,7 @@
       "categoria": "Panadería",
       "precio": 2,
       "icono": "🍞",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiceOLSaXbzLHmfA_Ps1dfO6ZrfNZkHSEddxfda9z7XQ&s=10",
       "sku": "SKU-0006",
       "stock": 42
     },
@@ -62,6 +66,7 @@
       "categoria": "Frutas",
       "precio": 1.4,
       "icono": "🍐",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTErUn1e_bgxqevvQUB5ih0N0OTM1gr67fu1qSkJrThmw&s=10",
       "sku": "SKU-0007",
       "stock": 19
     },
@@ -71,6 +76,7 @@
       "categoria": "Frutas",
       "precio": 1.2,
       "icono": "🍊",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmoxDerXw_wzT66oVxLD76IFBvsAZZSiAfN2NIz-QZ2g&s=10",
       "sku": "SKU-0008",
       "stock": 31
     },
@@ -80,6 +86,7 @@
       "categoria": "Frutas",
       "precio": 0.7,
       "icono": "🍋",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpggXB7F6i1AoRyDI_-Vufm4pQvRvJJZJhbeS3zRTZ8A&s=10",
       "sku": "SKU-0009",
       "stock": 0
     },
@@ -89,6 +96,7 @@
       "categoria": "Frutas",
       "precio": 3.5,
       "icono": "🍉",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXYoAZZMQmP1JPUk8s5FMOUMCF55YuDZs-RZ60NV9B2A&s=10",
       "sku": "SKU-0010",
       "stock": 6
     },
@@ -98,6 +106,7 @@
       "categoria": "Frutas",
       "precio": 2.8,
       "icono": "🍇",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIj_9coqlGi5BugXpcyCR8M0oMYZFsEqYDjmXHmaFzqA&s=10",
       "sku": "SKU-0011",
       "stock": 24
     },
@@ -107,6 +116,7 @@
       "categoria": "Frutas",
       "precio": 3.2,
       "icono": "🍓",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA7hp1l1hMAziI-tNB5xlAaJrrrqdzGy4a1vmGZ2vBlA&s=10",
       "sku": "SKU-0012",
       "stock": 15
     },
@@ -116,6 +126,7 @@
       "categoria": "Verduras",
       "precio": 1.6,
       "icono": "🍅",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjtEx27WzLx-tRrGMEfEjzgrdJmNg_1Qfcg1ff6UGdXg&s=10",
       "sku": "SKU-0013",
       "stock": 39
     },
@@ -125,6 +136,7 @@
       "categoria": "Verduras",
       "precio": 1.1,
       "icono": "🥒",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8uOrPOm5EV4yvZPOnxXHMlxNsVIkkebGiS7IVAu_42A&s=10",
       "sku": "SKU-0014",
       "stock": 18
     },
@@ -134,6 +146,7 @@
       "categoria": "Verduras",
       "precio": 1.9,
       "icono": "🥦",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqHG1gwiohodfCttPn7y3mjf-bTpZ3JOtH_AXQxf8ZPw&s=10",
       "sku": "SKU-0015",
       "stock": 29
     },
@@ -143,6 +156,7 @@
       "categoria": "Verduras",
       "precio": 1.7,
       "icono": "🫑",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh-h2WpRnXO0JwYrFjA_dJZxz5UdTYBTrzg3-gv1QR0w&s=10",
       "sku": "SKU-0016",
       "stock": 0
     },
@@ -152,6 +166,7 @@
       "categoria": "Verduras",
       "precio": 1.3,
       "icono": "🥔",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7gcHWa0Vs5oeM6lI11zuTkPj-k4-5nm_Th2IwC-esNA&s=10",
       "sku": "SKU-0017",
       "stock": 54
     },
@@ -161,6 +176,7 @@
       "categoria": "Verduras",
       "precio": 1,
       "icono": "🧅",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFLtNRXIoUGtgHgjwWT8AXQkkj8DCCswcFDUyNYtbnIg&s=10",
       "sku": "SKU-0018",
       "stock": 11
     },
@@ -170,6 +186,7 @@
       "categoria": "Carnes",
       "precio": 6.5,
       "icono": "🥩",
+      "imagen": "https://www.dia.es/product_images/261238/261238_ISO_0_ES.jpg",
       "sku": "SKU-0019",
       "stock": 23
     },
@@ -179,6 +196,7 @@
       "categoria": "Carnes",
       "precio": 9.5,
       "icono": "🥩",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmYnjiQkqmif4dT2IniabjCgFTS9SmSQlH_u3izhrqyw&s=10",
       "sku": "SKU-0020",
       "stock": 7
     },
@@ -188,6 +206,7 @@
       "categoria": "Carnes",
       "precio": 7.2,
       "icono": "🥩",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_5J_hnIiHwmjpSDXbowu_8QP7EFGEp_t6eN1sXzqHjg&s=10",
       "sku": "SKU-0021",
       "stock": 26
     },
@@ -197,6 +216,7 @@
       "categoria": "Carnes",
       "precio": 4.8,
       "icono": "🍗",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScdWv_pL05Vf2MQEiSHPYHgrudjMlFt6f72Q1EeoP90Q&s=10",
       "sku": "SKU-0022",
       "stock": 16
     },
@@ -206,6 +226,7 @@
       "categoria": "Carnes",
       "precio": 4.5,
       "icono": "🍔",
+      "imagen": "https://hamburdehesa.com/wp-content/uploads/2024/02/hamburdehesa-vacuno-2024-perspectiva.jpg",
       "sku": "SKU-0023",
       "stock": 0
     },
@@ -215,6 +236,7 @@
       "categoria": "Panadería",
       "precio": 1.3,
       "icono": "🥖",
+      "imagen": "https://mae-innovation.com/wp-content/uploads/2025/07/poids_baguette_.jpg",
       "sku": "SKU-0024",
       "stock": 37
     },
@@ -224,6 +246,7 @@
       "categoria": "Panadería",
       "precio": 1.2,
       "icono": "🥐",
+      "imagen": "https://cdn.shopify.com/s/files/1/0191/9978/files/croissanes-de-brioche-paso-a-paso.jpg?v=1677507934",
       "sku": "SKU-0025",
       "stock": 14
     },
@@ -233,6 +256,7 @@
       "categoria": "Panadería",
       "precio": 2.3,
       "icono": "🍞",
+      "imagen": "https://www.bimbo.es/uploads/bimbocorp/big/Bimbo_NATURAL.png?7",
       "sku": "SKU-0026",
       "stock": 33
     },
@@ -242,6 +266,7 @@
       "categoria": "Panadería",
       "precio": 1.5,
       "icono": "🍩",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgVed_eXN5_i3ldDv1qNMGSvriRp6yuFjVvcXrwQpanw&s=10",
       "sku": "SKU-0027",
       "stock": 5
     },
@@ -251,8 +276,19 @@
       "categoria": "Panadería",
       "precio": 2.6,
       "icono": "🧁",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrkn6Yn3pgeFIpM0Iwwgg202JdiAab81hu2aFVJSFG8g&s=10",
       "sku": "SKU-0028",
       "stock": 28
+    },
+    {
+      "nombre": "kiwi",
+      "categoria": "Frutas",
+      "precio": 1.2,
+      "stock": 47,
+      "sku": "SKU-0028",
+      "icono": "🥝",
+      "imagen": "https://www.frutas-hortalizas.com/img/fruites_verdures/presentacio/14.jpg",
+      "id": "AJgJW2vlf5I"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

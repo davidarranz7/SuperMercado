@@ -842,6 +842,14 @@ Entonces en el detalle hago lo siguiente:
 
 luego como cantidad tenial el mismo patron he añadido una variable y la implementamos por que segurmante lo añadamos en varios lugares mnas
 
+## paso 48
+
+Depues de refactorizar la interfaz y darle un cambio radical lo que estamos haciendo ahora mismo es el poder crear el apnel de administracion asi que lo que hicmos es crear una pagina idependiente pero conectada a las demas apra poder crear una interfaz nueva para adminstrador
+
+## paso 49
+
+lo que haremos ahora sera cambiar todo pero abolutamente todo de icono por que no tendria sentido que siga utilizando un icono pero antes de eliminar la linea de db.json tendremos que cambiar todo y añadir una imagen a cada producto ya que depende el codigo de una imgen o de un icono
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash

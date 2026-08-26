@@ -4,10 +4,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import { Producto } from '../../models/producto';
 import { Productos } from '../../services/productos';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-productos',
-  imports: [ReactiveFormsModule, CurrencyPipe],
+  imports: [ReactiveFormsModule, CurrencyPipe, RouterLink],
   templateUrl: './admin-productos.html',
   styleUrl: './admin-productos.scss',
 })

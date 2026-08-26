@@ -7,6 +7,7 @@ import { Carrito } from './pages/carrito/carrito';
 import { Catalogo } from './pages/catalogo/catalogo';
 import { Home } from './pages/home/home';
 import { ProductoDetalle } from './pages/producto-detalle/producto-detalle';
+import { AdminProductoNuevo } from './pages/admin-producto-nuevo/admin-producto-nuevo';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,10 @@ export const routes: Routes = [
       {
         path: 'productos',
         component: AdminProductos,
+      },
+      {
+        path: 'productos/nuevo',
+        component: AdminProductoNuevo,
       },
     ],
   },

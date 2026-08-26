@@ -1,0 +1,262 @@
+<div class="nuevo-producto">
+  <div class="nuevo-producto-cabecera">
+    <div>
+      <h1>Nuevo Producto</h1>
+
+      <p>
+        Añade un nuevo producto al catálogo. Asegúrate de proporcionar información precisa para
+        mantener correctamente el inventario.
+      </p>
+    </div>
+
+    <div class="cabecera-acciones">
+      <button class="boton-cancelar" type="button" (click)="cancelar()">Cancelar</button>
+
+      <button class="boton-guardar" type="submit" form="formulario-producto">
+        Guardar Producto
+      </button>
+    </div>
+  </div>
+
+  <form
+    id="formulario-producto"
+    class="formulario-producto"
+    [formGroup]="formularioProducto"
+    (ngSubmit)="guardarProducto()"
+  >
+    <div class="formulario-principal">
+      <section class="tarjeta formulario-general">
+        <span class="tarjeta-linea"></span>
+
+        <h2>Información General</h2>
+
+        <div class="campo">
+          <label for="nombre">Nombre del Producto</label>
+
+          <input
+            id="nombre"
+            type="text"
+            formControlName="nombre"
+            placeholder="Ej. Manzanas Fuji Orgánicas"
+          />
+
+          @if (
+            formularioProducto.controls.nombre.invalid && formularioProducto.controls.nombre.touched
+          ) {
+            <span class="campo-error"> El nombre del producto es obligatorio. </span>
+          }
+        </div>
+
+        <div class="campo">
+          <label for="descripcion"> Descripción Larga </label>
+
+          <div class="descripcion-contenedor">
+            <textarea
+              id="descripcion"
+              rows="5"
+              placeholder="Describe el producto, sus beneficios, origen..."
+            ></textarea>
+
+            <div class="descripcion-herramientas">
+              <button type="button" aria-label="Negrita">
+                <span class="material-symbols-outlined"> format_bold </span>
+              </button>
+
+              <button type="button" aria-label="Cursiva">
+                <span class="material-symbols-outlined"> format_italic </span>
+              </button>
+
+              <button type="button" aria-label="Lista">
+                <span class="material-symbols-outlined"> format_list_bulleted </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Precios e Inventario</h2>
+
+        <div class="rejilla-inventario">
+          <div class="campo">
+            <label for="precio"> Precio de Venta </label>
+
+            <div class="campo-prefijo">
+              <span>€</span>
+
+              <input
+                id="precio"
+                type="number"
+                step="0.01"
+                formControlName="precio"
+                placeholder="0.00"
+              />
+            </div>
+
+            @if (
+              formularioProducto.controls.precio.invalid &&
+              formularioProducto.controls.precio.touched
+            ) {
+              <span class="campo-error"> El precio debe ser mayor que 0. </span>
+            }
+          </div>
+
+          <div class="campo">
+            <label for="coste"> Coste (Opcional) </label>
+
+            <div class="campo-prefijo">
+              <span>€</span>
+
+              <input id="coste" type="number" step="0.01" placeholder="0.00" />
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="sku"> SKU (Stock Keeping Unit) </label>
+
+            <input
+              id="sku"
+              class="campo-sku"
+              type="text"
+              formControlName="sku"
+              placeholder="Ej. FRUT-MANZ-001"
+            />
+
+            @if (
+              formularioProducto.controls.sku.invalid && formularioProducto.controls.sku.touched
+            ) {
+              <span class="campo-error"> El SKU es obligatorio. </span>
+            }
+          </div>
+
+          <div class="campo">
+            <label for="stock"> Cantidad en Stock </label>
+
+            <input id="stock" type="number" formControlName="stock" placeholder="0" />
+
+            @if (
+              formularioProducto.controls.stock.invalid && formularioProducto.controls.stock.touched
+            ) {
+              <span class="campo-error"> El stock no puede ser negativo. </span>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Representación</h2>
+
+        <div class="campo">
+          <label for="icono"> Icono </label>
+
+          <input id="icono" type="text" formControlName="icono" placeholder="Ej. 🍎" />
+
+          @if (
+            formularioProducto.controls.icono.invalid && formularioProducto.controls.icono.touched
+          ) {
+            <span class="campo-error"> El icono es obligatorio. </span>
+          }
+        </div>
+      </section>
+    </div>
+
+    <div class="formulario-lateral">
+      <section class="tarjeta">
+        <div class="tarjeta-titulo-icono">
+          <h2>Imagen Principal</h2>
+
+          <span class="material-symbols-outlined"> image </span>
+        </div>
+
+        <div class="imagen-subida">
+          <div class="imagen-subida-icono">
+            <span class="material-symbols-outlined"> cloud_upload </span>
+          </div>
+
+          <strong> URL de la imagen </strong>
+
+          <span> PNG, JPG o WEBP </span>
+        </div>
+
+        <div class="campo campo-imagen">
+          <label for="imagen"> Enlace de imagen </label>
+
+          <input id="imagen" type="url" formControlName="imagen" placeholder="https://..." />
+        </div>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Clasificación</h2>
+
+        <div class="campo">
+          <label for="categoria"> Categoría </label>
+
+          <div class="select-contenedor">
+            <select id="categoria" formControlName="categoria">
+              <option value="">Selecciona una categoría</option>
+
+              @for (categoria of productoService.categorias(); track categoria) {
+                @if (categoria !== 'Todos') {
+                  <option [value]="categoria">
+                    {{ categoria }}
+                  </option>
+                }
+              }
+            </select>
+
+            <span class="material-symbols-outlined"> expand_more </span>
+          </div>
+
+          @if (
+            formularioProducto.controls.categoria.invalid &&
+            formularioProducto.controls.categoria.touched
+          ) {
+            <span class="campo-error"> Selecciona una categoría. </span>
+          }
+        </div>
+
+        <div class="campo">
+          <span class="campo-etiqueta"> Etiquetas </span>
+
+          <div class="etiquetas">
+            <div class="etiqueta">
+              <span>Orgánico</span>
+
+              <button type="button" aria-label="Eliminar etiqueta Orgánico">
+                <span class="material-symbols-outlined"> close </span>
+              </button>
+            </div>
+
+            <div class="etiqueta">
+              <span>Fresco</span>
+
+              <button type="button" aria-label="Eliminar etiqueta Fresco">
+                <span class="material-symbols-outlined"> close </span>
+              </button>
+            </div>
+
+            <input type="text" aria-label="Añadir etiqueta" placeholder="Añadir etiqueta..." />
+          </div>
+
+          <small> Presiona 'Enter' para añadir. </small>
+        </div>
+
+        <div class="publicacion">
+          <div>
+            <strong> Estado de Publicación </strong>
+
+            <span> Visible en la tienda </span>
+          </div>
+
+          <button
+            class="interruptor activo"
+            type="button"
+            aria-label="Cambiar visibilidad del producto"
+          >
+            <span></span>
+          </button>
+        </div>
+      </section>
+    </div>
+  </form>
+</div>

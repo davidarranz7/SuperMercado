@@ -39,6 +39,10 @@ export class Productos {
     return this.http.get<Producto>(`${this.apiUrl}/${id}`);
   }
 
+  crearProducto(producto: Omit<Producto, 'id'>) {
+    return this.http.post<Producto>(this.apiUrl, producto);
+  }
+
   cargarProductos() {
     this.cargando.set(true);
     this.error.set(null);
