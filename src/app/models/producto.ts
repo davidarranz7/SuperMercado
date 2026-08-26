@@ -3,8 +3,13 @@ export interface Producto {
   nombre: string;
   categoria: string;
   precio: number;
-  icono: string;
-  imagen?: string;
+  imagen: string;
+
   sku?: string;
   stock?: number;
+
+  descripcion?: string;
+  coste?: number;
+  etiquetas?: string[];
+  publicado?: boolean;
 }

@@ -1,13 +1,7 @@
 <article class="tarjeta">
   <a class="producto-enlace" [routerLink]="['/producto', producto().id]">
     <div class="producto-imagen">
-      @if (producto().imagen) {
-        <img [src]="producto().imagen" [alt]="producto().nombre" />
-      } @else {
-        <span class="producto-icono">
-          {{ producto().icono }}
-        </span>
-      }
+      <img [src]="producto().imagen" [alt]="producto().nombre" />
     </div>
 
     <div class="producto-contenido">
@@ -57,7 +51,9 @@
               −
             </button>
 
-            <span>{{ cantidadEnCarrito() }}</span>
+            <span>
+              {{ cantidadEnCarrito() }}
+            </span>
 
             <button
               class="boton-sumar"

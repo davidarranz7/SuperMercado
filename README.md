@@ -850,6 +850,49 @@ Depues de refactorizar la interfaz y darle un cambio radical lo que estamos haci
 
 lo que haremos ahora sera cambiar todo pero abolutamente todo de icono por que no tendria sentido que siga utilizando un icono pero antes de eliminar la linea de db.json tendremos que cambiar todo y añadir una imagen a cada producto ya que depende el codigo de una imgen o de un icono
 
+## paso 50
+
+ahora el problema tenia era que ya habiamos eliminado icono de la interfaz de producto
+
+- producto.icono
+- item.producto.icono
+
+por eso cuando lanzabamos el ng s -o nos saltaba un error ya que no encontraba la propiedad icono
+tuvimos que quitar de los archivos que teniamos icono
+
+@if (producto.imagen) {
+mostrar imagen
+} @else {
+mostrar icono
+}
+ya que siempre va a tener iamgen y no un simple icono
+
+- <img [src]="producto.imagen" [alt]="producto.nombre" />
+
+luego del formulario quitamos icono y dejamos imagen como objeto obligatorio, una vez terminado esto empezamos a mejorar la parte de imagen principal del formualruio de Nuevo producto
+queremos permitir dos formas diferentes de añadir imagen
+
+- seleccionarla desde el ordenador
+- introducir una URL de una imagen
+
+Si seleccionamos una imagen desde el ordenador utilizamos `FileReader`.
+
+- const lector = new FileReader();
+
+sto permite leer la imagen seleccionada y convertirla en un Data URL que podemos guardar dentro del campo `imagen` del formulario.
+
+para saber como quedaria la imagen mostraremos con un signal, otra cosa es poder validar que solo se puedan selecionar png jpg webp y que no supere los 5mb
+
+aparte podemos coger una url
+
+- imagenPreview = signal<string | null>(null);
+
+Por último añadimos `quitarImagenSeleccionada()`.
+
+Simplemente sirve para que si estoy creando un producto y me equivoco de imagen pueda quitarla y seleccionar otra o utilizar una url
+
+Asi terminamos eliminando completamente el antiguo sistema de iconos y ahora todos los productos trabajan solamente con imagenes.
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash

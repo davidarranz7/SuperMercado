@@ -214,6 +214,16 @@
   textarea {
     resize: none;
   }
+
+  small {
+    margin-top: 4px;
+
+    color: #3d4a3d;
+
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+  }
 }
 
 .descripcion-contenedor {
@@ -339,7 +349,9 @@
 }
 
 .campo-error {
-  margin-top: 4px;
+  display: block;
+
+  margin-top: 8px;
 
   color: #ba1a1a;
 
@@ -348,7 +360,7 @@
   font-weight: 500;
 }
 
-.tarjeta-titulo-icono {
+.tarjeta-titulo {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -364,6 +376,10 @@
   }
 }
 
+.imagen-input {
+  display: none;
+}
+
 .imagen-subida {
   width: 100%;
   aspect-ratio: 1;
@@ -374,6 +390,8 @@
   justify-content: center;
 
   padding: 24px;
+
+  overflow: hidden;
 
   background-color: #eff4ff;
 
@@ -390,7 +408,7 @@
   &:hover {
     background-color: #e5eeff;
 
-    .imagen-subida-icono {
+    .imagen-subida-simbolo {
       transform: scale(1.05);
     }
   }
@@ -411,9 +429,18 @@
     font-size: 14px;
     line-height: 20px;
   }
+
+  > small {
+    margin-top: 4px;
+
+    color: #3d4a3d;
+
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 
-.imagen-subida-icono {
+.imagen-subida-simbolo {
   width: 64px;
   height: 64px;
 
@@ -435,8 +462,132 @@
   }
 }
 
-.campo-imagen {
-  margin-top: 24px !important;
+.imagen-preview {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: inherit;
+}
+
+.imagen-acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+.boton-cambiar-imagen,
+.boton-quitar-imagen {
+  min-height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 8px 12px;
+
+  border: none;
+  border-radius: 9999px;
+
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+
+  .material-symbols-outlined {
+    font-size: 17px;
+  }
+}
+
+.boton-cambiar-imagen {
+  flex: 1;
+
+  background-color: #dce9ff;
+  color: #0b1c30;
+
+  &:hover {
+    background-color: #d3e4fe;
+    color: #006e2f;
+  }
+}
+
+.boton-quitar-imagen {
+  flex: 1;
+
+  background-color: #ffe9e7;
+  color: #ba1a1a;
+
+  &:hover {
+    background-color: #ffdad6;
+  }
+}
+
+.imagen-separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin: 24px 0;
+
+  > span {
+    height: 1px;
+
+    flex: 1;
+
+    background-color: #dce3f0;
+  }
+
+  strong {
+    color: #687568;
+
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+  }
+}
+
+.imagen-url {
+  margin-top: 0 !important;
+
+  input {
+    font-size: 14px;
+  }
+}
+
+.imagen-origen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 12px;
+  padding: 10px 12px;
+
+  background-color: rgba(0, 110, 47, 0.08);
+  color: #006e2f;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+
+  .material-symbols-outlined {
+    flex-shrink: 0;
+
+    font-size: 18px;
+  }
 }
 
 .select-contenedor {
@@ -555,18 +706,6 @@
   }
 }
 
-.campo {
-  small {
-    margin-top: 4px;
-
-    color: #3d4a3d;
-
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 500;
-  }
-}
-
 .publicacion {
   display: flex;
   align-items: center;
@@ -639,57 +778,5 @@
     > span {
       transform: translateX(20px);
     }
-  }
-}
-
-@media (max-width: 1100px) {
-  .formulario-producto {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-
-  .formulario-lateral {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .nuevo-producto {
-    padding: 32px 16px 48px;
-  }
-
-  .nuevo-producto-cabecera {
-    align-items: flex-start;
-    flex-direction: column;
-
-    margin-bottom: 48px;
-  }
-
-  .cabecera-acciones {
-    width: 100%;
-
-    .boton-cancelar,
-    .boton-guardar {
-      flex: 1;
-    }
-  }
-
-  .rejilla-inventario {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .formulario-principal,
-  .formulario-lateral {
-    gap: 24px;
-  }
-
-  .formulario-lateral {
-    display: flex;
-  }
-
-  .tarjeta {
-    padding: 24px;
   }
 }

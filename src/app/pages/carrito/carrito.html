@@ -2,7 +2,7 @@
   <div class="carrito-contenido">
     @if (carritoService.items().length === 0) {
       <div class="carrito-vacio">
-        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="material-symbols-outlined"> shopping_cart </span>
 
         <h1>Tu carrito está vacío</h1>
 
@@ -16,6 +16,7 @@
 
             <span>
               {{ carritoService.cantidadTotal() }}
+
               @if (carritoService.cantidadTotal() === 1) {
                 artículo
               } @else {
@@ -30,19 +31,15 @@
                 <div class="producto-marca"></div>
 
                 <div class="producto-imagen">
-                  @if (item.producto.imagen) {
-                    <img [src]="item.producto.imagen" [alt]="item.producto.nombre" />
-                  } @else {
-                    <span>
-                      {{ item.producto.icono }}
-                    </span>
-                  }
+                  <img [src]="item.producto.imagen" [alt]="item.producto.nombre" />
                 </div>
 
                 <div class="producto-informacion">
                   <div class="producto-superior">
                     <div>
-                      <h2>{{ item.producto.nombre }}</h2>
+                      <h2>
+                        {{ item.producto.nombre }}
+                      </h2>
 
                       <p>
                         {{ item.producto.categoria }}
@@ -102,11 +99,13 @@
               <div>
                 <span>
                   Subtotal ({{ carritoService.cantidadTotal() }}
+
                   @if (carritoService.cantidadTotal() === 1) {
                     artículo
                   } @else {
                     artículos
                   }
+
                   )
                 </span>
 
@@ -116,7 +115,7 @@
               </div>
 
               <div>
-                <span>Costo de envío</span>
+                <span> Costo de envío </span>
 
                 <strong>
                   {{ 2.5 | currency: 'EUR' }}
@@ -124,7 +123,7 @@
               </div>
 
               <div>
-                <span>Impuestos estimados</span>
+                <span> Impuestos estimados </span>
 
                 <strong>
                   {{ 0.85 | currency: 'EUR' }}
@@ -143,7 +142,7 @@
             </div>
 
             <div class="resumen-total">
-              <span>Total</span>
+              <span> Total </span>
 
               <strong>
                 {{ carritoService.total() + 2.5 + 0.85 | currency: 'EUR' }}
@@ -151,7 +150,7 @@
             </div>
 
             <button class="boton-pago" type="button">
-              <span>Proceder al Pago</span>
+              <span> Proceder al Pago </span>
 
               <span class="material-symbols-outlined"> arrow_forward </span>
             </button>

@@ -1,37 +1,39 @@
 <div class="producto-detalle">
   @if (cargando()) {
     <div class="estado-cargando">
-      <span class="material-symbols-outlined">progress_activity</span>
+      <span class="material-symbols-outlined"> progress_activity </span>
+
       <p>Cargando producto...</p>
     </div>
   } @else if (error()) {
     <div class="estado-error">
-      <span class="material-symbols-outlined">error</span>
-      <p>{{ error() }}</p>
+      <span class="material-symbols-outlined"> error </span>
+
+      <p>
+        {{ error() }}
+      </p>
     </div>
   } @else if (producto(); as producto) {
     <div class="detalle-contenido">
       <div class="detalle-ruta">
-        <a routerLink="/">Inicio</a>
+        <a routerLink="/"> Inicio </a>
 
         <span class="material-symbols-outlined"> chevron_right </span>
 
-        <span>{{ producto.categoria }}</span>
+        <span>
+          {{ producto.categoria }}
+        </span>
 
         <span class="material-symbols-outlined"> chevron_right </span>
 
-        <strong>{{ producto.nombre }}</strong>
+        <strong>
+          {{ producto.nombre }}
+        </strong>
       </div>
 
       <div class="detalle-grid">
         <div class="detalle-imagen">
-          @if (producto.imagen) {
-            <img [src]="producto.imagen" [alt]="producto.nombre" />
-          } @else {
-            <span class="detalle-icono">
-              {{ producto.icono }}
-            </span>
-          }
+          <img [src]="producto.imagen" [alt]="producto.nombre" />
         </div>
 
         <div class="detalle-informacion">
@@ -39,18 +41,24 @@
             {{ producto.categoria }}
           </span>
 
-          <h1>{{ producto.nombre }}</h1>
+          <h1>
+            {{ producto.nombre }}
+          </h1>
 
           <div class="detalle-valoracion">
             <div class="estrellas">
-              <span class="material-symbols-outlined">star</span>
-              <span class="material-symbols-outlined">star</span>
-              <span class="material-symbols-outlined">star</span>
-              <span class="material-symbols-outlined">star</span>
-              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined"> star </span>
+
+              <span class="material-symbols-outlined"> star </span>
+
+              <span class="material-symbols-outlined"> star </span>
+
+              <span class="material-symbols-outlined"> star </span>
+
+              <span class="material-symbols-outlined"> star </span>
             </div>
 
-            <span>Producto seleccionado</span>
+            <span> Producto seleccionado </span>
           </div>
 
           <p class="detalle-precio">
@@ -85,7 +93,9 @@
                     −
                   </button>
 
-                  <span>{{ cantidadEnCarrito() }}</span>
+                  <span>
+                    {{ cantidadEnCarrito() }}
+                  </span>
 
                   <button
                     class="boton-sumar"
@@ -104,8 +114,9 @@
               <span class="material-symbols-outlined"> local_shipping </span>
 
               <div>
-                <strong>Entrega rápida</strong>
-                <span>Recibe tu compra cómodamente</span>
+                <strong> Entrega rápida </strong>
+
+                <span> Recibe tu compra cómodamente </span>
               </div>
             </div>
 
@@ -113,8 +124,9 @@
               <span class="material-symbols-outlined"> verified </span>
 
               <div>
-                <strong>Calidad garantizada</strong>
-                <span>Productos cuidadosamente seleccionados</span>
+                <strong> Calidad garantizada </strong>
+
+                <span> Productos cuidadosamente seleccionados </span>
               </div>
             </div>
           </div>

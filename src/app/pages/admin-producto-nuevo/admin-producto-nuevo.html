@@ -31,7 +31,7 @@
         <h2>Información General</h2>
 
         <div class="campo">
-          <label for="nombre">Nombre del Producto</label>
+          <label for="nombre"> Nombre del Producto </label>
 
           <input
             id="nombre"
@@ -142,47 +142,105 @@
           </div>
         </div>
       </section>
-
-      <section class="tarjeta">
-        <h2>Representación</h2>
-
-        <div class="campo">
-          <label for="icono"> Icono </label>
-
-          <input id="icono" type="text" formControlName="icono" placeholder="Ej. 🍎" />
-
-          @if (
-            formularioProducto.controls.icono.invalid && formularioProducto.controls.icono.touched
-          ) {
-            <span class="campo-error"> El icono es obligatorio. </span>
-          }
-        </div>
-      </section>
     </div>
 
     <div class="formulario-lateral">
       <section class="tarjeta">
-        <div class="tarjeta-titulo-icono">
+        <div class="tarjeta-titulo">
           <h2>Imagen Principal</h2>
 
           <span class="material-symbols-outlined"> image </span>
         </div>
 
-        <div class="imagen-subida">
-          <div class="imagen-subida-icono">
-            <span class="material-symbols-outlined"> cloud_upload </span>
+        <input
+          id="archivo-imagen"
+          class="imagen-input"
+          type="file"
+          accept="image/png, image/jpeg, image/webp"
+          (change)="seleccionarImagen($event)"
+        />
+
+        <label class="imagen-subida" for="archivo-imagen">
+          @if (imagenPreview(); as imagen) {
+            <img class="imagen-preview" [src]="imagen" alt="Vista previa del producto" />
+          } @else {
+            <div class="imagen-subida-simbolo">
+              <span class="material-symbols-outlined"> cloud_upload </span>
+            </div>
+
+            <strong> Subir imagen </strong>
+
+            <span> PNG, JPG o WEBP </span>
+
+            <small> Máximo 5 MB </small>
+          }
+        </label>
+
+        @if (imagenPreview()) {
+          <div class="imagen-acciones">
+            <label class="boton-cambiar-imagen" for="archivo-imagen">
+              <span class="material-symbols-outlined"> upload </span>
+
+              Cambiar
+            </label>
+
+            <button class="boton-quitar-imagen" type="button" (click)="quitarImagenSeleccionada()">
+              <span class="material-symbols-outlined"> close </span>
+
+              Quitar selección
+            </button>
           </div>
+        }
 
-          <strong> URL de la imagen </strong>
+        <div class="imagen-separador">
+          <span></span>
 
-          <span> PNG, JPG o WEBP </span>
+          <strong>o</strong>
+
+          <span></span>
         </div>
 
-        <div class="campo campo-imagen">
-          <label for="imagen"> Enlace de imagen </label>
+        <div class="campo imagen-url">
+          <label for="imagen-url"> URL de la imagen </label>
 
-          <input id="imagen" type="url" formControlName="imagen" placeholder="https://..." />
+          <input
+            id="imagen-url"
+            type="url"
+            placeholder="https://ejemplo.com/imagen.jpg"
+            [value]="imagenUrl()"
+            (input)="actualizarImagenDesdeUrl($event)"
+          />
+
+          <small> También puedes utilizar una imagen alojada en Internet. </small>
         </div>
+
+        @if (origenImagen() === 'archivo') {
+          <div class="imagen-origen">
+            <span class="material-symbols-outlined"> computer </span>
+
+            <span> Imagen seleccionada desde tu ordenador </span>
+          </div>
+        }
+
+        @if (origenImagen() === 'url') {
+          <div class="imagen-origen">
+            <span class="material-symbols-outlined"> link </span>
+
+            <span> Imagen obtenida mediante URL </span>
+          </div>
+        }
+
+        @if (errorImagen()) {
+          <span class="campo-error">
+            {{ errorImagen() }}
+          </span>
+        }
+
+        @if (
+          formularioProducto.controls.imagen.invalid && formularioProducto.controls.imagen.touched
+        ) {
+          <span class="campo-error"> La imagen del producto es obligatoria. </span>
+        }
       </section>
 
       <section class="tarjeta">
@@ -220,7 +278,7 @@
 
           <div class="etiquetas">
             <div class="etiqueta">
-              <span>Orgánico</span>
+              <span> Orgánico </span>
 
               <button type="button" aria-label="Eliminar etiqueta Orgánico">
                 <span class="material-symbols-outlined"> close </span>
@@ -228,7 +286,7 @@
             </div>
 
             <div class="etiqueta">
-              <span>Fresco</span>
+              <span> Fresco </span>
 
               <button type="button" aria-label="Eliminar etiqueta Fresco">
                 <span class="material-symbols-outlined"> close </span>

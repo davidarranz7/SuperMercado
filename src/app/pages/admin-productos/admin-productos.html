@@ -10,7 +10,8 @@
     </div>
 
     <button class="boton-anadir" type="button" routerLink="/admin/productos/nuevo">
-      <span class="material-symbols-outlined">add</span>
+      <span class="material-symbols-outlined"> add </span>
+
       Añadir Producto
     </button>
   </div>
@@ -19,7 +20,8 @@
     <aside class="inventario-lateral">
       <section class="filtros">
         <h2>
-          <span class="material-symbols-outlined">filter_alt</span>
+          <span class="material-symbols-outlined"> filter_alt </span>
+
           Filtros
         </h2>
 
@@ -27,14 +29,14 @@
           <label for="busqueda-admin"> Búsqueda Rápida </label>
 
           <div class="busqueda-rapida">
-            <span class="material-symbols-outlined">search</span>
+            <span class="material-symbols-outlined"> search </span>
 
             <input id="busqueda-admin" type="text" placeholder="Nombre, código..." />
           </div>
         </div>
 
         <div class="filtro-bloque">
-          <span class="filtro-titulo">Categoría</span>
+          <span class="filtro-titulo"> Categoría </span>
 
           <div class="filtro-categorias">
             @for (categoria of productoService.categorias(); track categoria) {
@@ -54,7 +56,7 @@
                 <span class="material-symbols-outlined"> check </span>
               </span>
 
-              <span>En stock</span>
+              <span> En stock </span>
             </div>
 
             <div class="filtro-stock-opcion">
@@ -66,7 +68,7 @@
             <div class="filtro-stock-opcion">
               <span class="checkbox-personalizado"></span>
 
-              <span>Agotado</span>
+              <span> Agotado </span>
             </div>
           </div>
         </div>
@@ -82,7 +84,7 @@
             {{ totalProductos() }}
           </strong>
 
-          <span>Items Totales</span>
+          <span> Items Totales </span>
         </div>
 
         <div class="resumen-barra">
@@ -90,8 +92,9 @@
         </div>
 
         <div class="resumen-pie">
-          <span>Activos</span>
-          <span>85%</span>
+          <span> Activos </span>
+
+          <span> 85% </span>
         </div>
       </section>
     </aside>
@@ -142,13 +145,7 @@
                       class="producto-imagen"
                       [class.imagen-agotada]="(producto.stock ?? 0) === 0"
                     >
-                      @if (producto.imagen) {
-                        <img [src]="producto.imagen" [alt]="producto.nombre" />
-                      } @else {
-                        <span class="producto-icono">
-                          {{ producto.icono }}
-                        </span>
-                      }
+                      <img [src]="producto.imagen" [alt]="producto.nombre" />
                     </div>
                   </td>
 
@@ -173,7 +170,7 @@
                   <td class="precio">
                     {{ producto.precio | currency: 'EUR' }}
 
-                    <span>/ud</span>
+                    <span> /ud </span>
                   </td>
 
                   <td class="alinear-centro">
@@ -190,16 +187,19 @@
                     @if ((producto.stock ?? 0) === 0) {
                       <div class="estado agotado">
                         <span class="estado-punto"></span>
+
                         Agotado
                       </div>
                     } @else if ((producto.stock ?? 0) <= 20) {
                       <div class="estado bajo">
                         <span class="estado-punto"></span>
+
                         Stock Bajo
                       </div>
                     } @else {
                       <div class="estado activo">
                         <span class="estado-punto"></span>
+
                         Activo
                       </div>
                     }
@@ -246,7 +246,7 @@
 
             <button type="button">3</button>
 
-            <span>...</span>
+            <span> ... </span>
 
             <button type="button">
               <span class="material-symbols-outlined"> chevron_right </span>

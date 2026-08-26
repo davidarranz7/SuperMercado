@@ -113,13 +113,7 @@
           @for (item of carritoService.items(); track item.producto.id) {
             <article class="panel-producto">
               <div class="panel-producto-imagen">
-                @if (item.producto.imagen) {
-                  <img [src]="item.producto.imagen" [alt]="item.producto.nombre" />
-                } @else {
-                  <span>
-                    {{ item.producto.icono }}
-                  </span>
-                }
+                <img [src]="item.producto.imagen" [alt]="item.producto.nombre" />
               </div>
 
               <div class="panel-producto-info">
@@ -140,7 +134,7 @@
                     aria-label="Eliminar producto"
                     (click)="carritoService.eliminarProducto(item.producto.id)"
                   >
-                    <span class="material-symbols-outlined"> delete </span>
+                    <span class="material-symbols-outlined">delete</span>
                   </button>
                 </div>
 
@@ -151,7 +145,7 @@
                       aria-label="Quitar unidad"
                       (click)="carritoService.quitarUnidad(item.producto.id)"
                     >
-                      <span class="material-symbols-outlined"> remove </span>
+                      <span class="material-symbols-outlined">remove</span>
                     </button>
 
                     <span>
@@ -163,7 +157,7 @@
                       aria-label="Añadir unidad"
                       (click)="carritoService.agregarAlCarrito(item.producto)"
                     >
-                      <span class="material-symbols-outlined"> add </span>
+                      <span class="material-symbols-outlined">add</span>
                     </button>
                   </div>
 
@@ -188,7 +182,7 @@
           <a class="panel-ver-carrito" routerLink="/carrito" (click)="alternarPanel()">
             Ver carrito
 
-            <span class="material-symbols-outlined"> arrow_forward </span>
+            <span class="material-symbols-outlined">arrow_forward</span>
           </a>
         </div>
       }
