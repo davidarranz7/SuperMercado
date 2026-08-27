@@ -46,7 +46,11 @@
 
           <div class="filtro-categorias">
             @for (categoria of productoService.categorias(); track categoria) {
-              <button type="button" [class.activa]="categoria === 'Todos'">
+              <button
+                type="button"
+                [class.activa]="categoriaAdmin() === categoria"
+                (click)="categoriaAdmin.set(categoria)"
+              >
                 {{ categoria }}
               </button>
             }

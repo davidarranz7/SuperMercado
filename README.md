@@ -933,12 +933,17 @@ luego cree el metodo alternarPublicacion y lo que hace es coger el valor actual 
 
 lo utilice para que cambie segun el valor del formulario
 
-## paso 54 
+## paso 54
 
 en este paso hice funcionar la bsuiqueda rapiuda del inventario
 cree un signal llamado busquedaAdmin para guardar lo que escribo
 luego cree productosFiltrados con computed para filtrar los productos por nombre o identificador
 
+## paso 55
+
+Consegui el funcionamiento de filtro por categoria del inventario,añadi un signal categoriaAdmin para guardar la categoria selecionado,luego modifique el productosfiltrados() para que tenga en cuenta tanto la busqueda como la categoria
+
+- (click)="categoriaAdmin.set(categoria)"
 
 ## Cómo arrancar el proyecto
 

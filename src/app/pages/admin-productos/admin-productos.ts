@@ -13,23 +13,24 @@ import { Productos } from '../../services/productos';
 export class AdminProductos implements OnInit {
   protected readonly productoService = inject(Productos);
   protected readonly busquedaAdmin = signal('');
+  protected readonly categoriaAdmin = signal('Todas');
 
   protected readonly productosFiltrados = computed(() => {
     const busqueda = this.busquedaAdmin().trim().toLowerCase();
 
-    if (!busqueda) {
-      return this.productoService.productos();
-    }
+    const categoria = this.categoriaAdmin();
 
-    return this.productoService
-      .productos()
-      .filter(
-        (producto) =>
-          producto.nombre.toLowerCase().includes(busqueda) ||
-          producto.sku?.toLowerCase().includes(busqueda),
-      );
+    return this.productoService.productos().filter((producto) => {
+      const coincideBusqueda =
+        !busqueda ||
+        producto.nombre.toLowerCase().includes(busqueda) ||
+        producto.sku?.toLowerCase().includes(busqueda);
+
+      const coincideCategoria = categoria === 'Todos' || producto.categoria === categoria;
+
+      return coincideBusqueda && coincideCategoria;
+    });
   });
-
   protected readonly totalProductos = computed(() => this.productoService.productos().length);
 
   ngOnInit() {
