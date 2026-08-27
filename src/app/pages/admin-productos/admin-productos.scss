@@ -12,6 +12,10 @@
 }
 
 .inventario-cabecera {
+  position: sticky;
+  top: 64px;
+  z-index: 10;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,6 +23,8 @@
 
   margin-bottom: 80px;
   padding: 24px;
+
+  background-color: #f8f9ff;
 
   h1 {
     position: relative;
@@ -97,27 +103,24 @@
 .inventario-contenido {
   width: 100%;
   max-width: 1280px;
-
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 48px;
-
   margin: 0 auto;
   padding: 0 24px 48px;
 }
 
 .inventario-lateral {
+  position: sticky;
+  top: 220px;
   min-width: 0;
-
+  align-self: start;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
 .filtros {
-  position: sticky;
-  top: 96px;
-
   padding: 24px;
 
   background-color: #eff4ff;
@@ -130,11 +133,8 @@
     display: flex;
     align-items: center;
     gap: 12px;
-
     margin: 0 0 24px;
-
     color: #0b1c30;
-
     font-size: 24px;
     line-height: 32px;
     font-weight: 600;
@@ -149,7 +149,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-
   margin-bottom: 48px;
 
   &:last-child {
@@ -159,7 +158,6 @@
   > label,
   .filtro-titulo {
     color: #3d4a3d;
-
     font-size: 14px;
     line-height: 20px;
     font-weight: 600;
@@ -168,37 +166,27 @@
 
 .busqueda-rapida {
   position: relative;
-
   display: flex;
   align-items: center;
 
   .material-symbols-outlined {
     position: absolute;
-
     left: 12px;
-
     color: #3d4a3d;
-
     font-size: 20px;
-
     pointer-events: none;
   }
 
   input {
     width: 100%;
-
     padding: 12px 12px 12px 48px;
-
     background-color: #d3e4fe;
     color: #0b1c30;
-
     border: none;
     border-radius: 8px;
     outline: none;
-
     font-size: 14px;
     line-height: 20px;
-
     transition: box-shadow 0.2s;
 
     &::placeholder {
@@ -218,17 +206,13 @@
 
   button {
     padding: 4px 12px;
-
     background-color: #dce9ff;
     color: #3d4a3d;
-
     border: none;
     border-radius: 9999px;
-
     font-size: 12px;
     line-height: 16px;
     font-weight: 500;
-
     transition:
       background-color 0.2s,
       color 0.2s;
@@ -253,22 +237,17 @@
 
   .filtro-stock-opcion {
     width: 100%;
-
     display: flex;
     align-items: center;
     gap: 12px;
-
     padding: 0;
-
     background-color: transparent;
     color: #0b1c30;
-
     border: none;
 
     font: inherit;
     font-size: 14px;
     line-height: 20px;
-
     text-align: left;
 
     cursor: pointer;
@@ -283,17 +262,12 @@
 .checkbox-personalizado {
   width: 20px;
   height: 20px;
-
   flex-shrink: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background-color: #dce9ff;
-
   border-radius: 4px;
-
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 
   &.activo {
@@ -308,23 +282,16 @@
 
 .resumen-rapido {
   position: relative;
-
   overflow: hidden;
-
   padding: 24px;
-
   background-color: rgba(0, 110, 47, 0.1);
-
   border-radius: 16px;
 
   h3 {
     position: relative;
     z-index: 1;
-
     margin: 0 0 4px;
-
     color: #0b1c30;
-
     font-size: 14px;
     line-height: 20px;
     font-weight: 600;
@@ -333,7 +300,6 @@
 
 .resumen-decoracion {
   position: absolute;
-
   top: -32px;
   right: -32px;
 
