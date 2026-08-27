@@ -31,7 +31,13 @@
           <div class="busqueda-rapida">
             <span class="material-symbols-outlined"> search </span>
 
-            <input id="busqueda-admin" type="text" placeholder="Nombre, código..." />
+            <input
+              #busquedaAdminInput
+              id="busqueda-admin"
+              type="text"
+              placeholder="Nombre, código..."
+              (input)="busquedaAdmin.set(busquedaAdminInput.value)"
+            />
           </div>
         </div>
 
@@ -138,7 +144,7 @@
             </thead>
 
             <tbody>
-              @for (producto of productoService.productos(); track producto.id) {
+              @for (producto of productosFiltrados(); track producto.id) {
                 <tr [class.fila-agotada]="(producto.stock ?? 0) === 0">
                   <td>
                     <div
@@ -230,7 +236,7 @@
         <div class="tabla-paginacion">
           <span>
             Mostrando
-            {{ productoService.productos().length }}
+            {{ productosFiltrados().length }}
             de
             {{ productoService.productos().length }}
           </span>

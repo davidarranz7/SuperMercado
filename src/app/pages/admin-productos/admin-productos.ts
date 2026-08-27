@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { Productos } from '../../services/productos';
@@ -12,6 +12,23 @@ import { Productos } from '../../services/productos';
 })
 export class AdminProductos implements OnInit {
   protected readonly productoService = inject(Productos);
+  protected readonly busquedaAdmin = signal('');
+
+  protected readonly productosFiltrados = computed(() => {
+    const busqueda = this.busquedaAdmin().trim().toLowerCase();
+
+    if (!busqueda) {
+      return this.productoService.productos();
+    }
+
+    return this.productoService
+      .productos()
+      .filter(
+        (producto) =>
+          producto.nombre.toLowerCase().includes(busqueda) ||
+          producto.sku?.toLowerCase().includes(busqueda),
+      );
+  });
 
   protected readonly totalProductos = computed(() => this.productoService.productos().length);
 

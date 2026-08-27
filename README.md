@@ -933,6 +933,13 @@ luego cree el metodo alternarPublicacion y lo que hace es coger el valor actual 
 
 lo utilice para que cambie segun el valor del formulario
 
+## paso 54 
+
+en este paso hice funcionar la bsuiqueda rapiuda del inventario
+cree un signal llamado busquedaAdmin para guardar lo que escribo
+luego cree productosFiltrados con computed para filtrar los productos por nombre o identificador
+
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash
