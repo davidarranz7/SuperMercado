@@ -252,18 +252,29 @@
   gap: 4px;
 
   .filtro-stock-opcion {
+    width: 100%;
+
     display: flex;
     align-items: center;
     gap: 12px;
 
+    padding: 0;
+
+    background-color: transparent;
     color: #0b1c30;
 
+    border: none;
+
+    font: inherit;
     font-size: 14px;
     line-height: 20px;
+
+    text-align: left;
 
     cursor: pointer;
 
     &:hover {
+      background-color: transparent;
       color: #006e2f;
     }
   }
@@ -542,11 +553,6 @@ tbody {
       background-color: rgba(248, 249, 255, 0.5);
     }
   }
-}
-
-.producto-icono {
-  font-size: 28px;
-  line-height: 1;
 }
 
 .producto-informacion {

@@ -945,6 +945,14 @@ Consegui el funcionamiento de filtro por categoria del inventario,añadi un sign
 
 - (click)="categoriaAdmin.set(categoria)"
 
+# paso 56
+
+En este paso hice funcional el filtro por estado de stock del inventario.
+
+Despues añadi este filtro dentro de productosFiltrados() junto con la busqueda y la categoria.
+
+Tambien cre seleccionarEstadoStock() para poder seleccionar un estado y volver a odos si pulso otra vez sobre el mismo.
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash

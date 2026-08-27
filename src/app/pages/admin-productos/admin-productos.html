@@ -61,25 +61,56 @@
           <span class="filtro-titulo"> Estado Stock </span>
 
           <div class="filtro-stock">
-            <div class="filtro-stock-opcion">
-              <span class="checkbox-personalizado activo">
-                <span class="material-symbols-outlined"> check </span>
+            <button
+              class="filtro-stock-opcion"
+              type="button"
+              (click)="seleccionarEstadoStock('En stock')"
+            >
+              <span
+                class="checkbox-personalizado"
+                [class.activo]="estadoStockAdmin() === 'En stock'"
+              >
+                @if (estadoStockAdmin() === 'En stock') {
+                  <span class="material-symbols-outlined"> check </span>
+                }
               </span>
 
-              <span> En stock </span>
-            </div>
+              <span>En stock</span>
+            </button>
 
-            <div class="filtro-stock-opcion">
-              <span class="checkbox-personalizado"></span>
+            <button
+              class="filtro-stock-opcion"
+              type="button"
+              (click)="seleccionarEstadoStock('Stock bajo')"
+            >
+              <span
+                class="checkbox-personalizado"
+                [class.activo]="estadoStockAdmin() === 'Stock bajo'"
+              >
+                @if (estadoStockAdmin() === 'Stock bajo') {
+                  <span class="material-symbols-outlined"> check </span>
+                }
+              </span>
 
-              <span> Stock bajo (&lt; 20) </span>
-            </div>
+              <span>Stock bajo</span>
+            </button>
 
-            <div class="filtro-stock-opcion">
-              <span class="checkbox-personalizado"></span>
+            <button
+              class="filtro-stock-opcion"
+              type="button"
+              (click)="seleccionarEstadoStock('Agotado')"
+            >
+              <span
+                class="checkbox-personalizado"
+                [class.activo]="estadoStockAdmin() === 'Agotado'"
+              >
+                @if (estadoStockAdmin() === 'Agotado') {
+                  <span class="material-symbols-outlined"> check </span>
+                }
+              </span>
 
-              <span> Agotado </span>
-            </div>
+              <span>Agotado</span>
+            </button>
           </div>
         </div>
       </section>
