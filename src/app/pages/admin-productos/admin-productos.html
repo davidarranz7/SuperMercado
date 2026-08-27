@@ -129,13 +129,13 @@
         </div>
 
         <div class="resumen-barra">
-          <div></div>
+          <div [style.width.%]="porcentajeActivos()"></div>
         </div>
 
         <div class="resumen-pie">
           <span> Activos </span>
 
-          <span> 85% </span>
+          <span> {{ porcentajeActivos() }}% </span>
         </div>
       </section>
     </aside>
@@ -179,7 +179,7 @@
             </thead>
 
             <tbody>
-              @for (producto of productosFiltrados(); track producto.id) {
+              @for (producto of productosPaginados(); track producto.id) {
                 <tr [class.fila-agotada]="(producto.stock ?? 0) === 0">
                   <td>
                     <div
@@ -277,19 +277,33 @@
           </span>
 
           <div class="paginas">
-            <button type="button" disabled>
+            <button
+              type="button"
+              [disabled]="paginaActual() === 1"
+              (click)="cambiarPagina(paginaActual() - 1)"
+            >
               <span class="material-symbols-outlined"> chevron_left </span>
             </button>
 
-            <button class="pagina-activa" type="button">1</button>
+            @for (pagina of paginas(); track $index) {
+              @if (pagina === '...') {
+                <span> ... </span>
+              } @else {
+                <button
+                  type="button"
+                  [class.pagina-activa]="paginaActual() === pagina"
+                  (click)="cambiarPagina(pagina)"
+                >
+                  {{ pagina }}
+                </button>
+              }
+            }
 
-            <button type="button">2</button>
-
-            <button type="button">3</button>
-
-            <span> ... </span>
-
-            <button type="button">
+            <button
+              type="button"
+              [disabled]="paginaActual() === totalPaginas()"
+              (click)="cambiarPagina(paginaActual() + 1)"
+            >
               <span class="material-symbols-outlined"> chevron_right </span>
             </button>
           </div>
