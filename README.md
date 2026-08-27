@@ -893,6 +893,46 @@ Simplemente sirve para que si estoy creando un producto y me equivoco de imagen 
 
 Asi terminamos eliminando completamente el antiguo sistema de iconos y ahora todos los productos trabajan solamente con imagenes.
 
+## paso 51
+
+En este paso hice que la descripción del producto dejase de estar hardcodeada primero añadi descripcion al FormGroup:
+
+- descripcion: new FormControl('', {
+  nonNullable: true,
+  })
+
+Despues conecte el textarea con Angular usando:
+
+- formControlName="descripcion"
+
+Así, cuando guardo un producto, getRawValue() recoge tambien la descripcion y se guarda en db.json.
+
+Despues cambie el detalle del producto para mostrar:
+
+- producto.descripcion
+
+Como algunos productos antiguos todavia no tienen descripcion, deje un texto por defecto usando @if.
+
+Con esto consegui que cada producto pueda tener su propia descripcion real desde que lo creo hasta que se muestra en la tienda.
+
+Este encaja mucho mejor con el estilo que veníamos usando.
+
+## paso 52
+
+en este paso hice funcionar el estado de publicacion del prducto añadi un nuevo parametro en el formualrio
+
+- publicado: new FormControl(true, {
+  nonNullable: true,
+  })
+
+Le deje true por que normalmente cuando haces un nuevo producto es por que lo quieres publicar pero tambien pero muchas veces igual ese producto se va a poner al dia siguiente y entonces solo tendrias que el dia de mañna o x dias darle a visible y ya estqaria
+
+luego cree el metodo alternarPublicacion y lo que hace es coger el valor actual dejarlo o si no ponerlo al contrario y lo conecte con el html
+
+- [class.activo]="formularioProducto.controls.publicado.value"
+
+lo utilice para que cambie segun el valor del formulario
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash

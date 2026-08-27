@@ -53,6 +53,7 @@
           <div class="descripcion-contenedor">
             <textarea
               id="descripcion"
+              formControlName="descripcion"
               rows="5"
               placeholder="Describe el producto, sus beneficios, origen..."
             ></textarea>
@@ -307,9 +308,11 @@
           </div>
 
           <button
-            class="interruptor activo"
+            class="interruptor"
             type="button"
             aria-label="Cambiar visibilidad del producto"
+            [class.activo]="formularioProducto.controls.publicado.value"
+            (click)="alternarPublicacion()"
           >
             <span></span>
           </button>

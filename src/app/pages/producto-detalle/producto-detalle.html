@@ -65,9 +65,16 @@
             {{ producto.precio | currency: 'EUR' }}
           </p>
 
-          <p class="detalle-descripcion">
-            Producto fresco seleccionado cuidadosamente para ofrecer la mejor calidad en tu compra.
-          </p>
+          @if (producto.descripcion) {
+            <p class="detalle-descripcion">
+              {{ producto.descripcion }}
+            </p>
+          } @else {
+            <p class="detalle-descripcion">
+              Producto fresco seleccionado cuidadosamente para ofrecer la mejor calidad en tu
+              compra.
+            </p>
+          }
 
           <div class="detalle-compra">
             @if (cantidadEnCarrito() === 0) {

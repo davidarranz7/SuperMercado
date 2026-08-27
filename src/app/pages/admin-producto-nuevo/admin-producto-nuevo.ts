@@ -29,6 +29,10 @@ export class AdminProductoNuevo implements OnInit {
       validators: [Validators.required],
     }),
 
+    descripcion: new FormControl('', {
+      nonNullable: true,
+    }),
+
     categoria: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required],
@@ -53,6 +57,10 @@ export class AdminProductoNuevo implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
+
+    publicado: new FormControl(true, {
+      nonNullable: true,
+    }),
   });
 
   ngOnInit() {
@@ -63,6 +71,12 @@ export class AdminProductoNuevo implements OnInit {
 
   protected cancelar() {
     this.router.navigate(['/admin/productos']);
+  }
+
+  protected alternarPublicacion() {
+    const publicadoActual = this.formularioProducto.controls.publicado.value;
+
+    this.formularioProducto.controls.publicado.setValue(!publicadoActual);
   }
 
   protected seleccionarImagen(event: Event) {
