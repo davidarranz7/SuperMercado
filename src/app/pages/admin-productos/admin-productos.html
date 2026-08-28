@@ -36,7 +36,7 @@
               id="busqueda-admin"
               type="text"
               placeholder="Nombre, código..."
-              (input)="busquedaAdmin.set(busquedaAdminInput.value)"
+              (input)="buscarProducto(busquedaAdminInput.value)"
             />
           </div>
         </div>
@@ -49,7 +49,7 @@
               <button
                 type="button"
                 [class.activa]="categoriaAdmin() === categoria"
-                (click)="categoriaAdmin.set(categoria)"
+                (click)="seleccionarCategoria(categoria)"
               >
                 {{ categoria }}
               </button>

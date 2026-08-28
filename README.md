@@ -953,6 +953,17 @@ Despues añadi este filtro dentro de productosFiltrados() junto con la busqueda 
 
 Tambien cre seleccionarEstadoStock() para poder seleccionar un estado y volver a odos si pulso otra vez sobre el mismo.
 
+## paso 59
+
+En este paso corregi un problema entre los filtros y la paginación del inventario. Si estaba por ejemplo en la pagina 4 y aplicaba un filtro que solo tenia una pagina de resultados la tabla se quedaba vacia porque paginaActual seguía siendo 4.
+Lo solucione haciendo que al cambiar:
+
+- búsqueda
+- categoría
+- estado de stock
+
+la paginaActual vuelva siempre a 1. Asi los filtros y la paginacio funcionan correctamente juntos
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash

@@ -109,11 +109,13 @@ export class AdminProductos implements OnInit {
   protected seleccionarEstadoStock(estado: 'En stock' | 'Stock bajo' | 'Agotado') {
     if (this.estadoStockAdmin() === estado) {
       this.estadoStockAdmin.set('Todos');
+      this.paginaActual.set(1);
 
       return;
     }
 
     this.estadoStockAdmin.set(estado);
+    this.paginaActual.set(1);
   }
 
   protected cambiarPagina(pagina: number) {
@@ -122,5 +124,14 @@ export class AdminProductos implements OnInit {
     }
 
     this.paginaActual.set(pagina);
+  }
+  protected buscarProducto(texto: string) {
+    this.busquedaAdmin.set(texto);
+    this.paginaActual.set(1);
+  }
+
+  protected seleccionarCategoria(categoria: string) {
+    this.categoriaAdmin.set(categoria);
+    this.paginaActual.set(1);
   }
 }
