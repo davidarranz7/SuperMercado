@@ -1,7 +1,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { catchError, EMPTY, finalize } from 'rxjs';
+import { catchError, EMPTY, finalize, tap } from 'rxjs';
 
 import { Producto } from '../models/producto';
 
@@ -44,7 +44,21 @@ export class Productos {
   }
 
   actualizarProducto(id: string, cambios: Partial<Producto>) {
-    return this.http.patch<Producto>(`${this.apiUrl}/${id}`, cambios);
+    return this.http.patch<Producto>(`${this.apiUrl}/${id}`, cambios).pipe(
+      tap((productoActualizado) => {
+        this.productos.update((productos) =>
+          productos.map((producto) => (producto.id === id ? productoActualizado : producto)),
+        );
+      }),
+    );
+  }
+
+  eliminarProducto(id: string) {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      tap(() => {
+        this.productos.update((productos) => productos.filter((producto) => producto.id !== id));
+      }),
+    );
   }
 
   cargarProductos() {

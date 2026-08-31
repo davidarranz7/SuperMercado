@@ -262,6 +262,7 @@
                         type="button"
                         title="Eliminar"
                         aria-label="Eliminar producto"
+                        (click)="abrirModalEliminar(producto.id, producto.nombre)"
                       >
                         <span class="material-symbols-outlined"> delete </span>
                       </button>
@@ -317,3 +318,35 @@
     </section>
   </div>
 </div>
+
+@if (productoPendienteEliminar(); as producto) {
+  <div class="modal-fondo">
+    <div class="modal-eliminar">
+      <div class="modal-icono">
+        <span class="material-symbols-outlined"> delete </span>
+      </div>
+
+      <h2>Eliminar producto</h2>
+
+      <p>
+        ¿Seguro que quieres eliminar
+        <strong>{{ producto.nombre }}</strong
+        >?
+      </p>
+
+      <p class="modal-aviso">Esta acción no se puede deshacer.</p>
+
+      <div class="modal-acciones">
+        <button type="button" class="boton-cancelar" (click)="cerrarModalEliminar()">
+          Cancelar
+        </button>
+
+        <button type="button" class="boton-confirmar-eliminar" (click)="confirmarEliminar()">
+          <span class="material-symbols-outlined"> delete </span>
+
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+}

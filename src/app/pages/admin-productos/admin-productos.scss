@@ -848,3 +848,145 @@ tbody {
     }
   }
 }
+
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background-color: rgba(11, 28, 48, 0.45);
+
+  backdrop-filter: blur(4px);
+}
+
+.modal-eliminar {
+  width: 100%;
+  max-width: 440px;
+
+  padding: 32px;
+
+  background-color: #ffffff;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.15),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  text-align: center;
+
+  h2 {
+    margin: 16px 0 8px;
+
+    color: #0b1c30;
+
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+
+    color: #3d4a3d;
+
+    font-size: 14px;
+    line-height: 22px;
+
+    strong {
+      color: #0b1c30;
+      font-weight: 700;
+    }
+  }
+}
+
+.modal-icono {
+  width: 56px;
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+
+  background-color: #ffdad6;
+  color: #ba1a1a;
+
+  border-radius: 9999px;
+
+  .material-symbols-outlined {
+    font-size: 28px;
+  }
+}
+
+.modal-aviso {
+  margin-top: 8px !important;
+
+  color: #ba1a1a !important;
+
+  font-size: 12px !important;
+}
+
+.modal-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+.boton-cancelar,
+.boton-confirmar-eliminar {
+  min-width: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.boton-cancelar {
+  background-color: #eff4ff;
+  color: #3d4a3d;
+
+  &:hover {
+    background-color: #dce9ff;
+    color: #0b1c30;
+  }
+}
+
+.boton-confirmar-eliminar {
+  background-color: #ba1a1a;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #93000a;
+  }
+
+  .material-symbols-outlined {
+    font-size: 18px;
+  }
+}

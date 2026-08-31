@@ -23,6 +23,11 @@ export class AdminProductos implements OnInit {
 
   protected readonly paginaActual = signal(1);
 
+  protected readonly productoPendienteEliminar = signal<{
+    id: string;
+    nombre: string;
+  } | null>(null);
+
   protected readonly productosPorPagina = 10;
 
   protected readonly productosFiltrados = computed(() => {
@@ -99,6 +104,41 @@ export class AdminProductos implements OnInit {
 
     return this.productosFiltrados().slice(inicio, fin);
   });
+
+  protected abrirModalEliminar(id: string, nombre: string) {
+    this.productoPendienteEliminar.set({
+      id,
+      nombre,
+    });
+  }
+
+  protected cerrarModalEliminar() {
+    this.productoPendienteEliminar.set(null);
+  }
+
+  protected confirmarEliminar() {
+    const producto = this.productoPendienteEliminar();
+
+    if (!producto) {
+      return;
+    }
+
+    this.productoService.eliminarProducto(producto.id).subscribe({
+      next: () => {
+        const totalPaginas = this.totalPaginas();
+
+        if (this.paginaActual() > totalPaginas) {
+          this.paginaActual.set(Math.max(totalPaginas, 1));
+        }
+
+        this.cerrarModalEliminar();
+      },
+
+      error: (error) => {
+        console.error('Error al eliminar el producto:', error);
+      },
+    });
+  }
 
   ngOnInit() {
     if (this.productoService.productos().length === 0) {
