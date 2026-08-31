@@ -43,6 +43,10 @@ export class Productos {
     return this.http.post<Producto>(this.apiUrl, producto);
   }
 
+  actualizarProducto(id: string, cambios: Partial<Producto>) {
+    return this.http.patch<Producto>(`${this.apiUrl}/${id}`, cambios);
+  }
+
   cargarProductos() {
     this.cargando.set(true);
     this.error.set(null);
@@ -93,7 +97,10 @@ export class Productos {
     const orden = this.orden();
 
     const productos = this.productosFiltrados().filter(
-      (producto) => producto.precio >= precioMin && producto.precio <= precioMax,
+      (producto) =>
+        producto.precio >= precioMin &&
+        producto.precio <= precioMax &&
+        producto.publicado !== false,
     );
 
     if (orden === 'precio-asc') {

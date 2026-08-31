@@ -1,19 +1,36 @@
 <div class="nuevo-producto">
   <div class="nuevo-producto-cabecera">
     <div>
-      <h1>Nuevo Producto</h1>
+      <h1>
+        @if (esEdicion) {
+          Editar Producto
+        } @else {
+          Nuevo Producto
+        }
+      </h1>
 
-      <p>
-        Añade un nuevo producto al catálogo. Asegúrate de proporcionar información precisa para
-        mantener correctamente el inventario.
-      </p>
+      @if (esEdicion) {
+        <p>
+          Modifica la información del producto y guarda los cambios para actualizar el catálogo y el
+          inventario.
+        </p>
+      } @else {
+        <p>
+          Añade un nuevo producto al catálogo. Asegúrate de proporcionar información precisa para
+          mantener correctamente el inventario.
+        </p>
+      }
     </div>
 
     <div class="cabecera-acciones">
       <button class="boton-cancelar" type="button" (click)="cancelar()">Cancelar</button>
 
       <button class="boton-guardar" type="submit" form="formulario-producto">
-        Guardar Producto
+        @if (esEdicion) {
+          Guardar Cambios
+        } @else {
+          Guardar Producto
+        }
       </button>
     </div>
   </div>

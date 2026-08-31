@@ -248,7 +248,12 @@
 
                   <td>
                     <div class="acciones">
-                      <button type="button" title="Editar" aria-label="Editar producto">
+                      <button
+                        type="button"
+                        title="Editar"
+                        aria-label="Editar producto"
+                        [routerLink]="['/admin/productos', producto.id, 'editar']"
+                      >
                         <span class="material-symbols-outlined"> edit </span>
                       </button>
 

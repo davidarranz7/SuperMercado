@@ -8,7 +8,9 @@
       "icono": "🍎",
       "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBKtJG9pwP18RWfwTqgKABYDwS3oBT9TIcxp1zj-PVGBvyJcZg2_0-OUB4Plnm7-8AXpzL5kR4tiHysOcV4iMEx4KzXPMCS4FGrZtWnU-b5LQ0Ftxs4Coy5Mw_CMzMklmmlL0OAmd6VDWNmb3EUjWEXlXD2OdR5X1hmKjkhz4F-NrgIDk29bD_qoXnC0he3UFlgLlgXsV__DYd2d3k8g11JRW5LvjJg6_yvcAJekJajkStbsaGT5glrbg",
       "sku": "SKU-0001",
-      "stock": 48
+      "stock": 0,
+      "descripcion": "",
+      "publicado": false
     },
     {
       "id": "2",
@@ -18,7 +20,9 @@
       "icono": "🍌",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdhFu0Z_MN3ouYta-J-7rZaZ_py_6o6f_Pqy_KR73fDw&s=10",
       "sku": "SKU-0002",
-      "stock": 35
+      "stock": 0,
+      "descripcion": "",
+      "publicado": true
     },
     {
       "id": "3",
@@ -28,7 +32,9 @@
       "icono": "🥬",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTwz8I9DkEdNJ_zh7EA24ZBTaFiUAvMyvmRFBlsUUvog&s=10",
       "sku": "SKU-0003",
-      "stock": 12
+      "stock": 0,
+      "descripcion": "",
+      "publicado": true
     },
     {
       "id": "4",
@@ -38,7 +44,9 @@
       "icono": "🥕",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQByoK3l6FBf5Kv9oHPzOv7W_T_kvhFRPIw_3cYKYAztA&s=10",
       "sku": "SKU-0004",
-      "stock": 27
+      "stock": 0,
+      "descripcion": "",
+      "publicado": true
     },
     {
       "id": "5",
@@ -48,7 +56,9 @@
       "icono": "🍗",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVAhydn6a-DeKOKEvS4XhUahtWzlcWsnvsORXC04FxA&s=10",
       "sku": "SKU-0005",
-      "stock": 8
+      "stock": 29,
+      "descripcion": "",
+      "publicado": false
     },
     {
       "id": "6",
@@ -58,7 +68,9 @@
       "icono": "🍞",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiceOLSaXbzLHmfA_Ps1dfO6ZrfNZkHSEddxfda9z7XQ&s=10",
       "sku": "SKU-0006",
-      "stock": 42
+      "stock": 0,
+      "descripcion": "",
+      "publicado": false
     },
     {
       "id": "7",
@@ -78,7 +90,9 @@
       "icono": "🍊",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmoxDerXw_wzT66oVxLD76IFBvsAZZSiAfN2NIz-QZ2g&s=10",
       "sku": "SKU-0008",
-      "stock": 31
+      "stock": 2,
+      "descripcion": "",
+      "publicado": true
     },
     {
       "id": "9",
@@ -326,6 +340,28 @@
       "sku": "FRUT-PAPA-01",
       "imagen": "https://exoticfruitbox.com/wp-content/uploads/2015/10/papaya-3-Exotic.jpg",
       "id": "34C-LggBlcQ"
+    },
+    {
+      "nombre": "Manzana",
+      "descripcion": "",
+      "categoria": "Frutas",
+      "precio": 1.5,
+      "stock": 8,
+      "sku": "SKU-0001",
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBKtJG9pwP18RWfwTqgKABYDwS3oBT9TIcxp1zj-PVGBvyJcZg2_0-OUB4Plnm7-8AXpzL5kR4tiHysOcV4iMEx4KzXPMCS4FGrZtWnU-b5LQ0Ftxs4Coy5Mw_CMzMklmmlL0OAmd6VDWNmb3EUjWEXlXD2OdR5X1hmKjkhz4F-NrgIDk29bD_qoXnC0he3UFlgLlgXsV__DYd2d3k8g11JRW5LvjJg6_yvcAJekJajkStbsaGT5glrbg",
+      "publicado": true,
+      "id": "leuZyJaZWw0"
+    },
+    {
+      "nombre": "Manzana",
+      "descripcion": "",
+      "categoria": "Frutas",
+      "precio": 1.5,
+      "stock": 5,
+      "sku": "SKU-0001",
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBKtJG9pwP18RWfwTqgKABYDwS3oBT9TIcxp1zj-PVGBvyJcZg2_0-OUB4Plnm7-8AXpzL5kR4tiHysOcV4iMEx4KzXPMCS4FGrZtWnU-b5LQ0Ftxs4Coy5Mw_CMzMklmmlL0OAmd6VDWNmb3EUjWEXlXD2OdR5X1hmKjkhz4F-NrgIDk29bD_qoXnC0he3UFlgLlgXsV__DYd2d3k8g11JRW5LvjJg6_yvcAJekJajkStbsaGT5glrbg",
+      "publicado": true,
+      "id": "FFtkJ3_JtRI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

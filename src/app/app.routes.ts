@@ -44,6 +44,10 @@ export const routes: Routes = [
         path: 'productos/nuevo',
         component: AdminProductoNuevo,
       },
+      {
+        path: 'productos/:id/editar',
+        component: AdminProductoNuevo,
+      },
     ],
   },
 ];

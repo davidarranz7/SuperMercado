@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Productos } from '../../services/productos';
 
@@ -14,6 +14,12 @@ export class AdminProductoNuevo implements OnInit {
   protected readonly productoService = inject(Productos);
 
   private readonly router = inject(Router);
+
+  private readonly route = inject(ActivatedRoute);
+
+  private readonly productoId = this.route.snapshot.paramMap.get('id');
+
+  protected readonly esEdicion = this.productoId !== null;
 
   protected readonly imagenPreview = signal<string | null>(null);
 
@@ -67,6 +73,47 @@ export class AdminProductoNuevo implements OnInit {
     if (this.productoService.productos().length === 0) {
       this.productoService.cargarProductos();
     }
+
+    if (this.productoId) {
+      this.cargarProductoParaEditar();
+    }
+  }
+
+  private cargarProductoParaEditar() {
+    if (!this.productoId) {
+      return;
+    }
+
+    this.productoService.obtenerProductoPorId(this.productoId).subscribe({
+      next: (producto) => {
+        this.formularioProducto.patchValue({
+          nombre: producto.nombre,
+          descripcion: producto.descripcion ?? '',
+          categoria: producto.categoria,
+          precio: producto.precio,
+          stock: producto.stock ?? 0,
+          sku: producto.sku ?? '',
+          imagen: producto.imagen,
+          publicado: producto.publicado ?? true,
+        });
+
+        this.imagenPreview.set(producto.imagen);
+
+        if (producto.imagen.startsWith('data:image/')) {
+          this.origenImagen.set('archivo');
+
+          this.imagenUrl.set('');
+        } else {
+          this.origenImagen.set('url');
+
+          this.imagenUrl.set(producto.imagen);
+        }
+      },
+
+      error: (error) => {
+        console.error('Error al cargar el producto:', error);
+      },
+    });
   }
 
   protected cancelar() {
@@ -187,6 +234,22 @@ export class AdminProductoNuevo implements OnInit {
     }
 
     const producto = this.formularioProducto.getRawValue();
+
+    if (this.esEdicion && this.productoId) {
+      this.productoService.actualizarProducto(this.productoId, producto).subscribe({
+        next: () => {
+          this.productoService.cargarProductos();
+
+          this.router.navigate(['/admin/productos']);
+        },
+
+        error: (error) => {
+          console.error('Error al actualizar el producto:', error);
+        },
+      });
+
+      return;
+    }
 
     this.productoService.crearProducto(producto).subscribe({
       next: () => {
