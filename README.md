@@ -964,6 +964,18 @@ Lo solucione haciendo que al cambiar:
 
 la paginaActual vuelva siempre a 1. Asi los filtros y la paginacio funcionan correctamente juntos
 
+## paso 63
+
+En este paso añadí una validacion para evitar que dos productos puedan tener el mismo SKU.
+
+Antes de crear o actualizar un producto compruebo los productos existentes utilizando some().
+
+La comparacion ignora mayusculas, minusculas y espacios para evitar duplicados como SKU-0001 y sku-0001.
+
+Cuando estoy editando un producto excluyo su propio id de la comprobacion, para poder guardar cambios sin que su SKU actual se considere duplicado.
+
+Si el SKU ya pertenece a otro producto, bloqueo el guardado y muestro un mensaje de error debajo del campo.
+
 ## Cómo arrancar el proyecto
 
 \`\`\`bash

@@ -27,6 +27,8 @@ export class AdminProductoNuevo implements OnInit {
 
   protected readonly imagenUrl = signal('');
 
+  protected readonly errorSku = signal<string | null>(null);
+
   protected readonly origenImagen = signal<'archivo' | 'url' | null>(null);
 
   protected readonly formularioProducto = new FormGroup({
@@ -234,6 +236,22 @@ export class AdminProductoNuevo implements OnInit {
     }
 
     const producto = this.formularioProducto.getRawValue();
+
+    const skuDuplicado = this.productoService
+      .productos()
+      .some(
+        (productoExistente) =>
+          productoExistente.sku?.trim().toLowerCase() === producto.sku.trim().toLowerCase() &&
+          productoExistente.id !== this.productoId,
+      );
+
+    if (skuDuplicado) {
+      this.errorSku.set('Ya existe un producto con este SKU.');
+
+      return;
+    }
+
+    this.errorSku.set(null);
 
     if (this.esEdicion && this.productoId) {
       this.productoService.actualizarProducto(this.productoId, producto).subscribe({

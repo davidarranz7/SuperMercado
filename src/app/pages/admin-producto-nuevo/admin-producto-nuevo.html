@@ -145,6 +145,12 @@
             ) {
               <span class="campo-error"> El SKU es obligatorio. </span>
             }
+
+            @if (errorSku()) {
+              <span class="campo-error">
+                {{ errorSku() }}
+              </span>
+            }
           </div>
 
           <div class="campo">
