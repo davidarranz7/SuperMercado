@@ -9,6 +9,8 @@ import { Home } from './pages/home/home';
 import { ProductoDetalle } from './pages/producto-detalle/producto-detalle';
 import { AdminProductoNuevo } from './pages/admin-producto-nuevo/admin-producto-nuevo';
 import { AdminCategorias } from './pages/admin-categorias/admin-categorias';
+import { Registro } from './pages/registro/registro';
+import { Login } from './pages/login/login';
 
 export const routes: Routes = [
   {
@@ -27,7 +29,14 @@ export const routes: Routes = [
     path: 'producto/:id',
     component: ProductoDetalle,
   },
-
+  {
+    path: 'registro',
+    component: Registro,
+  },
+  {
+    path: 'login',
+    component: Login,
+  },
   {
     path: 'admin',
     component: AdminLayout,

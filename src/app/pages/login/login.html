@@ -1,0 +1,106 @@
+<section class="login-pagina">
+  <div class="login-card">
+    <a class="volver-inicio" routerLink="/" aria-label="Volver al inicio" title="Volver al inicio">
+      <span class="material-symbols-outlined"> arrow_back </span>
+    </a>
+
+    <a class="login-logo" routerLink="/" aria-label="Ir al inicio">
+      <div class="login-logo-icono">S</div>
+    </a>
+
+    <div class="login-cabecera">
+      <h1>Iniciar sesión</h1>
+      <p>Accede a tu cuenta de SuperMercado</p>
+    </div>
+
+    @if (errorLogin()) {
+      <div class="mensaje-error">
+        <span class="material-symbols-outlined"> error </span>
+
+        <span>{{ errorLogin() }}</span>
+      </div>
+    }
+
+    <form class="login-formulario" [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()">
+      <div class="campo">
+        <label for="email">Correo electrónico</label>
+
+        <div class="campo-input">
+          <span class="material-symbols-outlined"> mail </span>
+
+          <input id="email" type="email" formControlName="email" placeholder="nombre@correo.com" />
+        </div>
+
+        @if (formularioLogin.controls.email.invalid && formularioLogin.controls.email.touched) {
+          <span class="campo-error">
+            @if (formularioLogin.controls.email.hasError('required')) {
+              El correo electrónico es obligatorio.
+            } @else if (formularioLogin.controls.email.hasError('email')) {
+              Introduce un correo electrónico válido.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="campo">
+        <div class="campo-cabecera">
+          <label for="password">Contraseña</label>
+
+          <button type="button" class="olvidaste-password">¿Has olvidado tu contraseña?</button>
+        </div>
+
+        <div class="campo-input">
+          <span class="material-symbols-outlined"> lock </span>
+
+          <input
+            id="password"
+            [type]="mostrarPassword() ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="••••••••"
+          />
+
+          <button
+            type="button"
+            class="boton-ver-password"
+            [attr.aria-label]="mostrarPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+            (click)="alternarPassword()"
+          >
+            <span class="material-symbols-outlined">
+              {{ mostrarPassword() ? 'visibility_off' : 'visibility' }}
+            </span>
+          </button>
+        </div>
+
+        @if (
+          formularioLogin.controls.password.invalid && formularioLogin.controls.password.touched
+        ) {
+          <span class="campo-error"> La contraseña es obligatoria. </span>
+        }
+      </div>
+
+      <button type="submit" class="boton-login" [disabled]="cargando()">
+        @if (cargando()) {
+          Iniciando sesión...
+        } @else {
+          <span>Iniciar sesión</span>
+
+          <span class="material-symbols-outlined"> arrow_forward </span>
+        }
+      </button>
+    </form>
+
+    <div class="login-separador">
+      <span></span>
+
+      <small>O</small>
+
+      <span></span>
+    </div>
+
+    <div class="login-registro">
+      <span>¿No tienes una cuenta?</span>
+
+      <a routerLink="/registro"> Crear cuenta </a>
+    </div>
+  </div>
+</section>

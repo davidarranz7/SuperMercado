@@ -1,4 +1,8 @@
-@if (!router.url.startsWith('/admin')) {
+@if (
+  !router.url.startsWith('/admin') &&
+  !router.url.startsWith('/login') &&
+  !router.url.startsWith('/registro')
+) {
   <header class="header-principal">
     <div class="header-superior">
       <a class="logo" routerLink="/">

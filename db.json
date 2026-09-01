@@ -360,5 +360,21 @@
       "nombre": "Panadería"
     }
   ],
+  "usuarios": [
+    {
+      "id": "1",
+      "nombre": "Admin Principal",
+      "email": "admin@supermercado.com",
+      "password": "admin123",
+      "rol": "ADMIN"
+    },
+    {
+      "nombre": "david",
+      "email": "david@gmail.com",
+      "password": "abc123.",
+      "rol": "CLIENTE",
+      "id": "nPxx8GhH2Wk"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
