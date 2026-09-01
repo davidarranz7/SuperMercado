@@ -342,5 +342,23 @@
       "publicado": true
     }
   ],
+  "categorias": [
+    {
+      "id": "1",
+      "nombre": "Frutas"
+    },
+    {
+      "id": "2",
+      "nombre": "Verduras"
+    },
+    {
+      "id": "3",
+      "nombre": "Carnes"
+    },
+    {
+      "id": "4",
+      "nombre": "Panadería"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

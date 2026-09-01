@@ -277,12 +277,10 @@
             <select id="categoria" formControlName="categoria">
               <option value="">Selecciona una categoría</option>
 
-              @for (categoria of productoService.categorias(); track categoria) {
-                @if (categoria !== 'Todos') {
-                  <option [value]="categoria">
-                    {{ categoria }}
-                  </option>
-                }
+              @for (categoria of categoriaService.categorias(); track categoria.id) {
+                <option [value]="categoria.nombre">
+                  {{ categoria.nombre }}
+                </option>
               }
             </select>
 

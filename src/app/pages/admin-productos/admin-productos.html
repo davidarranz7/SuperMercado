@@ -45,13 +45,21 @@
           <span class="filtro-titulo"> Categoría </span>
 
           <div class="filtro-categorias">
-            @for (categoria of productoService.categorias(); track categoria) {
+            <button
+              type="button"
+              [class.activa]="categoriaAdmin() === 'Todos'"
+              (click)="seleccionarCategoria('Todos')"
+            >
+              Todos
+            </button>
+
+            @for (categoria of categoriaService.categorias(); track categoria.id) {
               <button
                 type="button"
-                [class.activa]="categoriaAdmin() === categoria"
-                (click)="seleccionarCategoria(categoria)"
+                [class.activa]="categoriaAdmin() === categoria.nombre"
+                (click)="seleccionarCategoria(categoria.nombre)"
               >
-                {{ categoria }}
+                {{ categoria.nombre }}
               </button>
             }
           </div>

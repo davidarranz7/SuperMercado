@@ -1,5 +1,5 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, computed, inject, signal } from '@angular/core';
 
 import { catchError, EMPTY, finalize, tap } from 'rxjs';
 
@@ -63,6 +63,7 @@ export class Productos {
 
   cargarProductos() {
     this.cargando.set(true);
+
     this.error.set(null);
 
     this.obtenerProductos()
@@ -83,11 +84,6 @@ export class Productos {
         this.productos.set(productos);
       });
   }
-
-  readonly categorias = computed(() => [
-    'Todos',
-    ...new Set(this.productos().map((producto) => producto.categoria)),
-  ]);
 
   readonly productosFiltrados = computed(() => {
     const texto = this.busqueda().trim().toLowerCase();

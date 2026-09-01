@@ -3,6 +3,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { Productos } from '../../services/productos';
+import { Categorias } from '../../services/categorias';
 
 @Component({
   selector: 'app-admin-productos',
@@ -16,6 +17,8 @@ export class AdminProductos implements OnInit {
   protected readonly busquedaAdmin = signal('');
 
   protected readonly categoriaAdmin = signal('Todos');
+
+  protected readonly categoriaService = inject(Categorias);
 
   protected readonly estadoStockAdmin = signal<'Todos' | 'En stock' | 'Stock bajo' | 'Agotado'>(
     'Todos',
@@ -143,6 +146,10 @@ export class AdminProductos implements OnInit {
   ngOnInit() {
     if (this.productoService.productos().length === 0) {
       this.productoService.cargarProductos();
+    }
+
+    if (this.categoriaService.categorias().length === 0) {
+      this.categoriaService.cargarCategorias();
     }
   }
 

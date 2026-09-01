@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { Categorias } from '../../services/categorias';
 import { Productos } from '../../services/productos';
 
 @Component({
@@ -12,6 +13,8 @@ import { Productos } from '../../services/productos';
 })
 export class AdminProductoNuevo implements OnInit {
   protected readonly productoService = inject(Productos);
+
+  protected readonly categoriaService = inject(Categorias);
 
   private readonly router = inject(Router);
 
@@ -74,6 +77,10 @@ export class AdminProductoNuevo implements OnInit {
   ngOnInit() {
     if (this.productoService.productos().length === 0) {
       this.productoService.cargarProductos();
+    }
+
+    if (this.categoriaService.categorias().length === 0) {
+      this.categoriaService.cargarCategorias();
     }
 
     if (this.productoId) {

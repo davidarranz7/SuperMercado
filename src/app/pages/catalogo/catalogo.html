@@ -12,16 +12,26 @@
           <h3>Categoría</h3>
 
           <div class="filtro-opciones">
-            @for (categoria of productoService.categorias(); track categoria) {
+            <label>
+              <input
+                type="checkbox"
+                [checked]="productoService.categoriaActiva() === 'Todos'"
+                (change)="seleccionarCategoria('Todos')"
+              />
+
+              <span>Todas</span>
+            </label>
+
+            @for (categoria of categoriaService.categorias(); track categoria.id) {
               <label>
                 <input
                   type="checkbox"
-                  [checked]="productoService.categoriaActiva() === categoria"
-                  (change)="productoService.categoriaActiva.set(categoria)"
+                  [checked]="productoService.categoriaActiva() === categoria.nombre"
+                  (change)="seleccionarCategoria(categoria.nombre)"
                 />
 
                 <span>
-                  {{ categoria === 'Todos' ? 'Todas' : categoria }}
+                  {{ categoria.nombre }}
                 </span>
               </label>
             }
