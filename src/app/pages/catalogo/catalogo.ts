@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 
 import { ProductoCard } from '../../components/producto-card/producto-card';
 import { Categorias } from '../../services/categorias';
@@ -14,6 +14,18 @@ export class Catalogo implements OnInit {
   protected readonly productoService = inject(Productos);
 
   protected readonly categoriaService = inject(Categorias);
+
+  protected readonly categoriasVisibles = computed(() =>
+    this.categoriaService
+      .categorias()
+      .filter((categoria) =>
+        this.productoService
+          .productos()
+          .some(
+            (producto) => producto.categoria === categoria.nombre && producto.publicado !== false,
+          ),
+      ),
+  );
 
   ngOnInit() {
     if (this.productoService.productos().length === 0) {

@@ -1,1 +1,201 @@
-<p>admin-categorias works!</p>
+<section class="categorias-admin">
+  <div class="categorias-cabecera">
+    <div>
+      <h1>Categorías</h1>
+      <p>Gestiona las categorías de productos del supermercado.</p>
+    </div>
+
+    <button type="button" class="boton-nueva-categoria" (click)="abrirModal()">
+      <span class="material-symbols-outlined"> add </span>
+      Nueva categoría
+    </button>
+  </div>
+
+  <div class="categorias-tabla-contenedor">
+    <table class="categorias-tabla">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (categoria of categoriaService.categorias(); track categoria.id) {
+          <tr>
+            <td>
+              <strong>{{ categoria.nombre }}</strong>
+            </td>
+
+            <td>
+              <div class="categoria-acciones">
+                <button
+                  type="button"
+                  title="Editar"
+                  aria-label="Editar categoría"
+                  (click)="abrirModalEditar(categoria)"
+                >
+                  <span class="material-symbols-outlined"> edit </span>
+                </button>
+
+                <button
+                  type="button"
+                  class="eliminar"
+                  title="Eliminar"
+                  aria-label="Eliminar categoría"
+                  (click)="abrirModalEliminar(categoria)"
+                >
+                  <span class="material-symbols-outlined"> delete </span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="2">No hay categorías disponibles.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+@if (modalAbierto()) {
+  <div class="modal-fondo">
+    <div class="modal-categoria">
+      <div class="modal-cabecera">
+        <div>
+          <h2>
+            @if (categoriaEditando()) {
+              Editar categoría
+            } @else {
+              Nueva categoría
+            }
+          </h2>
+
+          <p>
+            @if (categoriaEditando()) {
+              Modifica el nombre de la categoría.
+            } @else {
+              Añade una nueva categoría al catálogo.
+            }
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="boton-cerrar"
+          aria-label="Cerrar modal"
+          (click)="cerrarModal()"
+        >
+          <span class="material-symbols-outlined"> close </span>
+        </button>
+      </div>
+
+      <form [formGroup]="formularioCategoria" (ngSubmit)="guardarCategoria()">
+        <div class="campo">
+          <label for="nombreCategoria">Nombre</label>
+
+          <input
+            id="nombreCategoria"
+            type="text"
+            formControlName="nombre"
+            placeholder="Ej. Bebidas"
+          />
+
+          @if (
+            formularioCategoria.controls.nombre.invalid &&
+            formularioCategoria.controls.nombre.touched
+          ) {
+            <span class="campo-error"> El nombre de la categoría es obligatorio. </span>
+          }
+
+          @if (errorNombre()) {
+            <span class="campo-error">
+              {{ errorNombre() }}
+            </span>
+          }
+        </div>
+
+        <div class="modal-acciones">
+          <button type="button" class="boton-cancelar" (click)="cerrarModal()">Cancelar</button>
+
+          <button type="submit" class="boton-guardar" [disabled]="guardando()">
+            @if (guardando()) {
+              Guardando...
+            } @else if (categoriaEditando()) {
+              Guardar cambios
+            } @else {
+              Crear categoría
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+@if (categoriaPendienteEliminar(); as categoria) {
+  <div class="modal-fondo">
+    <div class="modal-categoria modal-eliminar-categoria">
+      @if (errorEliminar()) {
+        <div class="modal-icono modal-icono-aviso">
+          <span class="material-symbols-outlined"> warning </span>
+        </div>
+
+        <div class="modal-eliminar-contenido">
+          <h2>No se puede eliminar</h2>
+
+          <p>
+            La categoría <strong>{{ categoria.nombre }}</strong> tiene productos asociados.
+          </p>
+
+          <p class="modal-aviso">
+            {{ errorEliminar() }}
+          </p>
+        </div>
+
+        <div class="modal-acciones">
+          <button type="button" class="boton-cancelar" (click)="cerrarModalEliminar()">
+            Entendido
+          </button>
+        </div>
+      } @else {
+        <div class="modal-icono modal-icono-eliminar">
+          <span class="material-symbols-outlined"> delete </span>
+        </div>
+
+        <div class="modal-eliminar-contenido">
+          <h2>Eliminar categoría</h2>
+
+          <p>
+            ¿Seguro que quieres eliminar la categoría
+            <strong>{{ categoria.nombre }}</strong
+            >?
+          </p>
+
+          <p class="modal-aviso">Esta acción no se puede deshacer.</p>
+        </div>
+
+        <div class="modal-acciones">
+          <button type="button" class="boton-cancelar" (click)="cerrarModalEliminar()">
+            Cancelar
+          </button>
+
+          <button
+            type="button"
+            class="boton-confirmar-eliminar"
+            [disabled]="eliminando()"
+            (click)="confirmarEliminar()"
+          >
+            @if (eliminando()) {
+              Eliminando...
+            } @else {
+              Eliminar categoría
+            }
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+}

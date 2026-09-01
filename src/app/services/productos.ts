@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import { catchError, EMPTY, finalize, tap } from 'rxjs';
+import { catchError, EMPTY, finalize, forkJoin, of, tap } from 'rxjs';
 
 import { Producto } from '../models/producto';
 
@@ -50,6 +50,24 @@ export class Productos {
           productos.map((producto) => (producto.id === id ? productoActualizado : producto)),
         );
       }),
+    );
+  }
+
+  actualizarCategoriaProductos(nombreActual: string, nuevoNombre: string) {
+    const productosAsociados = this.productos().filter(
+      (producto) => producto.categoria === nombreActual,
+    );
+
+    if (productosAsociados.length === 0) {
+      return of([]);
+    }
+
+    return forkJoin(
+      productosAsociados.map((producto) =>
+        this.actualizarProducto(producto.id, {
+          categoria: nuevoNombre,
+        }),
+      ),
     );
   }
 
